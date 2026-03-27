@@ -13,3 +13,4 @@
 [node name="Player" parent="World" unique_id=482956824 instance=ExtResource("2_lamf8")]
 position = Vector2(49, 48)
 script = ExtResource("3_kqt35")
+max_move_distance = 5

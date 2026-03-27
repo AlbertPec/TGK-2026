@@ -72,6 +72,9 @@ func move_body(body: Node2D) -> bool:
 		path_to_travel.pop_front()
 
 	return true
+	
+func has_path_to_travel() -> bool:
+	return not path_to_travel.is_empty()
 
 func set_max_move_distance(value: int) -> void:
 	max_move_distance = value

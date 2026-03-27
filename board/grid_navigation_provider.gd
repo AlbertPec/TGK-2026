@@ -1,6 +1,10 @@
 extends Node2D
 class_name GridNavigationProvider
 
+"""
+Abstraction between map and navigation.
+"""
+
 const PROVIDER_GROUP := "grid_navigation_provider"
 
 @export var floor_layer_path: NodePath = ^"Floor"

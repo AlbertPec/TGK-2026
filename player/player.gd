@@ -28,7 +28,8 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("move") == false:
 		return
 
-	grid_movement.request_path(global_position, get_global_mouse_position())
+	if not grid_movement.has_path_to_travel():
+		grid_movement.request_path(global_position, get_global_mouse_position())
 
 func _physics_process(_delta: float) -> void:
 	grid_movement.move_body(self)

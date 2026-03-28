@@ -1,8 +1,8 @@
-extends Node2D
+extends CharacterBody2D
 
 var astar_grid: AStarGrid2D
-@onready var tile_map_floor_layer = $"../Board/Floor"
-@onready var tile_map_walls_layer = $"../Board/Walls"
+@onready var tile_map_floor_layer = $"../MapContainer/Board/Floor"
+@onready var tile_map_walls_layer = $"../MapContainer/Board/Walls"
 var path_to_travel: Array[Vector2i]
 
 var GRID_SIZE = 16
@@ -18,7 +18,7 @@ func _ready() -> void:
 
 	astar_grid.region = Rect2i(Vector2i.ZERO, used_rect.size)
 	astar_grid.cell_size = Vector2(GRID_SIZE, GRID_SIZE)
-	astar_grid.diagonal_mode = AStarGrid2D.DIAGONAL_MODE_AT_LEAST_ONE_WALKABLE # TODO: to discuss
+	astar_grid.diagonal_mode = AStarGrid2D.DIAGONAL_MODE_ONLY_IF_NO_OBSTACLES # TODO: to discuss
 	
 	astar_grid.update()
 	

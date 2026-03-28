@@ -1,45 +1,38 @@
 extends Node2D
 
-@onready var map_container = $MapContainer
+@onready var board = $Board
+@onready var player = $Player
 
-var current_level
-var current_level_name
+func change_board(path_to_scene: String):
+	if board:
+		board.queue_free()
+	board = load(path_to_scene).instantiate()
+	board.name = "Board"
+	add_child(board)
+	board.connect("switch_station", _on_level_changed)
+	
+	spawn_player()
+	
+func spawn_player():
+	player.stop_movement()
+	var spawn = board.get_node("SpawnPoint")
+	
+	if player.get_parent() == null:
+		add_child(player)
+	player.global_position = spawn.global_position
+	player.z_index = 100
+	
+	var navigation_provider = board as GridNavigationProvider
+	player.setup_grid_movement(navigation_provider)
+	
+	
+func _on_level_changed(station):
+	print(station)
+	change_board("res://board/%s.tscn" % station)
 
-var level_graph = {
-	"tile_map_teatr_bagatela": {
-		"left": "tile_map_teatr_bagatela",
-		"right": "tile_map_nowy_kleparz"
-	},
-	"tile_map_nowy_kleparz": {
-		"left": "tile_map_teatr_bagatela",
-		"right": "tile_map_dworzec_glowny"
-	},
-	"tile_map_dworzec_glowny": {
-		"left": "tile_map_nowy_kleparz",
-		"right": "tile_map_dworzec_glowny"
-	}
-}
-
-func change_map(path_to_scene: String):
-	var old_board = map_container.get_node("Board")
-
-	if old_board:
-		old_board.queue_free()
-
-	var new_board = load(path_to_scene).instantiate()
-	new_board.name = "Board"
-
-	map_container.add_child(new_board)
-
-func _on_level_completed(direction):
-	var next_level = level_graph[current_level_name][direction]
-	change_map("res://board/%s.tscn" % next_level)
-
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	$MapContainer.connect("level_completed",_on_level_completed)
-	current_level = $MapContainer.get_node("Board");
-	current_level_name = "tile_map_nowy_kleparz"
+	board.connect("switch_station", _on_level_changed)
+	spawn_player()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

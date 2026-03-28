@@ -2,9 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bnbfeqattnn2j" path="res://world.gd" id="1_kqt35"]
 [ext_resource type="PackedScene" uid="uid://bgu6l7clj2kut" path="res://player/player.tscn" id="2_lamf8"]
-[ext_resource type="Script" uid="uid://dxhm1e1kpw82k" path="res://map_container.gd" id="2_tbmg4"]
 [ext_resource type="Script" uid="uid://cdy01udbeauyi" path="res://player/player.gd" id="3_kqt35"]
-[ext_resource type="Script" uid="uid://c56ccug50x64n" path="res://goal.gd" id="4_h8mil"]
 [ext_resource type="PackedScene" uid="uid://dibka6g8ih7ef" path="res://board/tile_map_nowy_kleparz.tscn" id="4_kqt35"]
 
 [node name="Game" type="Node2D" unique_id=1240663828]
@@ -12,28 +10,10 @@
 [node name="World" type="Node2D" parent="." unique_id=687631327]
 script = ExtResource("1_kqt35")
 
-[node name="MapContainer" type="Node2D" parent="World" unique_id=1234958127]
-script = ExtResource("2_tbmg4")
-
-[node name="Board" parent="World/MapContainer" unique_id=71600981 instance=ExtResource("4_kqt35")]
+[node name="Board" parent="World" unique_id=71600981 instance=ExtResource("4_kqt35")]
 position = Vector2(3, -75)
 
-[node name="GoalLeft" type="Area2D" parent="World/MapContainer" unique_id=1738696584]
-script = ExtResource("4_h8mil")
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="World/MapContainer/GoalLeft" unique_id=846021517]
-position = Vector2(51, 332)
-scale = Vector2(1, 6.157819)
-polygon = PackedVector2Array(-54, -24.84646, 10, -24.521671, 10, 7.1453857, -52, 6.495804)
-
-[node name="GoalRight" type="Area2D" parent="World/MapContainer" unique_id=328172048]
-script = ExtResource("4_h8mil")
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="World/MapContainer/GoalRight" unique_id=1626248646]
-position = Vector2(1219, 322)
-scale = Vector2(1, 6.157819)
-polygon = PackedVector2Array(-4, -26.632809, 71, -26.470413, 67, 4.7094574, -6, 4.7094574)
-
-[node name="Player" parent="World" unique_id=482956824 instance=ExtResource("2_lamf8")]
-position = Vector2(1074, 244)
+[node name="Player" parent="World" unique_id=482956824 groups=["players"] instance=ExtResource("2_lamf8")]
+position = Vector2(113, 483)
 script = ExtResource("3_kqt35")
+max_move_distance = 5

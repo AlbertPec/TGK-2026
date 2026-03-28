@@ -27,7 +27,6 @@ func spawn_player():
 	
 	
 func _on_level_changed(station):
-	print(station)
 	change_board("res://board/%s.tscn" % station)
 
 func _ready() -> void:

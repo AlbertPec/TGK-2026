@@ -21,7 +21,6 @@ signal switch_station(station_name)
 
 func _on_level_changed(body):
 	if body.is_in_group("players"):
-		print("emituje,signal")
 		emit_signal("switch_station", next_station)
 		
 func _ready() -> void:

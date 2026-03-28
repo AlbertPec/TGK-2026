@@ -461,4 +461,4 @@ position = Vector2(69, 285)
 polygon = PackedVector2Array(-76, -59, 78, -61, 81, 161, -73, 162)
 
 [node name="SpawnPoint" type="Marker2D" parent="." unique_id=1201148866]
-position = Vector2(79, 178)
+position = Vector2(80, 175)

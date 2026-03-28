@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://rhdlkha5jxix"]
 
-[ext_resource type="Script" uid="uid://bnbfeqattnn2j" path="res://world.gd" id="1_kqt35"]
+[ext_resource type="Script" uid="uid://bnbfeqattnn2j" path="res://world/world.gd" id="1_kqt35"]
 [ext_resource type="PackedScene" uid="uid://bgu6l7clj2kut" path="res://player/player.tscn" id="2_lamf8"]
 [ext_resource type="Script" uid="uid://cdy01udbeauyi" path="res://player/player.gd" id="3_kqt35"]
 [ext_resource type="PackedScene" uid="uid://dibka6g8ih7ef" path="res://board/tile_map_nowy_kleparz.tscn" id="4_kqt35"]

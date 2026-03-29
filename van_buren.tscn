@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://rhdlkha5jxix"]
+
+[ext_resource type="PackedScene" uid="uid://3vgdiivoy4rq" path="res://board/tile_map.tscn" id="1_al0s1"]
+[ext_resource type="PackedScene" uid="uid://bgu6l7clj2kut" path="res://player/player.tscn" id="2_lamf8"]
+[ext_resource type="Script" uid="uid://cdy01udbeauyi" path="res://player/player.gd" id="3_kqt35"]
+
+[node name="Game" type="Node2D" unique_id=1240663828]
+
+[node name="World" type="Node2D" parent="." unique_id=687631327]
+
+[node name="Board" parent="World" unique_id=1015381578 instance=ExtResource("1_al0s1")]
+
+[node name="Player" parent="World" unique_id=482956824 instance=ExtResource("2_lamf8")]
+position = Vector2(49, 48)
+script = ExtResource("3_kqt35")
+max_move_distance = 5

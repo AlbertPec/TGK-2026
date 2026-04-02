@@ -15,16 +15,14 @@ const PROVIDER_GROUP := "grid_navigation_provider"
 Stations (Levels) change logic.
 """
 
-@export var next_station: String
+signal train_entered
 
-signal switch_station(station_name)
-
-func _on_level_changed(body):
+func _on_body_entered(body):
 	if body.is_in_group("players"):
-		emit_signal("switch_station", next_station)
+		emit_signal("train_entered")
 		
 func _ready() -> void:
-	$NextStation.connect("body_entered", _on_level_changed)
+	$Train.connect("body_entered", _on_body_entered)
 	add_to_group(PROVIDER_GROUP)
 
 func get_floor_layer() -> TileMapLayer:

@@ -11,7 +11,5 @@ region = Rect2(168, 136, 16, 24)
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=202369740]
 texture = SubResource("AtlasTexture_onrkg")
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=1443624217]
-
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=1460669423]
 polygon = PackedVector2Array(-8, -12, 8, -12, 8, 12, -8, 12)

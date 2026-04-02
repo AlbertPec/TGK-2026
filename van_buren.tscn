@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bgu6l7clj2kut" path="res://player/player.tscn" id="2_lamf8"]
 [ext_resource type="Script" uid="uid://cdy01udbeauyi" path="res://player/player.gd" id="3_kqt35"]
 [ext_resource type="PackedScene" uid="uid://dibka6g8ih7ef" path="res://board/tile_map_nowy_kleparz.tscn" id="4_kqt35"]
+[ext_resource type="PackedScene" uid="uid://bh1f7g65dyi6s" path="res://UI/heads_up_display.tscn" id="5_tbmg4"]
 
 [node name="Game" type="Node2D" unique_id=1240663828]
 
@@ -11,9 +12,25 @@
 script = ExtResource("1_kqt35")
 
 [node name="Board" parent="World" unique_id=71600981 instance=ExtResource("4_kqt35")]
-position = Vector2(3, -75)
 
 [node name="Player" parent="World" unique_id=482956824 groups=["players"] instance=ExtResource("2_lamf8")]
-position = Vector2(113, 483)
+position = Vector2(2, 1)
 script = ExtResource("3_kqt35")
 max_move_distance = 5
+
+[node name="HUD" parent="." unique_id=1004466029 instance=ExtResource("5_tbmg4")]
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 641.0
+offset_top = 690.0
+offset_right = 641.0
+offset_bottom = 690.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=661366753]
+position = Vector2(638, 395)
+zoom = Vector2(0.4, 0.4)
+
+[connection signal="ui_station_chosen" from="HUD" to="World" method="_on_hud_ui_station_chosen"]

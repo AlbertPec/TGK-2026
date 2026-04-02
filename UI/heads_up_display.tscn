@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://bh1f7g65dyi6s"]
+
+[ext_resource type="PackedScene" uid="uid://cno7w3aagkwaq" path="res://UI/station_map/station_map.tscn" id="1_io4rn"]
+[ext_resource type="Script" uid="uid://i24anx0dpq3v" path="res://UI/heads_up_display.gd" id="1_mrfv7"]
+
+[node name="HUD" type="Control" unique_id=1781630117]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_mrfv7")
+metadata/_edit_use_anchors_ = true
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=510662907]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -23.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="ColorRect" type="ColorRect" parent="PanelContainer" unique_id=2147463532]
+layout_mode = 2
+color = Color(0.4219632, 0.4741485, 0.5747855, 1)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer" unique_id=1981466077]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+alignment = 1
+
+[node name="StationMap" parent="PanelContainer/HBoxContainer" unique_id=706833493 instance=ExtResource("1_io4rn")]
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 4

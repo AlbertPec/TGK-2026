@@ -35,7 +35,6 @@ func set_player_at_spawn_point():
 	player.setup_grid_movement(navigation_provider)
 	
 func _on_train_entered():
-	print("git")
 	if not entered_train: 
 		entered_train = true
 		set_player_at_spawn_point()

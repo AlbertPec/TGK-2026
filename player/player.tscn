@@ -1,14 +1,15 @@
 [gd_scene format=3 uid="uid://bgu6l7clj2kut"]
 
-[ext_resource type="Texture2D" uid="uid://chkt12vk36wx1" path="res://map_assets/floors_and_walls.png" id="1_4flbx"]
+[ext_resource type="Texture2D" uid="uid://47co0w6ugwdy" path="res://map_assets/floors_and_walls.png" id="1_4flbx"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_onrkg"]
 atlas = ExtResource("1_4flbx")
 region = Rect2(168, 136, 16, 24)
 
-[node name="Player" type="Node2D" unique_id=482956824]
+[node name="Player" type="CharacterBody2D" unique_id=1862864814]
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=202369740]
 texture = SubResource("AtlasTexture_onrkg")
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=1443624217]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=1460669423]
+polygon = PackedVector2Array(-8, -12, 8, -12, 8, 12, -8, 12)

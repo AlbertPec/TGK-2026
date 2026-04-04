@@ -1,7 +1,8 @@
-extends Node2D
+extends CharacterBody2D
 
 @export var movement_animation_speed: float = 2.0
 @export var max_move_distance: int = -1
+@export var can_move: bool = true
 
 var grid_movement := GridMovementController.new()
 
@@ -11,21 +12,10 @@ func _ready() -> void:
 		push_error("Grid navigation provider not found in group: grid_navigation_provider")
 		return
 
-	var floor_layer = navigation_provider.get_floor_layer()
-	var walls_layer = navigation_provider.get_walls_layer()
-	if floor_layer == null or walls_layer == null:
-		push_error("Grid navigation provider returned invalid floor/walls layers")
-		return
-
-	grid_movement.setup(
-		floor_layer,
-		walls_layer,
-		movement_animation_speed,
-		max_move_distance
-	)
+	setup_grid_movement(navigation_provider)
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("move") == false:
+	if event.is_action_pressed("move") == false or not can_move:
 		return
 
 	if not grid_movement.has_path_to_travel():
@@ -39,3 +29,14 @@ func _find_navigation_provider() -> GridNavigationProvider:
 	if providers.is_empty():
 		return null
 	return providers[0] as GridNavigationProvider
+	
+func setup_grid_movement(board_node: GridNavigationProvider):
+	var floor_layer = board_node.get_floor_layer()
+	var walls_layer = board_node.get_walls_layer()
+	if floor_layer == null or walls_layer == null:
+		push_error("Invalid floor/walls layers")
+		return
+	grid_movement.setup(floor_layer, walls_layer, movement_animation_speed, max_move_distance)
+	
+func stop_movement():
+	grid_movement.clear_path()

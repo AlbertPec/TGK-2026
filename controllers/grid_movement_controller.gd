@@ -56,6 +56,9 @@ func request_path(start_global_position: Vector2, end_global_position: Vector2) 
 	path_to_travel = id_path
 	return true
 
+func clear_path():
+	path_to_travel = []
+
 func move_body(body: Node2D) -> bool:
 	if floor_layer == null:
 		return false

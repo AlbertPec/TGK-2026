@@ -1,0 +1,105 @@
+[gd_scene format=3 uid="uid://cno7w3aagkwaq"]
+
+[ext_resource type="Script" uid="uid://b38yuohhkul3n" path="res://UI/station_map/station_map.gd" id="1_w4lhw"]
+[ext_resource type="Script" uid="uid://bnw4b84r6cyx0" path="res://UI/station_map/station_map_point.gd" id="2_lrtcn"]
+
+[node name="StationMap" type="Control" unique_id=706833493]
+layout_mode = 3
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+grow_vertical = 2
+script = ExtResource("1_w4lhw")
+
+[node name="StationsContainer" type="HBoxContainer" parent="." unique_id=2119540842]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -12.0
+offset_right = 100.0
+offset_bottom = 12.0
+grow_vertical = 2
+alignment = 1
+
+[node name="TeatrBagatela" type="VBoxContainer" parent="StationsContainer" unique_id=612668091]
+layout_mode = 2
+script = ExtResource("2_lrtcn")
+station_id = "TeatrBagatela"
+
+[node name="Control" type="Control" parent="StationsContainer/TeatrBagatela" unique_id=278120206]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="Label" type="Label" parent="StationsContainer/TeatrBagatela/Control" unique_id=1896057074]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -11.5
+offset_right = 113.0
+offset_bottom = 11.5
+grow_vertical = 2
+rotation = -1.0471976
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 9
+text = "Teatr Bagatela"
+
+[node name="Button" type="Button" parent="StationsContainer/TeatrBagatela" unique_id=1018881851]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+
+[node name="NowyKleparz" type="VBoxContainer" parent="StationsContainer" unique_id=1043353745]
+layout_mode = 2
+script = ExtResource("2_lrtcn")
+station_id = "NowyKleparz"
+
+[node name="Control" type="Control" parent="StationsContainer/NowyKleparz" unique_id=1718722903]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="Label" type="Label" parent="StationsContainer/NowyKleparz/Control" unique_id=178903452]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -11.5
+offset_right = 113.0
+offset_bottom = 11.5
+grow_vertical = 2
+rotation = -1.0471976
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 9
+text = "Nowy Kleparz"
+
+[node name="Button" type="Button" parent="StationsContainer/NowyKleparz" unique_id=2032664132]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+
+[node name="DworzecGlowny" type="VBoxContainer" parent="StationsContainer" unique_id=96814956]
+layout_mode = 2
+script = ExtResource("2_lrtcn")
+station_id = "DworzecGlowny"
+
+[node name="Control" type="Control" parent="StationsContainer/DworzecGlowny" unique_id=1598055984]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="Label" type="Label" parent="StationsContainer/DworzecGlowny/Control" unique_id=1249979338]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -11.5
+offset_right = 113.0
+offset_bottom = 11.5
+grow_vertical = 2
+rotation = -1.0471976
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 9
+text = "Dworzec glowny"
+
+[node name="Button" type="Button" parent="StationsContainer/DworzecGlowny" unique_id=796106267]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2

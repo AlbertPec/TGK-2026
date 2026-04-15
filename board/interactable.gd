@@ -6,5 +6,4 @@ extends Node
 signal interacted(interactor)
 
 var interact: Callable = func(interactor = null):
-	#print("wlazl do pociagu")
 	interacted.emit(interactor)

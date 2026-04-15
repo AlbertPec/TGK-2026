@@ -17,12 +17,11 @@ Stations (Levels) change logic.
 
 signal train_entered
 
-func _on_body_entered(body):
-	if body.is_in_group("players"):
-		emit_signal("train_entered")
+func _on_train_entered():
+	emit_signal("train_entered")
 		
 func _ready() -> void:
-	$Train.connect("body_entered", _on_body_entered)
+	$Train.connect("entered", _on_train_entered)
 	add_to_group(PROVIDER_GROUP)
 
 func get_floor_layer() -> TileMapLayer:

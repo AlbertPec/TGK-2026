@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://dpeandbw6oevj"]
+
+[ext_resource type="PackedScene" uid="uid://bruybkvx51r74" path="res://board/interactable.tscn" id="1_lnxwq"]
+[ext_resource type="Script" uid="uid://dh2i8ogexk7dw" path="res://board/train.gd" id="1_ob1yl"]
+[ext_resource type="Texture2D" uid="uid://dx5yhylt5r0xn" path="res://map_assets/train_updown.png" id="2_ubigx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ubigx"]
+
+[node name="Train" type="Node2D" unique_id=1047527794]
+script = ExtResource("1_ob1yl")
+
+[node name="Interactable" parent="." unique_id=169991343 instance=ExtResource("1_lnxwq")]
+interaction_name = "Enter the train"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable" unique_id=1201071679]
+position = Vector2(0, 70)
+scale = Vector2(15, 5)
+shape = SubResource("RectangleShape2D_ubigx")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1016169575]
+scale = Vector2(3.5, 3.5)
+texture = ExtResource("2_ubigx")

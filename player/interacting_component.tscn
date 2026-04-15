@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://bbe1d3t04pbbp"]
+
+[ext_resource type="Script" uid="uid://okj6wertn7ps" path="res://player/interacting_component.gd" id="1_q44uy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8w8d1"]
+size = Vector2(50, 48)
+
+[sub_resource type="LabelSettings" id="LabelSettings_q44uy"]
+font_size = 10
+font_color = Color(0.64547926, 0.960591, 0.95768505, 1)
+
+[node name="InteractingComponent" type="Node2D" unique_id=1471786738]
+script = ExtResource("1_q44uy")
+
+[node name="InteractRange" type="Area2D" parent="." unique_id=1567031429]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractRange" unique_id=637593122]
+shape = SubResource("RectangleShape2D_8w8d1")
+
+[node name="InteractLabel" type="Label" parent="." unique_id=384131073]
+z_index = 200
+offset_left = -20.0
+offset_top = -57.0
+offset_right = 20.0
+offset_bottom = -34.0
+size_flags_horizontal = 4
+text = "Interact"
+label_settings = SubResource("LabelSettings_q44uy")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="area_entered" from="InteractRange" to="." method="_on_interact_range_area_entered"]
+[connection signal="area_exited" from="InteractRange" to="." method="_on_interact_range_area_exited"]

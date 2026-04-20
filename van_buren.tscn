@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bgu6l7clj2kut" path="res://player/player.tscn" id="2_lamf8"]
 [ext_resource type="Script" uid="uid://cdy01udbeauyi" path="res://player/player.gd" id="3_kqt35"]
 [ext_resource type="PackedScene" uid="uid://dibka6g8ih7ef" path="res://board/tile_map_nowy_kleparz.tscn" id="4_kqt35"]
+[ext_resource type="PackedScene" uid="uid://br6jmwaabd1oh" path="res://enemy/enemy.tscn" id="5_h8mil"]
 [ext_resource type="PackedScene" uid="uid://bh1f7g65dyi6s" path="res://UI/heads_up_display.tscn" id="5_tbmg4"]
 
 [node name="Game" type="Node2D" unique_id=1240663828]
@@ -17,6 +18,12 @@ script = ExtResource("1_kqt35")
 position = Vector2(2, 1)
 script = ExtResource("3_kqt35")
 max_move_distance = 5
+
+[node name="enemy" parent="World" unique_id=1486208510 instance=ExtResource("5_h8mil")]
+spawn_grid_cell = Vector2i(3, 3)
+
+[node name="enemy2" parent="World" unique_id=2083378983 instance=ExtResource("5_h8mil")]
+spawn_grid_cell = Vector2i(8, 7)
 
 [node name="HUD" parent="." unique_id=1004466029 instance=ExtResource("5_tbmg4")]
 anchors_preset = 0

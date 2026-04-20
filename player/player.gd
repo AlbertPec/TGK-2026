@@ -29,7 +29,7 @@ func _find_navigation_provider() -> GridNavigationProvider:
 	if providers.is_empty():
 		return null
 	return providers[0] as GridNavigationProvider
-	
+
 func setup_grid_movement(board_node: GridNavigationProvider):
 	var floor_layer = board_node.get_floor_layer()
 	var walls_layer = board_node.get_walls_layer()
@@ -37,6 +37,6 @@ func setup_grid_movement(board_node: GridNavigationProvider):
 		push_error("Invalid floor/walls layers")
 		return
 	grid_movement.setup(floor_layer, walls_layer, movement_animation_speed, max_move_distance)
-	
+
 func stop_movement():
 	grid_movement.clear_path()

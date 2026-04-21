@@ -32,7 +32,7 @@ func set_player_at_spawn_point():
 	player.global_position = spawn.global_position
 	
 	var navigation_provider = board as GridNavigationProvider
-	player.setup_grid_movement(navigation_provider)
+	player.grid_movement.setup_grid_movement(navigation_provider)
 	
 func _on_train_entered():
 	if not entered_train: 
@@ -43,10 +43,6 @@ func _on_train_entered():
 func _ready() -> void:
 	board.connect("train_entered", _on_train_entered)
 	set_player_at_spawn_point()
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
 
 func _on_hud_ui_station_chosen(station_id: Variant) -> void:
 	if entered_train:

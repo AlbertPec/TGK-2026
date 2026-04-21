@@ -13,14 +13,20 @@ var walls_layer: TileMapLayer
 func setup(
 	p_floor_layer: TileMapLayer,
 	p_walls_layer: TileMapLayer,
-	p_movement_speed: float = 2.0,
 	p_max_move_distance: int = -1
 ) -> void:
 	floor_layer = p_floor_layer
 	walls_layer = p_walls_layer
-	movement_speed = p_movement_speed
 	max_move_distance = p_max_move_distance
 	_rebuild_navigation()
+
+func setup_grid_movement(board_node: GridNavigationProvider):
+	var floor_layer = board_node.get_floor_layer()
+	var walls_layer = board_node.get_walls_layer()
+	if floor_layer == null or walls_layer == null:
+		push_error("Invalid floor/walls layers")
+		return
+	setup(floor_layer, walls_layer, max_move_distance)
 
 func _rebuild_navigation() -> void:
 	astar_grid = AStarGrid2D.new()
@@ -44,6 +50,22 @@ func request_path(start_global_position: Vector2, end_global_position: Vector2) 
 	var end = floor_layer.local_to_map(
 		floor_layer.to_local(end_global_position)
 	)
+
+	return _set_path(start, end)
+
+func set_move_to(start_global_position: Vector2, target_map_position: Vector2i) -> bool:
+	if astar_grid == null or floor_layer == null:
+		return false
+
+	var start = floor_layer.local_to_map(
+		floor_layer.to_local(start_global_position)
+	)
+
+	return _set_path(start, target_map_position)
+
+func _set_path(start: Vector2i, end: Vector2i) -> bool:
+	if astar_grid == null:
+		return false
 
 	var id_path = astar_grid.get_id_path(start, end).slice(1)
 
@@ -81,3 +103,11 @@ func has_path_to_travel() -> bool:
 
 func set_max_move_distance(value: int) -> void:
 	max_move_distance = value
+	
+func tile_to_global(tile_coords: Vector2i) -> Vector2:
+	if floor_layer == null:
+		return Vector2.ZERO
+	
+	var local_pos = floor_layer.map_to_local(tile_coords)
+	return floor_layer.to_global(local_pos)
+	

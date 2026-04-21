@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://br6jmwaabd1oh"]
 
-[ext_resource type="Script" uid="uid://bifgxllqxdmme" path="res://enemy.gd" id="1_ofsxj"]
+[ext_resource type="Script" uid="uid://bifgxllqxdmme" path="res://enemy/enemy.gd" id="1_ofsxj"]
 [ext_resource type="Texture2D" uid="uid://dcnlunwgxl8w2" path="res://enemy_assets/Pidgeon Sprite Sheet.png" id="2_ppra6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_p200p"]
@@ -66,7 +66,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_y5vj3")
 }],
-"loop": true,
+"loop": false,
 "name": &"eat",
 "speed": 5.0
 }, {
@@ -83,7 +83,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_o3pv7")
 }],
-"loop": true,
+"loop": false,
 "name": &"idle",
 "speed": 5.0
 }, {
@@ -100,15 +100,15 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_tbw0t")
 }],
-"loop": true,
+"loop": false,
 "name": &"move",
-"speed": 5.0
+"speed": 10.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rovcg"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_n2hyd"]
-radius = 125.0
+radius = 96.0
 
 [node name="enemy" type="CharacterBody2D" unique_id=1486208510]
 script = ExtResource("1_ofsxj")
@@ -116,7 +116,6 @@ script = ExtResource("1_ofsxj")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=990520719]
 sprite_frames = SubResource("SpriteFrames_wjonb")
 animation = &"move"
-frame_progress = 0.98822415
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=120048007]
 shape = SubResource("RectangleShape2D_rovcg")

@@ -11,8 +11,8 @@ func _ready() -> void:
 	if navigation_provider == null:
 		push_error("Grid navigation provider not found in group: grid_navigation_provider")
 		return
-
-	setup_grid_movement(navigation_provider)
+	
+	grid_movement.setup_grid_movement(navigation_provider)
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("move") == false or not can_move:
@@ -29,14 +29,6 @@ func _find_navigation_provider() -> GridNavigationProvider:
 	if providers.is_empty():
 		return null
 	return providers[0] as GridNavigationProvider
-
-func setup_grid_movement(board_node: GridNavigationProvider):
-	var floor_layer = board_node.get_floor_layer()
-	var walls_layer = board_node.get_walls_layer()
-	if floor_layer == null or walls_layer == null:
-		push_error("Invalid floor/walls layers")
-		return
-	grid_movement.setup(floor_layer, walls_layer, movement_animation_speed, max_move_distance)
 
 func stop_movement():
 	grid_movement.clear_path()

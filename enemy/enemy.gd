@@ -42,8 +42,14 @@ func _physics_process(_delta: float) -> void:
 	else:
 		_play_animation(enemy_type.idle_animation if enemy_type != null else &"idle")
 
+func on_board_changed() -> void:
+	super.on_board_changed()
+	spawn(spawn_grid_cell)
+
 func _on_detection_area_body_entered(body: Node2D) -> void:
 	if not body.is_in_group("players") or body == null:
 		return
 	
-	grid_movement.request_path(global_position, body.global_position)
+	# to do: remove when turn system
+	var target_cell := grid_movement.global_to_tile(body.global_position)
+	grid_movement.move_possible_closest_to(global_position, target_cell)

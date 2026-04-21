@@ -1,6 +1,8 @@
 extends CharacterBody2D
 class_name Entity
 
+const ENTITY_GROUP := "entities"
+
 @export var visual_node_path: NodePath
 @export var facing_right_by_default: bool = true
 
@@ -9,6 +11,8 @@ var grid_movement := GridMovementController.new()
 var _visual_node: Node2D
 
 func setup_entity() -> void:
+	if not is_in_group(ENTITY_GROUP):
+		add_to_group(ENTITY_GROUP)
 	_resolve_visual_node()
 	setup_navigation()
 	
@@ -22,10 +26,10 @@ func spawn_with_marker_and_change_navigation(spawn_marker: Marker2D) -> void:
 
 func setup_navigation() -> bool:
 	var navigation_provider := _find_navigation_provider()
-	grid_movement.setup(navigation_provider)
 	if navigation_provider == null:
 		push_error("Grid navigation provider not found in group: grid_navigation_provider")
 		return false
+	grid_movement.setup(navigation_provider)
 	return true
 
 func move_and_update_facing() -> bool:
@@ -34,13 +38,20 @@ func move_and_update_facing() -> bool:
 	_update_facing(previous_position)
 	return did_move
 
+func on_board_changed() -> void:
+	stop_movement()
+	setup_navigation()
+
 func stop_movement() -> void:
 	grid_movement.clear_path()
 
 func _find_navigation_provider() -> GridNavigationProvider:
 	var providers = get_tree().get_nodes_in_group(GridNavigationProvider.PROVIDER_GROUP)
 	if providers.is_empty():
-		return null
+		var provider = get_parent()
+		if providers == null or not provider.is_in_group(GridNavigationProvider.PROVIDER_GROUP):
+			return provider
+			
 	return providers[0] as GridNavigationProvider
 
 func _resolve_visual_node() -> void:

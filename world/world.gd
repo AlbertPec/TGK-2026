@@ -19,20 +19,18 @@ func change_board(path_to_scene: String):
 	add_child(board)
 	
 	board.connect("train_entered", _on_train_entered)
+	await get_tree().process_frame # waits for tree to refresh
 	set_player_at_spawn_point()
-	player.z_index = 100 # put player above the board - without it, player cis invisible
+	player.z_index = 100 # put player above the board - without it, player is invisible
 
 	
 func set_player_at_spawn_point():
 	player.stop_movement()
-	var spawn = board.get_node("SpawnPoint")
+	var spawnpoint = board.get_node("SpawnPoint")
 	
 	if player.get_parent() == null:
 		add_child(player)
-	player.global_position = spawn.global_position
-	
-	var navigation_provider = board as GridNavigationProvider
-	player.grid_movement.setup_grid_movement(navigation_provider)
+	player.spawn_with_marker_and_change_navigation(spawnpoint)
 	
 func _on_train_entered():
 	if not entered_train: 

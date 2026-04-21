@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="EnemyTypeConfig" format=3 uid="uid://xnvaeeyhr6by"]
+
+[ext_resource type="Script" uid="uid://dksyu4dag6c1i" path="res://enemy/enemy_type_config.gd" id="1_config"]
+[ext_resource type="SpriteFrames" uid="uid://btakgyv1v4q45" path="res://enemy/configs/scavenger_frames.tres" id="2_frames"]
+
+[resource]
+script = ExtResource("1_config")
+display_name = "ScavengerPigeon"
+sprite_frames = ExtResource("2_frames")
+movement_speed = 1.6

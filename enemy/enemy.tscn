@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://br6jmwaabd1oh"]
 
 [ext_resource type="Script" uid="uid://bifgxllqxdmme" path="res://enemy/enemy.gd" id="1_ofsxj"]
+[ext_resource type="Resource" uid="uid://xnvaeeyhr6by" path="res://enemy/types/scavenger.tres" id="2_p200p"]
 [ext_resource type="Texture2D" uid="uid://dcnlunwgxl8w2" path="res://enemy_assets/Pidgeon Sprite Sheet.png" id="2_ppra6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_p200p"]
@@ -112,6 +113,10 @@ radius = 96.0
 
 [node name="enemy" type="CharacterBody2D" unique_id=1486208510]
 script = ExtResource("1_ofsxj")
+spawn_grid_cell = null
+enemy_type = ExtResource("2_p200p")
+visual_node_path = null
+facing_right_by_default = null
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=990520719]
 sprite_frames = SubResource("SpriteFrames_wjonb")

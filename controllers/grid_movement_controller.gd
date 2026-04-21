@@ -10,23 +10,14 @@ var max_move_distance: int = -1
 var floor_layer: TileMapLayer
 var walls_layer: TileMapLayer
 
-func setup(
-	p_floor_layer: TileMapLayer,
-	p_walls_layer: TileMapLayer,
-	p_max_move_distance: int = -1
-) -> void:
-	floor_layer = p_floor_layer
-	walls_layer = p_walls_layer
-	max_move_distance = p_max_move_distance
-	_rebuild_navigation()
-
-func setup_grid_movement(board_node: GridNavigationProvider):
-	var floor_layer = board_node.get_floor_layer()
-	var walls_layer = board_node.get_walls_layer()
+func setup(board_node: GridNavigationProvider):
+	floor_layer = board_node.get_floor_layer()
+	walls_layer = board_node.get_walls_layer()
 	if floor_layer == null or walls_layer == null:
 		push_error("Invalid floor/walls layers")
 		return
-	setup(floor_layer, walls_layer, max_move_distance)
+
+	_rebuild_navigation()
 
 func _rebuild_navigation() -> void:
 	astar_grid = AStarGrid2D.new()

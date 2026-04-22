@@ -13,7 +13,12 @@ config_version=5
 config/name="Van Buren"
 run/main_scene="uid://rhdlkha5jxix"
 config/features=PackedStringArray("4.6", "GL Compatibility")
+boot_splash/stretch_mode=0
 config/icon="res://icon.svg"
+
+[autoload]
+
+GlobalSignals="*uid://csk5ir3dntgdd"
 
 [display]
 

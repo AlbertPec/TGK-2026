@@ -4,16 +4,9 @@ extends Node2D
 
 @onready var interactable = $Interactable
 
-signal read_note(text)
 
-func interacted():
-	emit_signal("read_note", note_text)
-# Called when the node enters the scene tree for the first time.
+func _on_interacted(interactor = null):
+	GlobalSignals.emit_signal("change_textbox_text", note_text)
+
 func _ready() -> void:
-	interactable.connect("interacted",interacted)
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+	interactable.connect("interacted",_on_interacted)

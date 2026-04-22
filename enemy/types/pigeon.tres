@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="EnemyTypeConfig" format=3 uid="uid://cg7w85ny24u4l"]
+
+[ext_resource type="Script" uid="uid://dksyu4dag6c1i" path="res://enemy/enemy_type_config.gd" id="1_config"]
+[ext_resource type="SpriteFrames" uid="uid://c17skv0wkqutb" path="res://enemy/configs/pigeon_frames.tres" id="2_frames"]
+
+[resource]
+script = ExtResource("1_config")
+display_name = "Pigeon"
+sprite_frames = ExtResource("2_frames")

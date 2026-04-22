@@ -3,6 +3,9 @@
 [ext_resource type="Texture2D" uid="uid://bpvkrpcw3wjbr" path="res://player_assets/Walk.png" id="1_rkbax"]
 [ext_resource type="PackedScene" uid="uid://bbe1d3t04pbbp" path="res://player/interacting_component.tscn" id="2_rkbax"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rkbax"]
+size = Vector2(32, 32)
+
 [node name="Player" type="CharacterBody2D" unique_id=1862864814]
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=202369740]
@@ -11,3 +14,6 @@ region_enabled = true
 region_rect = Rect2(41, 4, 15, 28)
 
 [node name="InteractingComponent" parent="." unique_id=1471786738 instance=ExtResource("2_rkbax")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1191203027]
+shape = SubResource("RectangleShape2D_rkbax")

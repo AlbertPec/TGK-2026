@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://fym0ttqfhurp"]
 
 [ext_resource type="Script" uid="uid://dajdwmiil00qs" path="res://UI/textbox/textbox.gd" id="1_orfxn"]
+[ext_resource type="FontFile" uid="uid://r6us10gkmxef" path="res://fonts/m5x7.ttf" id="2_pbgq0"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uqrrg"]
 bg_color = Color(0.06210634, 0.14260328, 0.16272101, 1)
@@ -8,21 +9,20 @@ border_width_left = 4
 border_width_top = 4
 border_width_right = 4
 border_width_bottom = 4
-border_color = Color(1, 1, 1, 1)
+border_color = Color(0.70796657, 0.7079665, 0.7079665, 1)
 
 [node name="Textbox" type="Control" unique_id=1259805033]
 layout_mode = 3
-anchors_preset = 14
-anchor_top = 0.5
+anchors_preset = 15
 anchor_right = 1.0
-anchor_bottom = 0.5
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("1_orfxn")
 
-[node name="TextBoxContainer" type="MarginContainer" parent="." unique_id=454442677]
+[node name="TextBoxContainer" type="PanelContainer" parent="." unique_id=680799716]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -39,19 +39,19 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_uqrrg")
 
 [node name="MarginContainer" type="MarginContainer" parent="TextBoxContainer" unique_id=1624979192]
 layout_mode = 2
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 20
-theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 20
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
 
 [node name="Panel" type="Panel" parent="TextBoxContainer/MarginContainer" unique_id=453702571]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="TextBoxContainer/MarginContainer" unique_id=1242125154]
-clip_contents = true
-custom_minimum_size = Vector2(20, 20)
+[node name="ScrollContainer" type="ScrollContainer" parent="TextBoxContainer/MarginContainer" unique_id=752110688]
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="TextBoxContainer/MarginContainer/ScrollContainer" unique_id=1937283164]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 1
-text = "Placeholder Placeholder"
-autowrap_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("2_pbgq0")

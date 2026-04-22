@@ -1,7 +1,7 @@
 extends Control
 
 @onready var textbox_container= $TextBoxContainer
-@onready var label = $TextBoxContainer/MarginContainer/Label
+@onready var label = $TextBoxContainer/MarginContainer/ScrollContainer/RichTextLabel
 
 func clear_textbox():
 	label.text = ""

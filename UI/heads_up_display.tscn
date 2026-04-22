@@ -2,6 +2,10 @@
 
 [ext_resource type="PackedScene" uid="uid://cno7w3aagkwaq" path="res://UI/station_map/station_map.tscn" id="1_io4rn"]
 [ext_resource type="Script" uid="uid://i24anx0dpq3v" path="res://UI/heads_up_display.gd" id="1_mrfv7"]
+[ext_resource type="PackedScene" uid="uid://fym0ttqfhurp" path="res://UI/textbox/textbox.tscn" id="2_hai4h"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mrfv7"]
+bg_color = Color(0.3649535, 0.4754759, 0.44582558, 1)
 
 [node name="HUD" type="Control" unique_id=1781630117]
 layout_mode = 3
@@ -10,32 +14,39 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
+size_flags_horizontal = 6
+size_flags_vertical = 6
 script = ExtResource("1_mrfv7")
-metadata/_edit_use_anchors_ = true
 
-[node name="PanelContainer" type="PanelContainer" parent="." unique_id=510662907]
+[node name="UIContainer" type="MarginContainer" parent="." unique_id=548071026]
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -23.0
+offset_top = -165.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="ColorRect" type="ColorRect" parent="PanelContainer" unique_id=2147463532]
+[node name="Panel" type="Panel" parent="UIContainer" unique_id=1751211739]
 layout_mode = 2
-color = Color(0.4219632, 0.4741485, 0.5747855, 1)
+theme_override_styles/panel = SubResource("StyleBoxFlat_mrfv7")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer" unique_id=1981466077]
+[node name="MarginContainer" type="MarginContainer" parent="UIContainer" unique_id=1126359383]
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UIContainer/MarginContainer" unique_id=1981466077]
+layout_mode = 2
 alignment = 1
 
-[node name="StationMap" parent="PanelContainer/HBoxContainer" unique_id=706833493 instance=ExtResource("1_io4rn")]
+[node name="StationMap" parent="UIContainer/MarginContainer/HBoxContainer" unique_id=706833493 instance=ExtResource("1_io4rn")]
 layout_mode = 2
-size_flags_horizontal = 2
-size_flags_vertical = 4
+size_flags_vertical = 8
+
+[node name="Textbox" parent="UIContainer/MarginContainer/HBoxContainer" unique_id=247840929 instance=ExtResource("2_hai4h")]
+layout_mode = 2
+size_flags_vertical = 1

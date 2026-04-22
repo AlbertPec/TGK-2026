@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://clbbma5bo4yse"]
+
+[ext_resource type="Script" uid="uid://nysf7vk2bdfl" path="res://world_elements/note/note.gd" id="1_esif8"]
+[ext_resource type="PackedScene" uid="uid://bruybkvx51r74" path="res://world_elements/interactable/interactable.tscn" id="2_agi03"]
+[ext_resource type="Texture2D" uid="uid://lwbtetlutoli" path="res://icon.svg" id="3_dplp2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_agi03"]
+size = Vector2(8.625, 7.875)
+
+[node name="Note" type="Node2D" unique_id=1155190565]
+script = ExtResource("1_esif8")
+
+[node name="Interactable" parent="." unique_id=169991343 instance=ExtResource("2_agi03")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable" unique_id=172731398]
+scale = Vector2(8, 8)
+shape = SubResource("RectangleShape2D_agi03")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=674206854]
+scale = Vector2(0.5546875, 0.515625)
+texture = ExtResource("3_dplp2")

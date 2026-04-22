@@ -14,23 +14,16 @@ script = ExtResource("1_kqt35")
 [node name="Board" parent="World" unique_id=71600981 instance=ExtResource("4_kqt35")]
 
 [node name="Player" parent="World" unique_id=482956824 groups=["players"] instance=ExtResource("2_lamf8")]
-position = Vector2(2, 1)
 script = ExtResource("3_kqt35")
 max_move_distance = 5
 
-[node name="HUD" parent="." unique_id=1004466029 instance=ExtResource("5_tbmg4")]
-anchors_preset = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_left = 641.0
-offset_top = 690.0
-offset_right = 641.0
-offset_bottom = 690.0
-grow_horizontal = 1
-grow_vertical = 1
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=596016094]
+
+[node name="HUD" parent="CanvasLayer" unique_id=1004466029 instance=ExtResource("5_tbmg4")]
+size_flags_horizontal = 1
+size_flags_vertical = 1
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=661366753]
-position = Vector2(638, 395)
-zoom = Vector2(0.4, 0.4)
+position = Vector2(528, 288)
 
-[connection signal="ui_station_chosen" from="HUD" to="World" method="_on_hud_ui_station_chosen"]
+[connection signal="ui_station_chosen" from="CanvasLayer/HUD" to="World" method="_on_hud_ui_station_chosen"]

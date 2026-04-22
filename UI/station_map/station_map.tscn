@@ -9,6 +9,8 @@ anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
 grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
 script = ExtResource("1_w4lhw")
 
 [node name="StationsContainer" type="HBoxContainer" parent="." unique_id=2119540842]
@@ -43,7 +45,6 @@ offset_bottom = 11.5
 grow_vertical = 2
 rotation = -1.0471976
 size_flags_horizontal = 4
-theme_override_font_sizes/font_size = 9
 text = "Teatr Bagatela"
 
 [node name="Button" type="Button" parent="StationsContainer/TeatrBagatela" unique_id=1018881851]
@@ -70,7 +71,6 @@ offset_bottom = 11.5
 grow_vertical = 2
 rotation = -1.0471976
 size_flags_horizontal = 4
-theme_override_font_sizes/font_size = 9
 text = "Nowy Kleparz"
 
 [node name="Button" type="Button" parent="StationsContainer/NowyKleparz" unique_id=2032664132]
@@ -97,7 +97,6 @@ offset_bottom = 11.5
 grow_vertical = 2
 rotation = -1.0471976
 size_flags_horizontal = 4
-theme_override_font_sizes/font_size = 9
 text = "Dworzec glowny"
 
 [node name="Button" type="Button" parent="StationsContainer/DworzecGlowny" unique_id=796106267]

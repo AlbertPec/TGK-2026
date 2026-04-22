@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" uid="uid://okj6wertn7ps" path="res://player/interacting_component.gd" id="1_q44uy"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_8w8d1"]
-size = Vector2(50, 48)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q44uy"]
+size = Vector2(96, 96)
 
 [sub_resource type="LabelSettings" id="LabelSettings_q44uy"]
 font_size = 10
@@ -17,14 +17,14 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractRange" unique_id=637593122]
-shape = SubResource("RectangleShape2D_8w8d1")
+shape = SubResource("RectangleShape2D_q44uy")
 
 [node name="InteractLabel" type="Label" parent="." unique_id=384131073]
 z_index = 200
 offset_left = -20.0
-offset_top = -57.0
+offset_top = -72.0
 offset_right = 20.0
-offset_bottom = -34.0
+offset_bottom = -49.0
 size_flags_horizontal = 4
 text = "Interact"
 label_settings = SubResource("LabelSettings_q44uy")

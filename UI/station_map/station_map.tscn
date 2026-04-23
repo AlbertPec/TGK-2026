@@ -2,25 +2,27 @@
 
 [ext_resource type="Script" uid="uid://b38yuohhkul3n" path="res://UI/station_map/station_map.gd" id="1_w4lhw"]
 [ext_resource type="Script" uid="uid://bnw4b84r6cyx0" path="res://UI/station_map/station_map_point.gd" id="2_lrtcn"]
+[ext_resource type="FontFile" uid="uid://r6us10gkmxef" path="res://fonts/m5x7.ttf" id="3_lrtcn"]
 
 [node name="StationMap" type="Control" unique_id=706833493]
 layout_mode = 3
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-grow_vertical = 2
+anchors_preset = 0
 script = ExtResource("1_w4lhw")
 
 [node name="StationsContainer" type="HBoxContainer" parent="." unique_id=2119540842]
-custom_minimum_size = Vector2(100, 0)
 layout_mode = 1
-anchors_preset = 4
+anchors_preset = 8
+anchor_left = 0.5
 anchor_top = 0.5
+anchor_right = 0.5
 anchor_bottom = 0.5
-offset_top = -12.0
-offset_right = 100.0
-offset_bottom = 12.0
+offset_left = -70.0
+offset_top = 12.0
+offset_right = 70.0
+offset_bottom = 36.0
+grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/separation = 40
 alignment = 1
 
 [node name="TeatrBagatela" type="VBoxContainer" parent="StationsContainer" unique_id=612668091]
@@ -43,7 +45,7 @@ offset_bottom = 11.5
 grow_vertical = 2
 rotation = -1.0471976
 size_flags_horizontal = 4
-theme_override_font_sizes/font_size = 9
+theme_override_fonts/font = ExtResource("3_lrtcn")
 text = "Teatr Bagatela"
 
 [node name="Button" type="Button" parent="StationsContainer/TeatrBagatela" unique_id=1018881851]
@@ -70,7 +72,7 @@ offset_bottom = 11.5
 grow_vertical = 2
 rotation = -1.0471976
 size_flags_horizontal = 4
-theme_override_font_sizes/font_size = 9
+theme_override_fonts/font = ExtResource("3_lrtcn")
 text = "Nowy Kleparz"
 
 [node name="Button" type="Button" parent="StationsContainer/NowyKleparz" unique_id=2032664132]
@@ -97,7 +99,7 @@ offset_bottom = 11.5
 grow_vertical = 2
 rotation = -1.0471976
 size_flags_horizontal = 4
-theme_override_font_sizes/font_size = 9
+theme_override_fonts/font = ExtResource("3_lrtcn")
 text = "Dworzec glowny"
 
 [node name="Button" type="Button" parent="StationsContainer/DworzecGlowny" unique_id=796106267]

@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://dpeandbw6oevj"]
+
+[ext_resource type="PackedScene" uid="uid://bruybkvx51r74" path="res://world_elements/interactable/interactable.tscn" id="1_lnxwq"]
+[ext_resource type="Script" uid="uid://dh2i8ogexk7dw" path="res://world_elements/train/train.gd" id="1_ob1yl"]
+[ext_resource type="Texture2D" uid="uid://clogwydsav4c6" path="res://map_assets/gbstudio_train_station_tileset.png" id="3_mddjg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e3ide"]
+size = Vector2(128, 32)
+
+[node name="Train" type="Node2D" unique_id=1047527794]
+scale = Vector2(3, 3)
+script = ExtResource("1_ob1yl")
+
+[node name="Interactable" parent="." unique_id=169991343 instance=ExtResource("1_lnxwq")]
+scale = Vector2(0.99326557, 0.9883238)
+interaction_name = "Enter the train"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable" unique_id=1201071679]
+shape = SubResource("RectangleShape2D_e3ide")
+
+[node name="Train" type="Sprite2D" parent="." unique_id=2059265502]
+texture = ExtResource("3_mddjg")
+region_enabled = true
+region_rect = Rect2(6, 129, 116, 29)

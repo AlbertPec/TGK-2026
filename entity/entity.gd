@@ -7,6 +7,7 @@ const ENTITY_GROUP := "entities"
 @export var facing_right_by_default: bool = true
 
 var grid_movement := GridMovementController.new()
+var previous_position: Vector2;
 
 var _visual_node: Node2D
 
@@ -19,6 +20,7 @@ func setup_entity() -> void:
 func spawn(spawn_grid_cell: Vector2i) -> void:
 	var spawn_global_position = grid_movement.tile_to_global(spawn_grid_cell)
 	global_position = spawn_global_position
+	previous_position = global_position
 	
 func spawn_with_marker_and_change_navigation(spawn_marker: Marker2D) -> void:
 	global_position = spawn_marker.position
@@ -33,9 +35,9 @@ func setup_navigation() -> bool:
 	return true
 
 func move_and_update_facing() -> bool:
-	var previous_position := global_position
+	previous_position = global_position
 	var did_move := grid_movement.move_body(self)
-	_update_facing(previous_position)
+	_update_facing()
 	return did_move
 
 func on_board_changed() -> void:
@@ -64,7 +66,7 @@ func _resolve_visual_node() -> void:
 		return
 	_visual_node = get_node_or_null("Sprite2D") as Node2D
 
-func _update_facing(previous_position: Vector2) -> void:
+func _update_facing() -> void:
 	if _visual_node == null:
 		return
 

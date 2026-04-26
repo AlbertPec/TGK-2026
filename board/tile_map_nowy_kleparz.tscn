@@ -2,6 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://3vgdiivoy4rq" path="res://board/tile_map_deafult.tscn" id="1_mvjl8"]
 [ext_resource type="Texture2D" uid="uid://clogwydsav4c6" path="res://map_assets/gbstudio_train_station_tileset.png" id="2_e3uwk"]
+[ext_resource type="PackedScene" uid="uid://br6jmwaabd1oh" path="res://enemy/enemy.tscn" id="3_kujnm"]
+[ext_resource type="Resource" uid="uid://cg7w85ny24u4l" path="res://enemy/types/pigeon.tres" id="4_62ym3"]
 
 [node name="Map" unique_id=1015381578 instance=ExtResource("1_mvjl8")]
 
@@ -97,3 +99,12 @@ texture = ExtResource("2_e3uwk")
 flip_h = true
 region_enabled = true
 region_rect = Rect2(272, 18, 16, 45)
+
+[node name="enemy" parent="." index="16" unique_id=1486208510 instance=ExtResource("3_kujnm")]
+spawn_grid_cell = Vector2i(16, 8)
+enemy_type = ExtResource("4_62ym3")
+visual_node_path = NodePath(".")
+
+[node name="enemy2" parent="." index="17" unique_id=1008660993 instance=ExtResource("3_kujnm")]
+spawn_grid_cell = Vector2i(16, 10)
+visual_node_path = NodePath(".")

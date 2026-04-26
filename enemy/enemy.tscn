@@ -113,10 +113,7 @@ radius = 96.0
 
 [node name="enemy" type="CharacterBody2D" unique_id=1486208510]
 script = ExtResource("1_ofsxj")
-spawn_grid_cell = null
 enemy_type = ExtResource("2_p200p")
-visual_node_path = null
-facing_right_by_default = null
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=990520719]
 sprite_frames = SubResource("SpriteFrames_wjonb")

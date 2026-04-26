@@ -22,7 +22,7 @@ func _calculate_animation_variant() -> void:
 	if previous_position == global_position:
 		return
 	
-	if previous_position.x < global_position.x:
+	if previous_position.x < global_position.x or previous_position.x > global_position.x:
 		animation_variant = "side"
 		return
 	if previous_position.y > global_position.y:

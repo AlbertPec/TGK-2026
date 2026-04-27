@@ -3,11 +3,42 @@
 [ext_resource type="Script" uid="uid://b38yuohhkul3n" path="res://UI/station_map/station_map.gd" id="1_w4lhw"]
 [ext_resource type="Script" uid="uid://bnw4b84r6cyx0" path="res://UI/station_map/station_map_point.gd" id="2_lrtcn"]
 [ext_resource type="FontFile" uid="uid://r6us10gkmxef" path="res://fonts/m5x7.ttf" id="3_lrtcn"]
+[ext_resource type="Texture2D" uid="uid://c56yjegbdfrmo" path="res://UI_assets/buttons_states.png" id="4_f4rj7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eyhy7"]
+atlas = ExtResource("4_f4rj7")
+region = Rect2(56, 56, 401, 401)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j6r2v"]
+atlas = ExtResource("4_f4rj7")
+region = Rect2(568, 56, 401, 401)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ne1t6"]
+atlas = ExtResource("4_f4rj7")
+region = Rect2(1080, 61, 401, 401)
+
+[sub_resource type="Theme" id="Theme_f4rj7"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eyhy7"]
+bg_color = Color(0.05457376, 0.05457379, 0.054573722, 1)
 
 [node name="StationMap" type="Control" unique_id=706833493]
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_w4lhw")
+
+[node name="StationMapLine" type="ColorRect" parent="." unique_id=1698163544]
+custom_minimum_size = Vector2(0, 6)
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = 22.0
+offset_bottom = 30.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.7058824, 0, 0, 1)
 
 [node name="StationsContainer" type="HBoxContainer" parent="." unique_id=2119540842]
 layout_mode = 1
@@ -48,9 +79,14 @@ size_flags_horizontal = 4
 theme_override_fonts/font = ExtResource("3_lrtcn")
 text = "Teatr Bagatela"
 
-[node name="Button" type="Button" parent="StationsContainer/TeatrBagatela" unique_id=1018881851]
-custom_minimum_size = Vector2(20, 20)
+[node name="Button" type="TextureButton" parent="StationsContainer/TeatrBagatela" unique_id=526861236]
+custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
+texture_normal = SubResource("AtlasTexture_eyhy7")
+texture_pressed = SubResource("AtlasTexture_j6r2v")
+texture_hover = SubResource("AtlasTexture_ne1t6")
+ignore_texture_size = true
+stretch_mode = 0
 
 [node name="NowyKleparz" type="VBoxContainer" parent="StationsContainer" unique_id=1043353745]
 layout_mode = 2
@@ -75,9 +111,14 @@ size_flags_horizontal = 4
 theme_override_fonts/font = ExtResource("3_lrtcn")
 text = "Nowy Kleparz"
 
-[node name="Button" type="Button" parent="StationsContainer/NowyKleparz" unique_id=2032664132]
-custom_minimum_size = Vector2(20, 20)
+[node name="Button" type="TextureButton" parent="StationsContainer/NowyKleparz" unique_id=468810582]
+custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
+texture_normal = SubResource("AtlasTexture_eyhy7")
+texture_pressed = SubResource("AtlasTexture_j6r2v")
+texture_hover = SubResource("AtlasTexture_ne1t6")
+ignore_texture_size = true
+stretch_mode = 0
 
 [node name="DworzecGlowny" type="VBoxContainer" parent="StationsContainer" unique_id=96814956]
 layout_mode = 2
@@ -102,6 +143,46 @@ size_flags_horizontal = 4
 theme_override_fonts/font = ExtResource("3_lrtcn")
 text = "Dworzec glowny"
 
-[node name="Button" type="Button" parent="StationsContainer/DworzecGlowny" unique_id=796106267]
-custom_minimum_size = Vector2(20, 20)
+[node name="Button" type="TextureButton" parent="StationsContainer/DworzecGlowny" unique_id=434294573]
+custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
+texture_normal = SubResource("AtlasTexture_eyhy7")
+texture_pressed = SubResource("AtlasTexture_j6r2v")
+texture_hover = SubResource("AtlasTexture_ne1t6")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1339047535]
+custom_minimum_size = Vector2(150, 14)
+layout_mode = 1
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="Panel" type="Panel" parent="MarginContainer" unique_id=54266258]
+layout_mode = 2
+theme = SubResource("Theme_f4rj7")
+theme_override_styles/panel = SubResource("StyleBoxFlat_eyhy7")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Panel" unique_id=501423367]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="CurrentStationLabel" type="Label" parent="MarginContainer/Panel/MarginContainer" unique_id=36207066]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_colors/font_color = Color(0.85800105, 0.8545566, 0, 1)
+theme_override_fonts/font = ExtResource("3_lrtcn")
+theme_override_font_sizes/font_size = 15
+text = "Stacja - Nowy Kleparz"

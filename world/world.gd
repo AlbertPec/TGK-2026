@@ -45,7 +45,7 @@ func set_player_at_spawn_point():
 	if player.get_parent() == null:
 		add_child(player)
 	player.spawn_with_marker_and_change_navigation(spawnpoint)
-	
+
 func _on_train_entered():
 	if not entered_train: 
 		entered_train = true

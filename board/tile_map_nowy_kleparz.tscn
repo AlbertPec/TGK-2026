@@ -101,10 +101,10 @@ region_enabled = true
 region_rect = Rect2(272, 18, 16, 45)
 
 [node name="enemy" parent="." index="16" unique_id=1486208510 instance=ExtResource("3_kujnm")]
-spawn_grid_cell = Vector2i(16, 8)
+spawn_grid_cell = Vector2i(14, 8)
 enemy_type = ExtResource("4_62ym3")
 visual_node_path = NodePath(".")
 
 [node name="enemy2" parent="." index="17" unique_id=1008660993 instance=ExtResource("3_kujnm")]
-spawn_grid_cell = Vector2i(16, 10)
+spawn_grid_cell = Vector2i(14, 10)
 visual_node_path = NodePath(".")

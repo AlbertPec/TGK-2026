@@ -1,0 +1,53 @@
+[gd_scene format=3 uid="uid://k1y7mt2r25jy"]
+
+[ext_resource type="FontFile" uid="uid://r6us10gkmxef" path="res://fonts/m5x7.ttf" id="1_lrs8r"]
+[ext_resource type="Script" uid="uid://bdoir8j8lbbi8" path="res://UI/current_station/current_station.gd" id="1_xukqr"]
+
+[sub_resource type="Theme" id="Theme_xukqr"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pcjml"]
+bg_color = Color(0.05457376, 0.05457379, 0.054573722, 1)
+
+[node name="CurrentStation" type="Control" unique_id=845620964]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xukqr")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=2118799432]
+custom_minimum_size = Vector2(150, 14)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="Panel" type="Panel" parent="MarginContainer" unique_id=1698041028]
+layout_mode = 2
+theme = SubResource("Theme_xukqr")
+theme_override_styles/panel = SubResource("StyleBoxFlat_pcjml")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Panel" unique_id=2120445908]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="CurrentStationLabel" type="Label" parent="MarginContainer/Panel/MarginContainer" unique_id=192675703]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_colors/font_color = Color(0.85800105, 0.8545566, 0, 1)
+theme_override_fonts/font = ExtResource("1_lrs8r")
+theme_override_font_sizes/font_size = 15
+text = "Stacja - Nowy Kleparz"

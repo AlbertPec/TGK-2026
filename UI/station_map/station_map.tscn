@@ -1,13 +1,25 @@
 [gd_scene format=3 uid="uid://cno7w3aagkwaq"]
 
 [ext_resource type="Script" uid="uid://b38yuohhkul3n" path="res://UI/station_map/station_map.gd" id="1_w4lhw"]
-[ext_resource type="Script" uid="uid://bnw4b84r6cyx0" path="res://UI/station_map/station_map_point.gd" id="2_lrtcn"]
-[ext_resource type="FontFile" uid="uid://r6us10gkmxef" path="res://fonts/m5x7.ttf" id="3_lrtcn"]
+[ext_resource type="PackedScene" uid="uid://d3sah5tqtlhwk" path="res://UI/station_map/station_map_point.tscn" id="2_eyhy7"]
 
 [node name="StationMap" type="Control" unique_id=706833493]
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_w4lhw")
+
+[node name="StationMapLine" type="ColorRect" parent="." unique_id=1698163544]
+custom_minimum_size = Vector2(0, 6)
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = 22.0
+offset_bottom = 30.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.7058824, 0, 0, 1)
 
 [node name="StationsContainer" type="HBoxContainer" parent="." unique_id=2119540842]
 layout_mode = 1
@@ -25,83 +37,17 @@ grow_vertical = 2
 theme_override_constants/separation = 40
 alignment = 1
 
-[node name="TeatrBagatela" type="VBoxContainer" parent="StationsContainer" unique_id=612668091]
+[node name="TeatrBagatela" parent="StationsContainer" unique_id=725339114 instance=ExtResource("2_eyhy7")]
 layout_mode = 2
-script = ExtResource("2_lrtcn")
 station_id = "TeatrBagatela"
+station_name = "Teatr Bagatela"
 
-[node name="Control" type="Control" parent="StationsContainer/TeatrBagatela" unique_id=278120206]
+[node name="NowyKleparz" parent="StationsContainer" unique_id=1385185070 instance=ExtResource("2_eyhy7")]
 layout_mode = 2
-size_flags_horizontal = 0
-
-[node name="Label" type="Label" parent="StationsContainer/TeatrBagatela/Control" unique_id=1896057074]
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_top = -11.5
-offset_right = 113.0
-offset_bottom = 11.5
-grow_vertical = 2
-rotation = -1.0471976
-size_flags_horizontal = 4
-theme_override_fonts/font = ExtResource("3_lrtcn")
-text = "Teatr Bagatela"
-
-[node name="Button" type="Button" parent="StationsContainer/TeatrBagatela" unique_id=1018881851]
-custom_minimum_size = Vector2(20, 20)
-layout_mode = 2
-
-[node name="NowyKleparz" type="VBoxContainer" parent="StationsContainer" unique_id=1043353745]
-layout_mode = 2
-script = ExtResource("2_lrtcn")
 station_id = "NowyKleparz"
+station_name = "Nowy Kleparz"
 
-[node name="Control" type="Control" parent="StationsContainer/NowyKleparz" unique_id=1718722903]
+[node name="DworzecGlowny" parent="StationsContainer" unique_id=750991227 instance=ExtResource("2_eyhy7")]
 layout_mode = 2
-size_flags_horizontal = 0
-
-[node name="Label" type="Label" parent="StationsContainer/NowyKleparz/Control" unique_id=178903452]
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_top = -11.5
-offset_right = 113.0
-offset_bottom = 11.5
-grow_vertical = 2
-rotation = -1.0471976
-size_flags_horizontal = 4
-theme_override_fonts/font = ExtResource("3_lrtcn")
-text = "Nowy Kleparz"
-
-[node name="Button" type="Button" parent="StationsContainer/NowyKleparz" unique_id=2032664132]
-custom_minimum_size = Vector2(20, 20)
-layout_mode = 2
-
-[node name="DworzecGlowny" type="VBoxContainer" parent="StationsContainer" unique_id=96814956]
-layout_mode = 2
-script = ExtResource("2_lrtcn")
 station_id = "DworzecGlowny"
-
-[node name="Control" type="Control" parent="StationsContainer/DworzecGlowny" unique_id=1598055984]
-layout_mode = 2
-size_flags_horizontal = 0
-
-[node name="Label" type="Label" parent="StationsContainer/DworzecGlowny/Control" unique_id=1249979338]
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_top = -11.5
-offset_right = 113.0
-offset_bottom = 11.5
-grow_vertical = 2
-rotation = -1.0471976
-size_flags_horizontal = 4
-theme_override_fonts/font = ExtResource("3_lrtcn")
-text = "Dworzec glowny"
-
-[node name="Button" type="Button" parent="StationsContainer/DworzecGlowny" unique_id=796106267]
-custom_minimum_size = Vector2(20, 20)
-layout_mode = 2
+station_name = "Dworzec Główny"

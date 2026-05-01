@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://d3sah5tqtlhwk"]
+
+[ext_resource type="Script" uid="uid://bnw4b84r6cyx0" path="res://UI/station_map/station_map_point.gd" id="1_5c7rx"]
+[ext_resource type="FontFile" uid="uid://r6us10gkmxef" path="res://fonts/m5x7.ttf" id="1_mdq71"]
+[ext_resource type="Texture2D" uid="uid://c56yjegbdfrmo" path="res://UI_assets/buttons_states.png" id="2_5c7rx"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cx7go"]
+atlas = ExtResource("2_5c7rx")
+region = Rect2(56, 56, 401, 401)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_stvo3"]
+atlas = ExtResource("2_5c7rx")
+region = Rect2(568, 56, 401, 401)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vu4b6"]
+atlas = ExtResource("2_5c7rx")
+region = Rect2(1080, 61, 401, 401)
+
+[node name="StationMapPoint" type="VBoxContainer" unique_id=725339114]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5c7rx")
+
+[node name="Control" type="Control" parent="." unique_id=1925800250]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control" unique_id=1427468848]
+layout_mode = 0
+offset_left = 6.0
+offset_top = -6.0
+offset_right = 119.0
+offset_bottom = 17.0
+rotation = -1.0471976
+size_flags_horizontal = 4
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("1_mdq71")
+theme_override_font_sizes/font_size = 18
+text = "Teatr Bagatela"
+
+[node name="Button" type="TextureButton" parent="." unique_id=678843533]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture_normal = SubResource("AtlasTexture_cx7go")
+texture_pressed = SubResource("AtlasTexture_stvo3")
+texture_hover = SubResource("AtlasTexture_vu4b6")
+ignore_texture_size = true
+stretch_mode = 0

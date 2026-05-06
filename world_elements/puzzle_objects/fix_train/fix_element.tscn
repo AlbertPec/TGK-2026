@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://bvpt84gs4f0pd"]
+
+[ext_resource type="Script" uid="uid://68m8ntghtvqm" path="res://world_elements/puzzle_objects/fix_train/fix_element.gd" id="1_82wdo"]
+[ext_resource type="PackedScene" uid="uid://bruybkvx51r74" path="res://world_elements/interactable/interactable.tscn" id="1_a1hcp"]
+[ext_resource type="Texture2D" uid="uid://bh5tjlhrc6dm4" path="res://UI_assets/warning.png" id="2_q3lj1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_82wdo"]
+size = Vector2(9.5, 9.5)
+
+[node name="FixElement" type="Node2D" unique_id=2019309028]
+script = ExtResource("1_82wdo")
+element_id = null
+action_name = null
+
+[node name="Interactable" parent="." unique_id=169991343 instance=ExtResource("1_a1hcp")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable" unique_id=1369089478]
+shape = SubResource("RectangleShape2D_82wdo")
+
+[node name="Sprite" type="Sprite2D" parent="." unique_id=1767800231]
+scale = Vector2(0.02690972, 0.026736112)
+texture = ExtResource("2_q3lj1")

@@ -2,8 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://3vgdiivoy4rq" path="res://board/tile_map_deafult.tscn" id="1_mvjl8"]
 [ext_resource type="Texture2D" uid="uid://clogwydsav4c6" path="res://map_assets/gbstudio_train_station_tileset.png" id="2_e3uwk"]
-[ext_resource type="PackedScene" uid="uid://br6jmwaabd1oh" path="res://enemy/enemy.tscn" id="3_kujnm"]
-[ext_resource type="Resource" uid="uid://cg7w85ny24u4l" path="res://enemy/types/pigeon.tres" id="4_62ym3"]
+[ext_resource type="PackedScene" uid="uid://clbbma5bo4yse" path="res://world_elements/note/note.tscn" id="5_62ym3"]
 
 [node name="Map" unique_id=1015381578 instance=ExtResource("1_mvjl8")]
 
@@ -100,11 +99,31 @@ flip_h = true
 region_enabled = true
 region_rect = Rect2(272, 18, 16, 45)
 
-[node name="enemy" parent="." index="16" unique_id=1486208510 instance=ExtResource("3_kujnm")]
-spawn_grid_cell = Vector2i(14, 8)
-enemy_type = ExtResource("4_62ym3")
-visual_node_path = NodePath(".")
+[node name="TechnicalNote1" parent="." index="16" unique_id=1155190565 instance=ExtResource("5_62ym3")]
+position = Vector2(48, 207)
+note_text = "Notatka:
+\"DZIENNIK SERWISOWY // 06.05
+Technik prowadzący: Jack Longfield
 
-[node name="enemy2" parent="." index="17" unique_id=1008660993 instance=ExtResource("3_kujnm")]
-spawn_grid_cell = Vector2i(14, 10)
-visual_node_path = NodePath(".")
+...Jeśli hamulce nie są aktywne, system drzwi nie przejdzie testu bezpieczeństwa ... Najpierw prąd albo silnik. Ale silnik nigdy nie może być pierwszy.\""
+
+[node name="TechnicalNote2" parent="." index="17" unique_id=197731528 instance=ExtResource("5_62ym3")]
+position = Vector2(624, 368)
+note_text = "Notatka:
+\"DZIENNIK SERWISOWY // 07.05
+Technik prowadzący: Jack Longfield
+
+...Panel sterowania musi być gotowy przed uruchomieniem trakcji ...\""
+
+[node name="TechnicalNote3" parent="." index="18" unique_id=1096525025 instance=ExtResource("5_62ym3")]
+position = Vector2(976, 144)
+note_text = "Notatka:
+\"WEWNĘTRZNE MEMO // DZIAŁ TECHNICZNY
+Adresat: inż. Birch
+
+... Nie dotykaj sterowania, dopóki drzwi nie przejdą diagnostyki.
+Silnik zawsze odpalamy na końcu. Inaczej przepalisz układ.
+Bez awaryjnego zasilania hamulce nawet się nie zablokują. ...
+
+Status systemu: niestabilny
+Priorytet: wysoki\""

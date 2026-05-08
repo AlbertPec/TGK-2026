@@ -51,11 +51,11 @@ func fixed_element(element_id):
 		# wsall elements fixed
 		if current_index >= order.size():
 			GameState.train_puzzle_fixed = true
-			print("Pociąg naprawiony!")
+			GlobalSignals.emit_signal("change_textbox_text","LOG: system w pełni sprawny")
 
 	# zła kolejność
 	else:
-		print("Zła kolejność - reset")
+		GlobalSignals.emit_signal("change_textbox_text","ERROR: błąd systemu")
 
 		reset_puzzle()
 
@@ -64,6 +64,8 @@ func fixed_element(element_id):
 
 func _on_interacted(inteructor = null):
 	if !GameState.train_puzzle_interacted:
+		GlobalSignals.emit_signal("change_textbox_text","ERROR: jednostka wymaga naprawy\nNiedziałające systemy:\n - silnik trakcyjny\n - system drzwi\n - panel sterowania\n - hamulce\n - zasilanie awaryjne\n Wymienione systemy wymagają natychmiastowej naprawy")
+
 		GameState.train_puzzle_interacted = true
 		
 		for el in fix_elements:

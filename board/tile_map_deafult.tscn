@@ -456,6 +456,7 @@ tile_set = SubResource("TileSet_xftlc")
 
 [node name="Train" parent="." unique_id=1047527794 instance=ExtResource("3_2jxfa")]
 position = Vector2(512, 80)
+scale = Vector2(1, 1)
 
 [node name="SpawnPoint" type="Marker2D" parent="." unique_id=1201148866]
 position = Vector2(368, 144)

@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://bh5tjlhrc6dm4" path="res://UI_assets/warning.png" id="2_q3lj1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_82wdo"]
-size = Vector2(9.5, 9.5)
+size = Vector2(32, 32)
 
 [node name="FixElement" type="Node2D" unique_id=2019309028]
 script = ExtResource("1_82wdo")
@@ -14,9 +14,10 @@ action_name = null
 
 [node name="Interactable" parent="." unique_id=169991343 instance=ExtResource("1_a1hcp")]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable" unique_id=1369089478]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable" unique_id=1014876053]
 shape = SubResource("RectangleShape2D_82wdo")
 
 [node name="Sprite" type="Sprite2D" parent="." unique_id=1767800231]
-scale = Vector2(0.02690972, 0.026736112)
+position = Vector2(1.1920929e-06, 7.1525574e-07)
+scale = Vector2(0.06666667, 0.06666666)
 texture = ExtResource("2_q3lj1")

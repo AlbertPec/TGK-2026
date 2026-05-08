@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bvpt84gs4f0pd" path="res://world_elements/puzzle_objects/fix_train/fix_element.tscn" id="4_msrwh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e3ide"]
-size = Vector2(128, 32)
+size = Vector2(350.3595, 88.027824)
 
 [node name="Train" type="Node2D" unique_id=1047527794]
 scale = Vector2(3, 3)
@@ -14,37 +14,39 @@ script = ExtResource("1_ob1yl")
 
 [node name="Interactable" parent="." unique_id=169991343 instance=ExtResource("1_lnxwq")]
 scale = Vector2(0.99326557, 0.9883238)
-interaction_name = "Enter the train"
+interaction_name = "Wejdź do pociągu"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable" unique_id=1201071679]
+position = Vector2(-2.3486227e-06, -0.16863826)
 shape = SubResource("RectangleShape2D_e3ide")
 
 [node name="Train" type="Sprite2D" parent="." unique_id=2059265502]
+scale = Vector2(3, 3)
 texture = ExtResource("3_mddjg")
 region_enabled = true
 region_rect = Rect2(6, 129, 116, 29)
 
 [node name="FixElementSilnikTrakcyjny" parent="." unique_id=2019309028 instance=ExtResource("4_msrwh")]
-position = Vector2(-59, 21)
+position = Vector2(-144, 64)
 element_id = 5
 action_name = "Napraw silnik trakcyjny"
 
 [node name="FixElementSystemDrzwi" parent="." unique_id=1475570455 instance=ExtResource("4_msrwh")]
-position = Vector2(30, 21)
+position = Vector2(112, 64)
 element_id = 4
 action_name = "Napraw System Drzwi"
 
 [node name="FixElementZasilanieAwaryjne" parent="." unique_id=1939666283 instance=ExtResource("4_msrwh")]
-position = Vector2(0.333, 21)
+position = Vector2(-16, 64)
 element_id = 1
 action_name = "Napraw zasilanie awaryjne"
 
 [node name="FixElementHamulce" parent="." unique_id=828952110 instance=ExtResource("4_msrwh")]
-position = Vector2(59, 21)
+position = Vector2(-80, 64)
 element_id = 3
 action_name = "Napraw Hamulce"
 
 [node name="FixElementPaneleSterowania" parent="." unique_id=1857516993 instance=ExtResource("4_msrwh")]
-position = Vector2(-28, 21)
+position = Vector2(48, 64)
 element_id = 2
 action_name = "Napraw panel sterowania"

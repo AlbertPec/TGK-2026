@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://bruybkvx51r74" path="res://world_elements/interactable/interactable.tscn" id="1_lnxwq"]
 [ext_resource type="Script" uid="uid://dh2i8ogexk7dw" path="res://world_elements/train/train.gd" id="1_ob1yl"]
 [ext_resource type="Texture2D" uid="uid://clogwydsav4c6" path="res://map_assets/gbstudio_train_station_tileset.png" id="3_mddjg"]
-[ext_resource type="PackedScene" uid="uid://bvpt84gs4f0pd" path="res://world_elements/puzzle_objects/fix_train/fix_element.tscn" id="4_msrwh"]
+[ext_resource type="PackedScene" uid="uid://brlcrtmr3ulwt" path="res://world_elements/puzzle_objects/fix_train/repair_puzzle.tscn" id="5_nxgnp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e3ide"]
 size = Vector2(350.3595, 88.027824)
@@ -26,27 +26,4 @@ texture = ExtResource("3_mddjg")
 region_enabled = true
 region_rect = Rect2(6, 129, 116, 29)
 
-[node name="FixElementSilnikTrakcyjny" parent="." unique_id=2019309028 instance=ExtResource("4_msrwh")]
-position = Vector2(-144, 64)
-element_id = 5
-action_name = "Napraw silnik trakcyjny"
-
-[node name="FixElementSystemDrzwi" parent="." unique_id=1475570455 instance=ExtResource("4_msrwh")]
-position = Vector2(112, 64)
-element_id = 4
-action_name = "Napraw System Drzwi"
-
-[node name="FixElementZasilanieAwaryjne" parent="." unique_id=1939666283 instance=ExtResource("4_msrwh")]
-position = Vector2(-16, 64)
-element_id = 1
-action_name = "Napraw zasilanie awaryjne"
-
-[node name="FixElementHamulce" parent="." unique_id=828952110 instance=ExtResource("4_msrwh")]
-position = Vector2(-80, 64)
-element_id = 3
-action_name = "Napraw Hamulce"
-
-[node name="FixElementPaneleSterowania" parent="." unique_id=1857516993 instance=ExtResource("4_msrwh")]
-position = Vector2(48, 64)
-element_id = 2
-action_name = "Napraw panel sterowania"
+[node name="RepairPuzzle" parent="." unique_id=2110756150 instance=ExtResource("5_nxgnp")]

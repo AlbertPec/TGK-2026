@@ -1,13 +1,10 @@
 [gd_scene format=3 uid="uid://bbe1d3t04pbbp"]
 
 [ext_resource type="Script" uid="uid://okj6wertn7ps" path="res://player/interacting_component.gd" id="1_q44uy"]
+[ext_resource type="FontFile" uid="uid://r6us10gkmxef" path="res://fonts/m5x7.ttf" id="2_r4fgx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q44uy"]
 size = Vector2(96, 96)
-
-[sub_resource type="LabelSettings" id="LabelSettings_q44uy"]
-font_size = 10
-font_color = Color(0.64547926, 0.960591, 0.95768505, 1)
 
 [node name="InteractingComponent" type="Node2D" unique_id=1471786738]
 script = ExtResource("1_q44uy")
@@ -21,13 +18,24 @@ shape = SubResource("RectangleShape2D_q44uy")
 
 [node name="InteractLabel" type="Label" parent="." unique_id=384131073]
 z_index = 200
-offset_left = -20.0
-offset_top = -72.0
-offset_right = 20.0
-offset_bottom = -49.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -22.0
+offset_top = 20.0
+offset_right = 22.0
+offset_bottom = 43.0
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0.19607843, 0, 0, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("2_r4fgx")
+theme_override_font_sizes/font_size = 16
 text = "Interact"
-label_settings = SubResource("LabelSettings_q44uy")
 horizontal_alignment = 1
 vertical_alignment = 1
 

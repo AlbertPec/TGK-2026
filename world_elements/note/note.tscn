@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://nysf7vk2bdfl" path="res://world_elements/note/note.gd" id="1_esif8"]
 [ext_resource type="PackedScene" uid="uid://bruybkvx51r74" path="res://world_elements/interactable/interactable.tscn" id="2_agi03"]
-[ext_resource type="Texture2D" uid="uid://47co0w6ugwdy" path="res://map_assets/floors_and_walls.png" id="3_dplp2"]
+[ext_resource type="Texture2D" uid="uid://8tp0gp6nn32l" path="res://map_assets/Interiors_free_32x32.png" id="3_dplp2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_agi03"]
 size = Vector2(32, 32)
@@ -11,12 +11,14 @@ size = Vector2(32, 32)
 script = ExtResource("1_esif8")
 
 [node name="Interactable" parent="." unique_id=169991343 instance=ExtResource("2_agi03")]
+interaction_name = "Przeczytaj notatkę"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable" unique_id=172731398]
 shape = SubResource("RectangleShape2D_agi03")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=674206854]
-scale = Vector2(0.5546875, 0.515625)
+position = Vector2(0, -7.1525574e-07)
+scale = Vector2(1, 0.99999994)
 texture = ExtResource("3_dplp2")
 region_enabled = true
-region_rect = Rect2(160, 128, 32, 33)
+region_rect = Rect2(0, 1664, 32, 32)

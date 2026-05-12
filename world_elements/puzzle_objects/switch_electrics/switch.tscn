@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://cqjxitp0uwr4k"]
+
+[ext_resource type="Texture2D" uid="uid://8tp0gp6nn32l" path="res://map_assets/Interiors_free_32x32.png" id="1_rjxcp"]
+[ext_resource type="Script" uid="uid://dy662qsviuo25" path="res://world_elements/puzzle_objects/switch_electrics/switch.gd" id="1_yk50h"]
+[ext_resource type="PackedScene" uid="uid://bruybkvx51r74" path="res://world_elements/interactable/interactable.tscn" id="2_hp1tj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hp1tj"]
+size = Vector2(30, 31)
+
+[node name="Switch" type="Node2D" unique_id=1424015661]
+script = ExtResource("1_yk50h")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=411798914]
+texture = ExtResource("1_rjxcp")
+region_enabled = true
+region_rect = Rect2(384, 1282, 30, 62)
+
+[node name="Interactable" parent="." unique_id=169991343 instance=ExtResource("2_hp1tj")]
+interaction_name = "Przełącz dzwignię"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable" unique_id=1561852229]
+position = Vector2(0, 15.5)
+shape = SubResource("RectangleShape2D_hp1tj")

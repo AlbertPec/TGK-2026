@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://baww3l4iox4mx"]
+
+[ext_resource type="PackedScene" uid="uid://cqjxitp0uwr4k" path="res://world_elements/puzzle_objects/switch_electrics/switch.tscn" id="1_ksr04"]
+[ext_resource type="Script" uid="uid://c3dqvqsfe6fqd" path="res://world_elements/puzzle_objects/switch_electrics/switch_puzzle.gd" id="1_rynwt"]
+
+[node name="SwitchPuzzle" type="Node2D" unique_id=1669277432]
+script = ExtResource("1_rynwt")
+
+[node name="Switch1" parent="." unique_id=1424015661 instance=ExtResource("1_ksr04")]
+switch_id = 1
+
+[node name="Switch2" parent="." unique_id=397337878 instance=ExtResource("1_ksr04")]
+position = Vector2(32, 0)
+switch_id = 2
+
+[node name="Switch3" parent="." unique_id=479593492 instance=ExtResource("1_ksr04")]
+position = Vector2(64, 0)
+switch_id = 3

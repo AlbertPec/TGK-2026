@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://dekd087gf5nig"]
+
+[ext_resource type="Script" uid="uid://ds7o2w6vlo2lq" path="res://world_elements/puzzle_objects/switch_electrics/doors.gd" id="1_riye2"]
+[ext_resource type="Texture2D" uid="uid://47co0w6ugwdy" path="res://map_assets/floors_and_walls.png" id="2_hhlln"]
+
+[node name="Doors" type="Node2D" unique_id=2011772330]
+script = ExtResource("1_riye2")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=829545305]
+texture = ExtResource("2_hhlln")
+region_enabled = true
+region_rect = Rect2(128, 160, 32, 32)

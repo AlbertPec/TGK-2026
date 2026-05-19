@@ -509,13 +509,15 @@ animations = [{
 }]
 
 [node name="Player" type="CharacterBody2D" unique_id=1862864814]
+scale = Vector2(1.5, 1.5)
 
 [node name="InteractingComponent" parent="." unique_id=1471786738 instance=ExtResource("2_rkbax")]
+position = Vector2(0, -10)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1191203027]
 shape = SubResource("RectangleShape2D_rkbax")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=8552092]
-position = Vector2(0, -2)
+position = Vector2(0, -12)
 sprite_frames = SubResource("SpriteFrames_yw30f")
 animation = &"gun_side"

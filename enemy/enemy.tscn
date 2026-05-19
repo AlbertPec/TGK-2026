@@ -116,10 +116,12 @@ script = ExtResource("1_ofsxj")
 enemy_type = ExtResource("2_p200p")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=990520719]
+scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_wjonb")
 animation = &"move"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=120048007]
+scale = Vector2(1.5, 1.5)
 shape = SubResource("RectangleShape2D_rovcg")
 
 [node name="detection_area" type="Area2D" parent="." unique_id=1772547823]

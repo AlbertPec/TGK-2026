@@ -105,7 +105,7 @@ note_text = "Notatka:
 \"DZIENNIK SERWISOWY // 06.05
 Technik prowadzący: Jack Longfield
 
-...Jeśli hamulce nie są aktywne, system drzwi nie przejdzie testu bezpieczeństwa ... Najpierw prąd albo silnik. Ale silnik nigdy nie może być pierwszy.\""
+... Drugą naprawianą częścią były albo hamulce, albo panel sterowania ... Panel sterowania nie zadziałał, dopóki wcześniej nie uruchomiono awaryjnego zasilania. ...\""
 
 [node name="TechnicalNote2" parent="." index="17" unique_id=197731528 instance=ExtResource("5_62ym3")]
 position = Vector2(624, 368)
@@ -113,7 +113,7 @@ note_text = "Notatka:
 \"DZIENNIK SERWISOWY // 07.05
 Technik prowadzący: Jack Longfield
 
-...Panel sterowania musi być gotowy przed uruchomieniem trakcji ...\""
+...Silnik trakcyjny zaczął odpowiadać dopiero po sprawdzeniu systemu drzwi. ...\""
 
 [node name="TechnicalNote3" parent="." index="18" unique_id=1096525025 instance=ExtResource("5_62ym3")]
 position = Vector2(976, 144)
@@ -121,9 +121,7 @@ note_text = "Notatka:
 \"WEWNĘTRZNE MEMO // DZIAŁ TECHNICZNY
 Adresat: inż. Birch
 
-... Nie dotykaj sterowania, dopóki drzwi nie przejdą diagnostyki.
-Silnik zawsze odpalamy na końcu. Inaczej przepalisz układ.
-Bez awaryjnego zasilania hamulce nawet się nie zablokują. ...
+Nie dotykaj sterowania, dopóki drzwi nie przejdą diagnostyki. Bez awaryjnego zasilania hamulce nawet się nie zablokują.
 
 Status systemu: niestabilny
 Priorytet: wysoki\""

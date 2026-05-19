@@ -61,6 +61,8 @@ func fixed_element(element_id):
 # -------------------------------
 
 func activate_puzzle():
+	GlobalSignals.emit_signal("change_textbox_text","ERROR: jednostka wymaga naprawy\nNiedziałające systemy:\n - silnik trakcyjny\n - system drzwi\n - panel sterowania\n - hamulce\n - zasilanie awaryjne\n Wymienione systemy wymagają natychmiastowej naprawy")
+	GameState.train_puzzle_interacted = true
 	for el in fix_elements:
 		enable_object(el)
 

@@ -112,11 +112,11 @@ animations = [{
 radius = 96.0
 
 [node name="enemy" type="CharacterBody2D" unique_id=1486208510]
+scale = Vector2(1.5, 1.5)
 script = ExtResource("1_ofsxj")
 enemy_type = ExtResource("2_p200p")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=990520719]
-scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_wjonb")
 animation = &"move"
 

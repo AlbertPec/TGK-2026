@@ -1,6 +1,6 @@
 extends Node2D
 
-@export var note_text: String = ""
+@export_multiline var note_text: String = ""
 
 @onready var interactable = $Interactable
 

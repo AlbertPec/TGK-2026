@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://brlcrtmr3ulwt"]
+
+[ext_resource type="Script" uid="uid://cqke8818wcy3t" path="res://world_elements/puzzle_objects/fix_train/repair_puzzle.gd" id="1_4o4lu"]
+[ext_resource type="PackedScene" uid="uid://bvpt84gs4f0pd" path="res://world_elements/puzzle_objects/fix_train/fix_element.tscn" id="1_hd2i2"]
+
+[node name="RepairPuzzle" type="Node2D" unique_id=2110756150]
+script = ExtResource("1_4o4lu")
+
+[node name="FixElementSilnikTrakcyjny" parent="." unique_id=2019309028 instance=ExtResource("1_hd2i2")]
+position = Vector2(-144, 64)
+element_id = 5
+action_name = "Napraw silnik trakcyjny"
+
+[node name="FixElementSystemDrzwi" parent="." unique_id=1487806488 instance=ExtResource("1_hd2i2")]
+position = Vector2(112, 64)
+element_id = 4
+action_name = "Napraw System Drzwi"
+
+[node name="FixElementZasilanieAwaryjne" parent="." unique_id=1248602879 instance=ExtResource("1_hd2i2")]
+position = Vector2(-16, 64)
+element_id = 1
+action_name = "Napraw zasilanie awaryjne"
+
+[node name="FixElementHamulce" parent="." unique_id=1261882885 instance=ExtResource("1_hd2i2")]
+position = Vector2(-80, 64)
+element_id = 3
+action_name = "Napraw Hamulce"
+
+[node name="FixElementPaneleSterowania" parent="." unique_id=208537940 instance=ExtResource("1_hd2i2")]
+position = Vector2(48, 64)
+element_id = 2
+action_name = "Napraw panel sterowania"

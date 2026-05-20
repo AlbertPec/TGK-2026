@@ -45,25 +45,25 @@ enemy_type = ExtResource("3_mtsnm")
 visual_node_path = NodePath(".")
 
 [node name="SwitchPuzzle" parent="." index="10" unique_id=1669277432 instance=ExtResource("4_qnn0w")]
-position = Vector2(687, 256)
+position = Vector2(655, 192)
 
 [node name="Doors" parent="SwitchPuzzle" index="3" unique_id=2011772330 instance=ExtResource("5_b1p3g")]
-position = Vector2(193, 49)
+position = Vector2(224, 112)
 
 [node name="LightPanel1" parent="SwitchPuzzle" index="4" unique_id=606638072 instance=ExtResource("6_boh4a")]
-position = Vector2(-384, 80)
+position = Vector2(-384, 144)
 
 [node name="LightPanel2" parent="SwitchPuzzle" index="5" unique_id=656826245 instance=ExtResource("6_boh4a")]
-position = Vector2(-320, 80)
+position = Vector2(-320, 144)
 
 [node name="LightPanel3" parent="SwitchPuzzle" index="6" unique_id=1030605860 instance=ExtResource("6_boh4a")]
-position = Vector2(-255, 83)
+position = Vector2(-256, 144)
 
 [node name="LightPanel4" parent="SwitchPuzzle" index="7" unique_id=1640832066 instance=ExtResource("6_boh4a")]
-position = Vector2(-191, 82)
+position = Vector2(-192, 144)
 
 [node name="LightPanel5" parent="SwitchPuzzle" index="8" unique_id=730324547 instance=ExtResource("6_boh4a")]
-position = Vector2(-127, 79)
+position = Vector2(-128, 144)
 
 [node name="LightPanel6" parent="SwitchPuzzle" index="9" unique_id=1813295180 instance=ExtResource("6_boh4a")]
-position = Vector2(-66, 79)
+position = Vector2(-64, 144)

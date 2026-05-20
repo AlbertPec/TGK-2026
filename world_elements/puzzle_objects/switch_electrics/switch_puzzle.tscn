@@ -16,3 +16,7 @@ switch_id = 2
 [node name="Switch3" parent="." unique_id=479593492 instance=ExtResource("1_ksr04")]
 position = Vector2(64, 0)
 switch_id = 3
+
+[node name="Switch4" parent="." unique_id=1745556051 instance=ExtResource("1_ksr04")]
+position = Vector2(96, 0)
+switch_id = 4

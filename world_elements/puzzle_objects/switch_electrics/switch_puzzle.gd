@@ -3,6 +3,7 @@ extends Node2D
 @onready var switch1 = $Switch1
 @onready var switch2 = $Switch2
 @onready var switch3 = $Switch3
+@onready var switch4 = $Switch4
 
 @onready var light_panel1 = $LightPanel1
 @onready var light_panel2 = $LightPanel2
@@ -19,7 +20,8 @@ var lights = []
 var switch_light_map = {
 	1: [0, 1],        # switch1 przełącza światła 1 i 2
 	2: [1, 2, 4],     # switch2 przełącza światła 2, 3 i 5
-	3: [3, 4, 5]      # switch3 przełącza światła 4, 5 i 6
+	3: [3, 4, 5],      # switch3 przełącza światła 4, 5 i 6
+	4: [0, 4, 5, 2]      # switch3 przełącza światła 4, 5 i 6
 }
 
 func switch_toggeled(switch_id):
@@ -58,7 +60,7 @@ func close_doors():
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	switches = [switch1, switch2, switch3]
+	switches = [switch1, switch2, switch3, switch4]
 	lights = [light_panel1, light_panel2, light_panel3, light_panel4, light_panel5, light_panel6]
 	
 	for s in switches:

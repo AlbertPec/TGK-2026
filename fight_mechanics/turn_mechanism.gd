@@ -3,11 +3,14 @@ class_name TurnMechanism
 
 signal turn_started(entity: Entity)
 signal turn_finished(entity: Entity)
+signal combat_started()
+signal combat_finished()
 
 var _entities: Array[Entity] = []
 var _current_turn_index: int = -1
 var _current_entity: Entity = null
 var _turn_active: bool = false
+var combat_active: bool = false
 
 func _ready() -> void:
 	refresh_entities()
@@ -27,6 +30,8 @@ func refresh_entities() -> void:
 			entity.turn_finished.connect(finished_callable)
 
 func start_turn_cycle() -> void:
+	if not combat_active:
+		return
 	if _entities.is_empty():
 		_turn_active = false
 		_current_entity = null
@@ -38,6 +43,23 @@ func start_turn_cycle() -> void:
 
 	_start_current_turn()
 
+func start_combat() -> void:
+	if combat_active:
+		return
+
+	combat_active = true
+	refresh_entities()
+	combat_started.emit()
+	start_turn_cycle()
+
+func end_combat() -> void:
+	if not combat_active:
+		return
+
+	combat_active = false
+	reset_turn_cycle()
+	combat_finished.emit()
+
 func reset_turn_cycle() -> void:
 	_turn_active = false
 	_current_turn_index = -1
@@ -46,7 +68,7 @@ func reset_turn_cycle() -> void:
 		entity._on_turn_started(null)
 
 func _start_current_turn() -> void:
-	if _entities.is_empty():
+	if _entities.is_empty() or not combat_active:
 		_current_entity = null
 		_turn_active = false
 		return
@@ -60,7 +82,7 @@ func log_turn(entity) -> void:
 	GlobalSignals.emit_signal("change_textbox_text", entity.log_name + " turn started")
 
 func _on_entity_turn_finished(entity: Entity) -> void:
-	if not _turn_active:
+	if not _turn_active or not combat_active:
 		return
 	if entity == null or entity != _current_entity:
 		return

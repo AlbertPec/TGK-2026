@@ -15,8 +15,7 @@ var station_id_to_path = { # maps id from ui signal to name of map scene
 }
 
 func change_board(path_to_scene: String):
-	if turn_mechanism:
-		turn_mechanism.reset_turn_cycle()
+	_end_combat_if_active()
 
 	if board:
 		remove_child(board)
@@ -34,7 +33,7 @@ func change_board(path_to_scene: String):
 	_connect_board_signal(board)
 	await get_tree().process_frame # waits for tree to refresh
 	set_player_at_spawn_point()
-	_refresh_turn_mechanism()
+	_refresh_fight_connections()
 	player.z_index = 100 # put player above the board - without it, player is invisible
 
 func _connect_board_signal(target_board: Node) -> void:
@@ -62,7 +61,7 @@ func _ready() -> void:
 		board_cache[current_board_scene_path] = board
 	_connect_board_signal(board)
 	set_player_at_spawn_point()
-	_refresh_turn_mechanism()
+	_refresh_fight_connections()
 
 func _on_hud_ui_station_chosen(station_id: Variant) -> void:
 	if entered_train:
@@ -74,9 +73,48 @@ func _on_hud_ui_station_chosen(station_id: Variant) -> void:
 			player.z_index = 100
 		entered_train = false
 
-func _refresh_turn_mechanism() -> void:
+func _refresh_fight_connections() -> void:
 	if turn_mechanism == null:
 		return
 
 	turn_mechanism.refresh_entities()
-	turn_mechanism.start_turn_cycle()
+	_connect_fight_signals()
+
+	for node in get_tree().get_nodes_in_group(Entity.ENTITY_GROUP):
+		var enemy := node as Enemy
+		if enemy == null:
+			continue
+
+		var combat_requested_callable := Callable(self, "_on_enemy_combat_requested")
+		if not enemy.combat_requested.is_connected(combat_requested_callable):
+			enemy.combat_requested.connect(combat_requested_callable)
+
+func _connect_fight_signals() -> void:
+	if turn_mechanism == null:
+		return
+
+	var combat_started_callable := Callable(self, "_on_combat_started")
+	if not turn_mechanism.combat_started.is_connected(combat_started_callable):
+		turn_mechanism.combat_started.connect(combat_started_callable)
+
+	var combat_finished_callable := Callable(self, "_on_combat_finished")
+	if not turn_mechanism.combat_finished.is_connected(combat_finished_callable):
+		turn_mechanism.combat_finished.connect(combat_finished_callable)
+
+func _on_enemy_combat_requested(_enemy: Enemy, _player: Entity) -> void:
+	if turn_mechanism == null:
+		return
+	turn_mechanism.start_combat()
+
+func _on_combat_started() -> void:
+	player.stop_movement()
+	player.enter_combat()
+
+func _on_combat_finished() -> void:
+	player.exit_combat()
+
+func _end_combat_if_active() -> void:
+	if turn_mechanism == null:
+		return
+	if turn_mechanism.combat_active:
+		turn_mechanism.end_combat()

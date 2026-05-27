@@ -41,7 +41,6 @@ func setup_navigation() -> bool:
 
 func move_and_update_facing() -> bool:
 	previous_position = global_position
-	var has_path := grid_movement.has_path_to_travel()
 	var did_move := grid_movement.move_body(self)
 	_update_facing()
 	return did_move

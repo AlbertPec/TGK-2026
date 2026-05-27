@@ -1,18 +1,19 @@
 extends Entity
 
 @export var movement_animation_speed: float = 2.0
-@export var max_move_distance: int = -1
+@export var max_move_distance: int = 4
 @export var can_move: bool = true
 
 @onready var PLAYER_LOG_NAME = "player"
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 var animation_variant = "front"
+var in_combat: bool = false
 
 func _ready() -> void:
 	setup_entity()
 	log_name = PLAYER_LOG_NAME
-	grid_movement.set_max_move_distance(max_move_distance) # start in idle - have infinite move - todo: change this init
+	grid_movement.set_max_move_distance(-1)
 
 func _on_turn_started(active_entity: Entity) -> void:
 	super._on_turn_started(active_entity)
@@ -20,7 +21,10 @@ func _on_turn_started(active_entity: Entity) -> void:
 		return
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("move") == false or not can_move or not is_turn_active:
+	if event.is_action_pressed("move") == false or not can_move:
+		return
+
+	if not _can_accept_input():
 		return
 
 	if not grid_movement.has_path_to_travel():
@@ -49,6 +53,12 @@ func available_actions_left() -> bool:
 	return grid_movement.has_path_to_travel() # to-do: change when implemented non-movement actions
 
 func _physics_process(_delta: float) -> void:
+	if not _is_in_combat():
+		if grid_movement.has_path_to_travel():
+			move_and_update_facing()
+		manage_animations()
+		return
+
 	if not is_turn_active:
 		manage_animations()
 		return
@@ -58,3 +68,20 @@ func _physics_process(_delta: float) -> void:
 	
 	if not available_actions_left() and moved: # to-do: change when implementing other actions
 		end_turn()
+
+func enter_combat() -> void:
+	in_combat = true
+	grid_movement.set_max_move_distance(max_move_distance)
+
+func exit_combat() -> void:
+	in_combat = false
+	grid_movement.set_max_move_distance(-1)
+	is_turn_active = false
+
+func _is_in_combat() -> bool:
+	return in_combat
+
+func _can_accept_input() -> bool:
+	if not _is_in_combat():
+		return true
+	return is_turn_active

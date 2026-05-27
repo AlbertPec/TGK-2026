@@ -1,7 +1,10 @@
 extends Entity
+class_name Enemy
 
 @export var spawn_grid_cell: Vector2i = Vector2i(-1, -1)
 @export var enemy_type: EnemyTypeConfig
+
+signal combat_requested(enemy: Enemy, player: Entity)
 
 @onready var detection_area = $detection_area
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
@@ -43,6 +46,10 @@ func _on_turn_started(active_entity: Entity) -> void:
 	super._on_turn_started(active_entity)
 	if active_entity != self:
 		return
+	if not is_instance_valid(player_entity):
+		_resolve_player_entity()
+	if not is_instance_valid(player_entity):
+		return
 
 	# to-do: move AI to separate place
 	var target_cell := grid_movement.global_to_tile(player_entity.global_position)
@@ -80,5 +87,11 @@ func on_board_changed() -> void:
 	spawn(spawn_grid_cell)
 
 func _on_detection_area_body_entered(body: Node2D) -> void:
-	if not body.is_in_group("players") or body == null:
+	if body == null or not body.is_in_group("players"):
 		return
+
+	var detected_player := body as Entity
+	if detected_player == null:
+		return
+
+	combat_requested.emit(self, detected_player)

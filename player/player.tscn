@@ -519,5 +519,6 @@ shape = SubResource("RectangleShape2D_rkbax")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=8552092]
 position = Vector2(0, -12)
+scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_yw30f")
 animation = &"gun_side"

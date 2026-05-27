@@ -17,18 +17,18 @@ extends Node2D
 var switches = []
 var lights = []
 
-var switch_light_map = {
-	1: [0, 1],        # switch1 przełącza światła 1 i 2
-	2: [1, 2, 4],     # switch2 przełącza światła 2, 3 i 5
-	3: [3, 4, 5],      # switch3 przełącza światła 4, 5 i 6
-	4: [0, 4, 5, 2]      # switch3 przełącza światła 4, 5 i 6
+var switch_light_map = { # correct order -> 3 > 1 > 4 > 3 > 2
+	1: [1, 3, 6],        # lewa sekcja
+	2: [2, 4],        # środek-lewo
+	3: [3, 5],        # środek-prawo
+	4: [4, 5, 6]      # prawa sekcja
 }
 
 func switch_toggeled(switch_id):
 	var affected_lights = switch_light_map[switch_id]
 
 	for light_id in affected_lights:
-		var light = lights[light_id]
+		var light = lights[light_id-1]
 
 		light.toggle()
 
@@ -68,8 +68,8 @@ func _ready() -> void:
 		
 	# stan początkowy świateł
 	light_panel1.off()
-	light_panel2.on()
+	light_panel2.off()
 	light_panel3.off()
 	light_panel4.on()
 	light_panel5.off()
-	light_panel6.off()
+	light_panel6.on()

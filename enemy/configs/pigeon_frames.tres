@@ -1,6 +1,6 @@
 [gd_resource type="SpriteFrames" format=3 uid="uid://c17skv0wkqutb"]
 
-[ext_resource type="Texture2D" uid="uid://dcnlunwgxl8w2" path="res://enemy_assets/Pidgeon Sprite Sheet.png" id="1_sheet"]
+[ext_resource type="Texture2D" uid="uid://bgilp6fgtmm8u" path="res://enemy_assets/Pidgeon Sprite Sheet.png" id="1_sheet"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_eat_0"]
 atlas = ExtResource("1_sheet")

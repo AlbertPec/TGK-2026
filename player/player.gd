@@ -4,15 +4,23 @@ extends Entity
 @export var max_move_distance: int = -1
 @export var can_move: bool = true
 
+@onready var PLAYER_LOG_NAME = "player"
+
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 var animation_variant = "front"
 
 func _ready() -> void:
 	setup_entity()
-	grid_movement.set_max_move_distance(-1) # start in idle - have infinite move - todo: change this init
+	log_name = PLAYER_LOG_NAME
+	grid_movement.set_max_move_distance(max_move_distance) # start in idle - have infinite move - todo: change this init
+
+func _on_turn_started(active_entity: Entity) -> void:
+	super._on_turn_started(active_entity)
+	if active_entity != self:
+		return
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("move") == false or not can_move:
+	if event.is_action_pressed("move") == false or not can_move or not is_turn_active:
 		return
 
 	if not grid_movement.has_path_to_travel():
@@ -37,7 +45,16 @@ func manage_animations() -> void:
 	else:
 		animated_sprite.play("idle_" + animation_variant)
 		
+func available_actions_left() -> bool:
+	return grid_movement.has_path_to_travel() # to-do: change when implemented non-movement actions
+
 func _physics_process(_delta: float) -> void:
-	move_and_update_facing()
+	if not is_turn_active:
+		manage_animations()
+		return
+
+	var moved = move_and_update_facing()
 	manage_animations()
 	
+	if not available_actions_left() and moved: # to-do: change when implementing other actions
+		end_turn()

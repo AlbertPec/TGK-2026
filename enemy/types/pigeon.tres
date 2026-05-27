@@ -7,3 +7,5 @@
 script = ExtResource("1_config")
 display_name = "Pigeon"
 sprite_frames = ExtResource("2_frames")
+movement_speed = 2.5
+max_move_distance = 5.0

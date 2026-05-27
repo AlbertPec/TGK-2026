@@ -2,6 +2,7 @@ extends Node2D
 
 @onready var board = $Board
 @onready var player = $Player
+@onready var turn_mechanism: TurnMechanism = $TurnMechanism
 
 var entered_train = false
 var current_board_scene_path := ""
@@ -14,6 +15,9 @@ var station_id_to_path = { # maps id from ui signal to name of map scene
 }
 
 func change_board(path_to_scene: String):
+	if turn_mechanism:
+		turn_mechanism.reset_turn_cycle()
+
 	if board:
 		remove_child(board)
 
@@ -30,6 +34,7 @@ func change_board(path_to_scene: String):
 	_connect_board_signal(board)
 	await get_tree().process_frame # waits for tree to refresh
 	set_player_at_spawn_point()
+	_refresh_turn_mechanism()
 	player.z_index = 100 # put player above the board - without it, player is invisible
 
 func _connect_board_signal(target_board: Node) -> void:
@@ -37,7 +42,6 @@ func _connect_board_signal(target_board: Node) -> void:
 	if not target_board.is_connected("train_entered", train_entered_callback):
 		target_board.connect("train_entered", train_entered_callback)
 
-	
 func set_player_at_spawn_point():
 	player.stop_movement()
 	var spawnpoint = board.get_node("SpawnPoint")
@@ -58,6 +62,7 @@ func _ready() -> void:
 		board_cache[current_board_scene_path] = board
 	_connect_board_signal(board)
 	set_player_at_spawn_point()
+	_refresh_turn_mechanism()
 
 func _on_hud_ui_station_chosen(station_id: Variant) -> void:
 	if entered_train:
@@ -68,3 +73,10 @@ func _on_hud_ui_station_chosen(station_id: Variant) -> void:
 			set_player_at_spawn_point()
 			player.z_index = 100
 		entered_train = false
+
+func _refresh_turn_mechanism() -> void:
+	if turn_mechanism == null:
+		return
+
+	turn_mechanism.refresh_entities()
+	turn_mechanism.start_turn_cycle()

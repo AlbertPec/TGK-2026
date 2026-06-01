@@ -1,12 +1,12 @@
 [gd_scene format=3 uid="uid://n4prpqryrxbh"]
 
-[ext_resource type="Texture2D" uid="uid://47co0w6ugwdy" path="res://map_assets/floors_and_walls.png" id="1_0swpy"]
 [ext_resource type="Script" uid="uid://bxp28mry6vxyo" path="res://world_elements/light_panel/light_panel.gd" id="1_vcrh5"]
+[ext_resource type="Texture2D" uid="uid://8tp0gp6nn32l" path="res://map_assets/Interiors_free_32x32.png" id="2_vcrh5"]
 
 [node name="LightPanel" type="Node2D" unique_id=606638072]
 script = ExtResource("1_vcrh5")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1226053386]
-texture = ExtResource("1_0swpy")
+texture = ExtResource("2_vcrh5")
 region_enabled = true
-region_rect = Rect2(0, 448, 32, 32)
+region_rect = Rect2(-1, 1632, 32, 32)

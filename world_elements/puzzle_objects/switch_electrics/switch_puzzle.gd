@@ -42,7 +42,8 @@ func check_puzzle_state():
 			return
 
 	open_doors()
-
+	for switch in switches:
+		switch.disable_switching()
 
 func open_doors():
 	print("drzwi otwarte")

@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://bruybkvx51r74" path="res://world_elements/interactable/interactable.tscn" id="2_hp1tj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hp1tj"]
-size = Vector2(30, 31)
+size = Vector2(30, 62)
 
 [node name="Switch" type="Node2D" unique_id=1424015661]
 script = ExtResource("1_yk50h")
@@ -19,5 +19,4 @@ region_rect = Rect2(384, 1282, 30, 62)
 interaction_name = "Przełącz dzwignię"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable" unique_id=1561852229]
-position = Vector2(0, 15.5)
 shape = SubResource("RectangleShape2D_hp1tj")

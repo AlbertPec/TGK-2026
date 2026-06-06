@@ -18,6 +18,7 @@ script = ExtResource("1_kqt35")
 script = ExtResource("6_turn1")
 
 [node name="Player" parent="World" unique_id=482956824 groups=["players"] instance=ExtResource("2_lamf8")]
+scale = Vector2(1, 1)
 script = ExtResource("3_kqt35")
 max_move_distance = 5
 

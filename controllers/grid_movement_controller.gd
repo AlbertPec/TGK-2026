@@ -13,6 +13,8 @@ var navigation_provider: GridNavigationProvider
 var _dynamic_solid_cells: Array[Vector2i] = []
 var _occupied_entity_cells := {}
 
+const BLOCKING_GROUP := "blocking_objects"
+
 func setup(board_node: GridNavigationProvider):
 	navigation_provider = board_node
 	floor_layer = board_node.get_floor_layer()
@@ -57,7 +59,7 @@ func move_possible_closest_to(start_global_position: Vector2, target_map_positio
 		return false
 
 	var start := global_to_tile(start_global_position)
-	_refresh_dynamic_entity_solids(start)
+	_refresh_dynamic_entity_blocking(start)
 
 	if not _occupied_entity_cells.has(target_map_position):
 		return _set_path_on_current_grid(start, target_map_position)
@@ -86,7 +88,7 @@ func _set_path(start: Vector2i, end: Vector2i) -> bool:
 	if astar_grid == null:
 		return false
 
-	_refresh_dynamic_entity_solids(start)
+	_refresh_dynamic_entity_blocking(start)
 	return _set_path_on_current_grid(start, end)
 
 func _set_path_on_current_grid(start: Vector2i, end: Vector2i) -> bool:
@@ -143,7 +145,7 @@ func global_to_tile(global_position: Vector2) -> Vector2i:
 		return Vector2i.ZERO
 	return floor_layer.local_to_map(floor_layer.to_local(global_position))
 
-func _refresh_dynamic_entity_solids(start_cell: Vector2i) -> void:
+func _refresh_dynamic_entity_blocking(start_cell: Vector2i) -> void:
 	if astar_grid == null:
 		return
 
@@ -153,23 +155,30 @@ func _refresh_dynamic_entity_solids(start_cell: Vector2i) -> void:
 	var tree := _get_navigation_tree()
 	if tree == null:
 		return
+		
+	for node in tree.get_nodes_in_group(BLOCKING_GROUP):
+		_register_blocking_node(node, start_cell)
 
 	for node in tree.get_nodes_in_group(Entity.ENTITY_GROUP):
-		var entity := node as Node2D
-		if entity == null:
-			continue
+		_register_blocking_node(node, start_cell)
+		
+func _register_blocking_node(node: Node, start_cell: Vector2i) -> void:
+	var body := node as Node2D
+	if body == null:
+		return
 
-		var entity_cell := global_to_tile(entity.global_position)
-		if entity_cell == start_cell:
-			continue
-		if not astar_grid.is_in_boundsv(entity_cell):
-			continue
-		if astar_grid.is_point_solid(entity_cell):
-			continue
+	var cell := global_to_tile(body.global_position)
 
-		astar_grid.set_point_solid(entity_cell, true)
-		_dynamic_solid_cells.append(entity_cell)
-		_occupied_entity_cells[entity_cell] = true
+	if cell == start_cell:
+		return
+	if not astar_grid.is_in_boundsv(cell):
+		return
+	if astar_grid.is_point_solid(cell):
+		return
+
+	astar_grid.set_point_solid(cell, true)
+	_dynamic_solid_cells.append(cell)
+	_occupied_entity_cells[cell] = true
 
 func _clear_dynamic_entity_solids() -> void:
 	if astar_grid == null:

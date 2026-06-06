@@ -3,11 +3,15 @@ class_name Entity
 
 const ENTITY_GROUP := "entities"
 
+signal turn_finished(entity: Entity)
+
 @export var visual_node_path: NodePath
 @export var facing_right_by_default: bool = true
+@export var log_name: String = "unknown name"
 
 var grid_movement := GridMovementController.new()
 var previous_position: Vector2;
+var is_turn_active: bool = false
 
 var _visual_node: Node2D
 
@@ -24,6 +28,7 @@ func spawn(spawn_grid_cell: Vector2i) -> void:
 	
 func spawn_with_marker_and_change_navigation(spawn_marker: Marker2D) -> void:
 	global_position = spawn_marker.position
+	previous_position = global_position
 	setup_navigation()
 
 func setup_navigation() -> bool:
@@ -39,6 +44,16 @@ func move_and_update_facing() -> bool:
 	var did_move := grid_movement.move_body(self)
 	_update_facing()
 	return did_move
+
+func _on_turn_started(active_entity: Entity) -> void:
+	is_turn_active = active_entity == self
+
+func end_turn() -> void:
+	if not is_turn_active:
+		return
+
+	is_turn_active = false
+	turn_finished.emit(self)
 
 func on_board_changed() -> void:
 	stop_movement()

@@ -8,7 +8,7 @@ signal train_fixed
 var order = [1, 3, 4, 2, 5]
 var current_index = 0
 
-@onready var silnik_tarkcyjny = $FixElementSilnikTrakcyjny # 5 
+@onready var silnik_trakcyjny = $FixElementSilnikTrakcyjny # 5 
 @onready var system_drzwi = $FixElementSystemDrzwi # 4
 @onready var zasilanie_awaryjne = $FixElementZasilanieAwaryjne # 1
 @onready var hamulce = $FixElementHamulce # 3
@@ -67,7 +67,7 @@ func activate_puzzle():
 		enable_object(el)
 
 func _ready() -> void:
-	fix_elements = [silnik_tarkcyjny, system_drzwi, zasilanie_awaryjne, hamulce, panel_sterowania]
+	fix_elements = [silnik_trakcyjny, system_drzwi, zasilanie_awaryjne, hamulce, panel_sterowania]
 	
 	for el in fix_elements:
 		el.connect("fixed_element",fixed_element)

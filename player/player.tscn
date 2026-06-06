@@ -509,7 +509,6 @@ animations = [{
 }]
 
 [node name="Player" type="CharacterBody2D" unique_id=1862864814]
-scale = Vector2(1.5, 1.5)
 
 [node name="InteractingComponent" parent="." unique_id=1471786738 instance=ExtResource("2_rkbax")]
 position = Vector2(0, -10)

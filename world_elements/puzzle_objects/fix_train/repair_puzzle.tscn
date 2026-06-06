@@ -14,7 +14,7 @@ action_name = "Napraw silnik trakcyjny"
 [node name="FixElementSystemDrzwi" parent="." unique_id=1487806488 instance=ExtResource("1_hd2i2")]
 position = Vector2(112, 64)
 element_id = 4
-action_name = "Napraw System Drzwi"
+action_name = "Napraw system drzwi"
 
 [node name="FixElementZasilanieAwaryjne" parent="." unique_id=1248602879 instance=ExtResource("1_hd2i2")]
 position = Vector2(-16, 64)
@@ -24,7 +24,7 @@ action_name = "Napraw zasilanie awaryjne"
 [node name="FixElementHamulce" parent="." unique_id=1261882885 instance=ExtResource("1_hd2i2")]
 position = Vector2(-80, 64)
 element_id = 3
-action_name = "Napraw Hamulce"
+action_name = "Napraw hamulce"
 
 [node name="FixElementPaneleSterowania" parent="." unique_id=208537940 instance=ExtResource("1_hd2i2")]
 position = Vector2(48, 64)

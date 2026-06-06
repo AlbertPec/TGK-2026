@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bifgxllqxdmme" path="res://enemy/enemy.gd" id="1_ofsxj"]
 [ext_resource type="Resource" uid="uid://xnvaeeyhr6by" path="res://enemy/types/scavenger.tres" id="2_p200p"]
-[ext_resource type="Texture2D" uid="uid://dcnlunwgxl8w2" path="res://enemy_assets/Pidgeon Sprite Sheet.png" id="2_ppra6"]
+[ext_resource type="Texture2D" uid="uid://bgilp6fgtmm8u" path="res://enemy_assets/Pidgeon Sprite Sheet.png" id="2_ppra6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_p200p"]
 atlas = ExtResource("2_ppra6")

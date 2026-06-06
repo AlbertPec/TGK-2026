@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://cdy01udbeauyi" path="res://player/player.gd" id="3_kqt35"]
 [ext_resource type="PackedScene" uid="uid://dibka6g8ih7ef" path="res://board/tile_map_nowy_kleparz.tscn" id="4_kqt35"]
 [ext_resource type="PackedScene" uid="uid://bh1f7g65dyi6s" path="res://UI/heads_up_display.tscn" id="5_tbmg4"]
+[ext_resource type="Script" path="res://fight_mechanics/turn_mechanism.gd" id="6_turn1"]
 
 [node name="Game" type="Node2D" unique_id=1240663828]
 
@@ -12,6 +13,9 @@
 script = ExtResource("1_kqt35")
 
 [node name="Board" parent="World" unique_id=71600981 instance=ExtResource("4_kqt35")]
+
+[node name="TurnMechanism" type="Node" parent="World" unique_id=181918274]
+script = ExtResource("6_turn1")
 
 [node name="Player" parent="World" unique_id=482956824 groups=["players"] instance=ExtResource("2_lamf8")]
 scale = Vector2(1, 1)

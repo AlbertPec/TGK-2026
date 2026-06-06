@@ -34,7 +34,7 @@ visual_node_path = NodePath(".")
 
 [node name="pigeon5" parent="." index="8" unique_id=1336406645 instance=ExtResource("2_nsi13")]
 position = Vector2(-78, -84)
-spawn_grid_cell = Vector2i(9, 8)
+spawn_grid_cell = Vector2i(9, 11)
 enemy_type = ExtResource("3_mtsnm")
 visual_node_path = NodePath(".")
 

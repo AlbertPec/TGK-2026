@@ -72,13 +72,11 @@ func move_possible_closest_to(start_global_position: Vector2, target_map_positio
 			continue
 
 		var candidate_path := astar_grid.get_id_path(start, candidate).slice(1)
-		if candidate_path.is_empty():
-			continue
-		if max_move_distance >= 0 and candidate_path.size() > max_move_distance:
-			continue
 
 		if best_path.is_empty() or candidate_path.size() < best_path.size():
 			best_path = candidate_path
+		
+	best_path = best_path.slice(0, max_move_distance)
 
 	if best_path.is_empty():
 		return false

@@ -46,16 +46,10 @@ func check_puzzle_state():
 		switch.disable_switching()
 
 func open_doors():
-	print("drzwi otwarte")
-
-	# przykład
 	doors.open()
 
 
 func close_doors():
-	print("drzwi zamkniete")
-
-	# przykład
 	doors.close()
 
 

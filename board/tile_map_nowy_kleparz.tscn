@@ -37,9 +37,9 @@ Nie dotykaj sterowania, dopóki drzwi nie przejdą diagnostyki. Bez awaryjnego z
 Status systemu: niestabilny
 Priorytet: wysoki\""
 
-[node name="map_clutter" type="Node2D" parent="." index="7" unique_id=1914402652]
+[node name="map_objects" type="Node2D" parent="." index="7" unique_id=1914402652]
 
-[node name="Sprite2D11" type="Sprite2D" parent="map_clutter" index="0" unique_id=1715290759]
+[node name="Sprite2D11" type="Sprite2D" parent="map_objects" index="0" unique_id=1715290759]
 position = Vector2(913, 193)
 scale = Vector2(2.0000005, 1.4000003)
 texture = ExtResource("2_e3uwk")
@@ -47,7 +47,7 @@ flip_h = true
 region_enabled = true
 region_rect = Rect2(272, 18, 16, 45)
 
-[node name="Sprite2D13" type="Sprite2D" parent="map_clutter" index="1" unique_id=849781521]
+[node name="Sprite2D13" type="Sprite2D" parent="map_objects" index="1" unique_id=849781521]
 position = Vector2(913, 289)
 scale = Vector2(2.0000005, 1.4000003)
 texture = ExtResource("2_e3uwk")
@@ -55,28 +55,28 @@ flip_h = true
 region_enabled = true
 region_rect = Rect2(272, 18, 16, 45)
 
-[node name="Sprite2D12" type="Sprite2D" parent="map_clutter" index="2" unique_id=1204205039]
+[node name="Sprite2D12" type="Sprite2D" parent="map_objects" index="2" unique_id=1204205039]
 position = Vector2(881, 289)
 scale = Vector2(2.0000005, 1.4000003)
 texture = ExtResource("2_e3uwk")
 region_enabled = true
 region_rect = Rect2(272, 18, 16, 45)
 
-[node name="Sprite2D10" type="Sprite2D" parent="map_clutter" index="3" unique_id=347262785]
+[node name="Sprite2D10" type="Sprite2D" parent="map_objects" index="3" unique_id=347262785]
 position = Vector2(881, 192.50002)
 scale = Vector2(2.0000005, 1.4000003)
 texture = ExtResource("2_e3uwk")
 region_enabled = true
 region_rect = Rect2(272, 18, 16, 45)
 
-[node name="Sprite2D2" type="Sprite2D" parent="map_clutter" index="4" unique_id=1724927608]
+[node name="Sprite2D2" type="Sprite2D" parent="map_objects" index="4" unique_id=1724927608]
 position = Vector2(144, 190.50002)
 scale = Vector2(2.0000005, 1.4000003)
 texture = ExtResource("2_e3uwk")
 region_enabled = true
 region_rect = Rect2(272, 18, 16, 45)
 
-[node name="Sprite2D4" type="Sprite2D" parent="map_clutter" index="5" unique_id=1365325650]
+[node name="Sprite2D4" type="Sprite2D" parent="map_objects" index="5" unique_id=1365325650]
 position = Vector2(176, 191)
 scale = Vector2(2.0000005, 1.4000003)
 texture = ExtResource("2_e3uwk")
@@ -84,14 +84,14 @@ flip_h = true
 region_enabled = true
 region_rect = Rect2(272, 18, 16, 45)
 
-[node name="Sprite2D5" type="Sprite2D" parent="map_clutter" index="6" unique_id=805360932]
+[node name="Sprite2D5" type="Sprite2D" parent="map_objects" index="6" unique_id=805360932]
 position = Vector2(144, 287)
 scale = Vector2(2.0000005, 1.4000003)
 texture = ExtResource("2_e3uwk")
 region_enabled = true
 region_rect = Rect2(272, 18, 16, 45)
 
-[node name="Sprite2D6" type="Sprite2D" parent="map_clutter" index="7" unique_id=868546126]
+[node name="Sprite2D6" type="Sprite2D" parent="map_objects" index="7" unique_id=868546126]
 position = Vector2(176, 287)
 scale = Vector2(2.0000005, 1.4000003)
 texture = ExtResource("2_e3uwk")
@@ -99,14 +99,14 @@ flip_h = true
 region_enabled = true
 region_rect = Rect2(272, 18, 16, 45)
 
-[node name="Sprite2D3" type="Sprite2D" parent="map_clutter" index="8" unique_id=471536807]
+[node name="Sprite2D3" type="Sprite2D" parent="map_objects" index="8" unique_id=471536807]
 position = Vector2(527, 192.50002)
 scale = Vector2(2.0000005, 1.4000003)
 texture = ExtResource("2_e3uwk")
 region_enabled = true
 region_rect = Rect2(272, 18, 16, 45)
 
-[node name="Sprite2D7" type="Sprite2D" parent="map_clutter" index="9" unique_id=322641751]
+[node name="Sprite2D7" type="Sprite2D" parent="map_objects" index="9" unique_id=322641751]
 position = Vector2(559, 193)
 scale = Vector2(2.0000005, 1.4000003)
 texture = ExtResource("2_e3uwk")
@@ -114,14 +114,14 @@ flip_h = true
 region_enabled = true
 region_rect = Rect2(272, 18, 16, 45)
 
-[node name="Sprite2D8" type="Sprite2D" parent="map_clutter" index="10" unique_id=991459346]
+[node name="Sprite2D8" type="Sprite2D" parent="map_objects" index="10" unique_id=991459346]
 position = Vector2(527, 289)
 scale = Vector2(2.0000005, 1.4000003)
 texture = ExtResource("2_e3uwk")
 region_enabled = true
 region_rect = Rect2(272, 18, 16, 45)
 
-[node name="Sprite2D9" type="Sprite2D" parent="map_clutter" index="11" unique_id=710021129]
+[node name="Sprite2D9" type="Sprite2D" parent="map_objects" index="11" unique_id=710021129]
 position = Vector2(559, 289)
 scale = Vector2(2.0000005, 1.4000003)
 texture = ExtResource("2_e3uwk")
@@ -129,9 +129,9 @@ flip_h = true
 region_enabled = true
 region_rect = Rect2(272, 18, 16, 45)
 
-[node name="LightPanel" parent="map_clutter" index="12" unique_id=606638072 instance=ExtResource("4_kujnm")]
+[node name="LightPanel" parent="map_objects" index="12" unique_id=606638072 instance=ExtResource("4_kujnm")]
 position = Vector2(112, 239)
 
-[node name="LightPanel2" parent="map_clutter" index="13" unique_id=153006969 instance=ExtResource("4_kujnm")]
+[node name="LightPanel2" parent="map_objects" index="13" unique_id=153006969 instance=ExtResource("4_kujnm")]
 position = Vector2(592, 239)
 is_lit = true

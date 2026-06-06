@@ -59,7 +59,7 @@ func move_possible_closest_to(start_global_position: Vector2, target_map_positio
 		return false
 
 	var start := global_to_tile(start_global_position)
-	_refresh_dynamic_entity_solids(start)
+	_refresh_dynamic_entity_blocking(start)
 
 	if not _occupied_entity_cells.has(target_map_position):
 		return _set_path_on_current_grid(start, target_map_position)
@@ -90,7 +90,7 @@ func _set_path(start: Vector2i, end: Vector2i) -> bool:
 	if astar_grid == null:
 		return false
 
-	_refresh_dynamic_entity_solids(start)
+	_refresh_dynamic_entity_blocking(start)
 	return _set_path_on_current_grid(start, end)
 
 func _set_path_on_current_grid(start: Vector2i, end: Vector2i) -> bool:
@@ -147,7 +147,7 @@ func global_to_tile(global_position: Vector2) -> Vector2i:
 		return Vector2i.ZERO
 	return floor_layer.local_to_map(floor_layer.to_local(global_position))
 
-func _refresh_dynamic_entity_solids(start_cell: Vector2i) -> void:
+func _refresh_dynamic_entity_blocking(start_cell: Vector2i) -> void:
 	if astar_grid == null:
 		return
 

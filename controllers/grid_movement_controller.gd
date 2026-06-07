@@ -105,6 +105,13 @@ func _set_path_on_current_grid(start: Vector2i, end: Vector2i) -> bool:
 func clear_path():
 	path_to_travel = []
 
+func keep_only_next_step() -> void:
+	if path_to_travel.size() <= 1:
+		return
+
+	var truncated_path: Array[Vector2i] = [path_to_travel.front()]
+	path_to_travel = truncated_path
+
 func get_reachable_cells(start_global_position: Vector2) -> Array[Vector2i]:
 	if astar_grid == null or floor_layer == null or max_move_distance == 0:
 		return []

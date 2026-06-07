@@ -107,8 +107,8 @@ func _on_enemy_combat_requested(_enemy: Enemy, _player: Entity) -> void:
 	turn_mechanism.start_combat()
 
 func _on_combat_started() -> void:
-	player.stop_movement()
-	player.enter_combat()
+	player.finish_current_step_only()
+	player.enter_combat(true)
 
 func _on_combat_finished() -> void:
 	player.exit_combat()

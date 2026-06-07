@@ -62,6 +62,9 @@ func on_board_changed() -> void:
 func stop_movement() -> void:
 	grid_movement.clear_path()
 
+func finish_current_step_only() -> void:
+	grid_movement.keep_only_next_step()
+
 func _find_navigation_provider() -> GridNavigationProvider:
 	var providers = get_tree().get_nodes_in_group(GridNavigationProvider.PROVIDER_GROUP)
 	if providers.is_empty():

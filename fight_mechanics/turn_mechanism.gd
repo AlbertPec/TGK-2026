@@ -161,7 +161,6 @@ func _refresh_active_turn_overlay() -> void:
 
 	var reachable_cells := _current_entity.grid_movement.get_reachable_cells(_current_entity.global_position)
 	_movement_overlay.set_player_cells(reachable_cells)
-	_movement_overlay.set_enemy_cells([])
 
 func _clear_movement_overlay() -> void:
 	if _movement_overlay == null:

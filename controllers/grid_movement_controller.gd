@@ -105,6 +105,34 @@ func _set_path_on_current_grid(start: Vector2i, end: Vector2i) -> bool:
 func clear_path():
 	path_to_travel = []
 
+func get_reachable_cells(start_global_position: Vector2) -> Array[Vector2i]:
+	if astar_grid == null or floor_layer == null or max_move_distance == 0:
+		return []
+
+	var start := global_to_tile(start_global_position)
+	_refresh_dynamic_entity_blocking(start)
+
+	var reachable_cells: Array[Vector2i] = []
+	var region := astar_grid.region
+
+	for y in range(region.position.y, region.position.y + region.size.y):
+		for x in range(region.position.x, region.position.x + region.size.x):
+			var cell := Vector2i(x, y)
+			if cell == start:
+				continue
+			if astar_grid.is_point_solid(cell):
+				continue
+
+			var path := astar_grid.get_id_path(start, cell).slice(1)
+			if path.is_empty():
+				continue
+			if max_move_distance >= 0 and path.size() > max_move_distance:
+				continue
+
+			reachable_cells.append(cell)
+
+	return reachable_cells
+
 func move_body(body: Node2D) -> bool:
 	if floor_layer == null:
 		return false

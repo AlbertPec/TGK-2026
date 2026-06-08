@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bgu6l7clj2kut"]
 
 [ext_resource type="Texture2D" uid="uid://d3x1frsbhjq8j" path="res://player_assets/Idle.png" id="1_rkbax"]
-[ext_resource type="Script" path="res://player/weapon_manager.gd" id="1_xn0hk"]
+[ext_resource type="Script" uid="uid://qwptw4tuxyjv" path="res://player/weapon_manager.gd" id="1_xn0hk"]
 [ext_resource type="Texture2D" uid="uid://dv5rdo1usiies" path="res://player_assets/Walk.png" id="2_g1dw6"]
 [ext_resource type="Texture2D" uid="uid://hihp78non1nb" path="res://player_assets/Crossbow.png" id="2_g6k8r"]
 [ext_resource type="PackedScene" uid="uid://bbe1d3t04pbbp" path="res://player/interacting_component.tscn" id="2_rkbax"]
@@ -321,7 +321,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_55jnj")
 }],
-"loop": true,
+"loop": false,
 "name": &"crossbow_back",
 "speed": 5.0
 }, {
@@ -344,7 +344,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_xcnuv")
 }],
-"loop": true,
+"loop": false,
 "name": &"crossbow_front",
 "speed": 5.0
 }, {
@@ -384,7 +384,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_hggc2")
 }],
-"loop": true,
+"loop": false,
 "name": &"death_back",
 "speed": 5.0
 }, {
@@ -401,7 +401,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_utr5e")
 }],
-"loop": true,
+"loop": false,
 "name": &"death_front",
 "speed": 5.0
 }, {
@@ -418,7 +418,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_8rogd")
 }],
-"loop": true,
+"loop": false,
 "name": &"death_side",
 "speed": 5.0
 }, {
@@ -519,7 +519,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_2ieo8")
 }],
-"loop": true,
+"loop": false,
 "name": &"stab_back",
 "speed": 5.0
 }, {
@@ -536,7 +536,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_tqiix")
 }],
-"loop": true,
+"loop": false,
 "name": &"stab_front",
 "speed": 5.0
 }, {
@@ -553,7 +553,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_x7c3f")
 }],
-"loop": true,
+"loop": false,
 "name": &"stab_side",
 "speed": 5.0
 }, {
@@ -611,7 +611,7 @@ animations = [{
 
 [node name="Player" type="CharacterBody2D" unique_id=1862864814]
 
-[node name="WeaponManager" type="Node" parent="."]
+[node name="WeaponManager" type="Node" parent="." unique_id=381981319]
 script = ExtResource("1_xn0hk")
 
 [node name="InteractingComponent" parent="." unique_id=1471786738 instance=ExtResource("2_rkbax")]
@@ -624,6 +624,4 @@ shape = SubResource("RectangleShape2D_rkbax")
 position = Vector2(0, -12)
 scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_yw30f")
-animation = &"crossbow_side"
-frame = 5
-frame_progress = 1.0
+animation = &"stab_side"

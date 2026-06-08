@@ -22,6 +22,7 @@ var _is_dead: bool = false
 
 var _is_performing_attack: bool = false
 var _pending_attack_target: Entity
+var _used_attack: bool = false
 
 func setup_entity() -> void:
 	if not is_in_group(ENTITY_GROUP):
@@ -86,6 +87,7 @@ func _die() -> void:
 	_on_death()
 
 func _on_death() -> void:
+	print("O nie, nie żyję " + log_name)
 	pass
 
 func _on_revived() -> void:
@@ -135,6 +137,7 @@ func request_attack(target: Entity) -> bool:
 
 func _start_attack(target: Entity) -> void:
 	stop_movement()
+	_used_attack = true
 	_pending_attack_target = target
 	_is_performing_attack = true
 	face_towards_position(target.position)
@@ -159,6 +162,7 @@ func _on_turn_started(active_entity: Entity) -> void:
 	is_turn_active = active_entity == self
 	_is_performing_attack = false
 	_pending_attack_target = null
+	_used_attack = false
 
 func end_turn() -> void:
 	if not is_turn_active:

@@ -5,4 +5,4 @@
 [resource]
 script = ExtResource("1_attack")
 display_name = "Stab"
-animation_prefix = &"stab"
+damage = 2

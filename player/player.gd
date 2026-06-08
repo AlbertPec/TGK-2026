@@ -20,6 +20,12 @@ func _ready() -> void:
 	log_name = PLAYER_LOG_NAME
 	grid_movement.set_max_move_distance(-1)
 
+func _on_death() -> void:
+	## todo: fix player death bug
+	pass
+
+### Input handling ###
+
 func _input(event: InputEvent) -> void:
 	if not _can_accept_input():
 		return
@@ -37,6 +43,21 @@ func _input(event: InputEvent) -> void:
 
 			if _try_attack_from_click():
 				return
+
+func _can_accept_input() -> bool:
+	if not _is_in_combat():
+		return true
+	return is_turn_active
+
+func _request_movement_to_mouse() -> void:
+	if _is_in_combat() and _move_used_this_turn:
+		return
+
+	var did_request_path := grid_movement.request_path(global_position, get_global_mouse_position())
+	if did_request_path and _is_in_combat():
+		_move_used_this_turn = true
+
+### Per frame operations ###
 
 func _calculate_animation_variant() -> void:
 	if previous_position == global_position:
@@ -71,22 +92,6 @@ func manage_animations() -> void:
 	else:
 		animated_sprite.play("idle_" + animation_variant)
 
-func _request_movement_to_mouse() -> void:
-	if _is_in_combat() and _move_used_this_turn:
-		return
-
-	var did_request_path := grid_movement.request_path(global_position, get_global_mouse_position())
-	if did_request_path and _is_in_combat():
-		_move_used_this_turn = true
-	
-func _on_turn_started(active_entity: Entity) -> void:
-	super._on_turn_started(active_entity)
-	if active_entity != self:
-		return
-
-	_move_used_this_turn = false
-	_attack_used_this_turn = false	
-
 func _physics_process(_delta: float) -> void:
 	if not _is_in_combat():
 		if grid_movement.has_path_to_travel():
@@ -104,25 +109,12 @@ func _physics_process(_delta: float) -> void:
 	if _move_used_this_turn and not grid_movement.has_path_to_travel() and get_possible_attack_targets().is_empty():
 		end_turn()
 
+### Combat ###
+
 func enter_combat(preserve_turn_after_forced_move: bool = false) -> void:
 	in_combat = true
 	_preserve_turn_after_forced_move = preserve_turn_after_forced_move
 	grid_movement.set_max_move_distance(max_move_distance)
-	
-func get_possible_attack_targets() -> Array[Entity]:
-	var possible_targets: Array[Entity] = []
-	var tree := get_tree()
-
-	for node in tree.get_nodes_in_group(Entity.ENTITY_GROUP):
-		var entity := node as Entity
-		if entity == null or entity == self:
-			continue
-		if entity.is_dead():
-			continue
-		
-		if equipped_attack.can_target(self, entity):
-			possible_targets.append(entity)
-	return possible_targets
 
 func exit_combat() -> void:
 	in_combat = false
@@ -137,10 +129,30 @@ func exit_combat() -> void:
 func _is_in_combat() -> bool:
 	return in_combat
 
-func _can_accept_input() -> bool:
-	if not _is_in_combat():
-		return true
-	return is_turn_active
+func _on_turn_started(active_entity: Entity) -> void:
+	super._on_turn_started(active_entity)
+	if active_entity != self:
+		return
+
+	_move_used_this_turn = false
+	_attack_used_this_turn = false	
+
+### Attacking ###
+
+func get_possible_attack_targets() -> Array[Entity]:
+	var possible_targets: Array[Entity] = []
+	var tree := get_tree()
+
+	for node in tree.get_nodes_in_group(Entity.ENTITY_GROUP):
+		var entity := node as Entity
+		if entity == null or entity == self:
+			continue
+		if entity.is_dead():
+			continue
+		
+		if equipped_attack.can_target(self, entity):
+			possible_targets.append(entity)
+	return possible_targets
 
 func _try_attack_from_click() -> bool:
 	if not _is_in_combat():

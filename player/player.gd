@@ -106,6 +106,21 @@ func enter_combat(preserve_turn_after_forced_move: bool = false) -> void:
 	in_combat = true
 	_preserve_turn_after_forced_move = preserve_turn_after_forced_move
 	grid_movement.set_max_move_distance(max_move_distance)
+	
+func get_possible_attack_targets() -> Array[Entity]:
+	var possible_targets: Array[Entity] = []
+	var tree := get_tree()
+
+	for node in tree.get_nodes_in_group(Entity.ENTITY_GROUP):
+		var entity := node as Entity
+		if entity == null or entity == self:
+			continue
+		if entity.is_dead():
+			continue
+		
+		if equipped_attack.can_target(self, entity):
+			possible_targets.append(entity)
+	return possible_targets
 
 func exit_combat() -> void:
 	in_combat = false

@@ -5,6 +5,6 @@
 
 [resource]
 script = ExtResource("1_config")
-display_name = "ScavengerPigeon"
+display_name = "Scavenger Pigeon"
 sprite_frames = ExtResource("2_frames")
 max_health = 2

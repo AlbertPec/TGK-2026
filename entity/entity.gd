@@ -125,6 +125,8 @@ func face_towards_position(target_global_position: Vector2) -> void:
 
 	_apply_horizontal_facing(delta_x > 0.0)
 
+## Attacks
+
 func request_attack(target: Entity) -> bool:
 	if equipped_attack != null and equipped_attack.can_target(self, target):
 		_start_attack(target)
@@ -140,6 +142,8 @@ func _start_attack(target: Entity) -> void:
 
 func _finish_attack() -> void:
 	if equipped_attack != null and is_instance_valid(_pending_attack_target):
+		GlobalSignals.emit_signal("change_textbox_text", 
+			self.log_name + " attacked " + _pending_attack_target.log_name + " for " + str(equipped_attack.damage) + " damage")
 		equipped_attack.perform(self, _pending_attack_target)
 
 	# wait for animation to play
@@ -148,6 +152,8 @@ func _finish_attack() -> void:
 	_is_performing_attack = false
 	_pending_attack_target = null
 	end_turn()
+
+##
 
 func _on_turn_started(active_entity: Entity) -> void:
 	is_turn_active = active_entity == self
@@ -179,6 +185,8 @@ func _find_navigation_provider() -> GridNavigationProvider:
 			return provider
 			
 	return providers[0] as GridNavigationProvider
+
+## visual functions
 
 func _resolve_visual_node() -> void:
 	if not visual_node_path.is_empty():

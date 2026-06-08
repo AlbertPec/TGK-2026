@@ -183,6 +183,7 @@ func _refresh_active_turn_overlay() -> void:
 		_clear_movement_overlay()
 		return
 	
+	# do not show area when player moved this turn
 	var player = _current_entity as Player;
 	if player._move_used_this_turn:
 		_clear_movement_overlay()
@@ -192,7 +193,9 @@ func _refresh_active_turn_overlay() -> void:
 	if _movement_overlay == null:
 		return
 
-	var reachable_cells := _current_entity.grid_movement.get_reachable_cells(_current_entity.global_position)
+	var reachable_cells := _current_entity.grid_movement.get_cells_in_range(
+		_current_entity.global_position, 1, player.max_move_distance)
+		
 	_movement_overlay.set_player_cells(reachable_cells)
 
 func _clear_movement_overlay() -> void:

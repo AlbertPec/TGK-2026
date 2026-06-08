@@ -59,7 +59,7 @@ func move_possible_closest_to(start_global_position: Vector2, target_map_positio
 		return false
 
 	var start := global_to_tile(start_global_position)
-	_refresh_dynamic_entity_blocking(start)
+	_refresh_dynamic_blocking(start)
 
 	if not _occupied_entity_cells.has(target_map_position):
 		return _set_path_on_current_grid(start, target_map_position)
@@ -88,7 +88,7 @@ func _set_path(start: Vector2i, end: Vector2i) -> bool:
 	if astar_grid == null:
 		return false
 
-	_refresh_dynamic_entity_blocking(start)
+	_refresh_dynamic_blocking(start)
 	return _set_path_on_current_grid(start, end)
 
 func _set_path_on_current_grid(start: Vector2i, end: Vector2i) -> bool:
@@ -112,12 +112,12 @@ func keep_only_next_step() -> void:
 	var truncated_path: Array[Vector2i] = [path_to_travel.front()]
 	path_to_travel = truncated_path
 
-func get_reachable_cells(start_global_position: Vector2) -> Array[Vector2i]:
-	if astar_grid == null or floor_layer == null or max_move_distance == 0:
+func get_cells_in_range(start_global_position: Vector2, min_move_distance: int, max_move_distance: int) -> Array[Vector2i]:
+	if astar_grid == null or floor_layer == null:
 		return []
 
 	var start := global_to_tile(start_global_position)
-	_refresh_dynamic_entity_blocking(start)
+	_refresh_dynamic_blocking(start)
 
 	var reachable_cells: Array[Vector2i] = []
 	var region := astar_grid.region
@@ -125,20 +125,17 @@ func get_reachable_cells(start_global_position: Vector2) -> Array[Vector2i]:
 	for y in range(region.position.y, region.position.y + region.size.y):
 		for x in range(region.position.x, region.position.x + region.size.x):
 			var cell := Vector2i(x, y)
-			if cell == start:
-				continue
-			if astar_grid.is_point_solid(cell):
+			if astar_grid.is_point_solid(cell) or cell==start:
 				continue
 
-			var path := astar_grid.get_id_path(start, cell).slice(1)
-			if path.is_empty():
-				continue
-			if max_move_distance >= 0 and path.size() > max_move_distance:
-				continue
-
-			reachable_cells.append(cell)
+			var distance = distance_between(start, cell)
+			if min_move_distance <= distance and distance <= max_move_distance:
+				reachable_cells.append(cell)
 
 	return reachable_cells
+	
+func distance_between(tile1: Vector2i, tile2: Vector2i) -> int:
+	return len(astar_grid.get_id_path(tile1, tile2))
 
 func move_body(body: Node2D) -> bool:
 	if floor_layer == null:
@@ -180,7 +177,7 @@ func global_to_tile(global_position: Vector2) -> Vector2i:
 		return Vector2i.ZERO
 	return floor_layer.local_to_map(floor_layer.to_local(global_position))
 
-func _refresh_dynamic_entity_blocking(start_cell: Vector2i) -> void:
+func _refresh_dynamic_blocking(start_cell: Vector2i) -> void:
 	if astar_grid == null:
 		return
 

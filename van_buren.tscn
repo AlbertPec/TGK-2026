@@ -6,11 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dibka6g8ih7ef" path="res://board/tile_map_nowy_kleparz.tscn" id="4_kqt35"]
 [ext_resource type="PackedScene" uid="uid://bh1f7g65dyi6s" path="res://UI/heads_up_display.tscn" id="5_tbmg4"]
 [ext_resource type="Script" uid="uid://3stlu1xxh1dm" path="res://fight_mechanics/turn_mechanism.gd" id="6_turn1"]
-[ext_resource type="Script" uid="uid://bocl5qjsts0nk" path="res://attack/attack.gd" id="6_u3rwx"]
-
-[sub_resource type="Resource" id="Resource_mcd60"]
-script = ExtResource("6_u3rwx")
-metadata/_custom_type_script = "uid://bocl5qjsts0nk"
+[ext_resource type="Resource" uid="uid://bjx0amunglkus" path="res://attack/types/stab_attack.tres" id="6_u3rwx"]
 
 [node name="Game" type="Node2D" unique_id=1240663828]
 
@@ -25,7 +21,7 @@ script = ExtResource("6_turn1")
 [node name="Player" parent="World" unique_id=482956824 groups=["players"] instance=ExtResource("2_lamf8")]
 script = ExtResource("3_kqt35")
 max_move_distance = 5
-equipped_attack = SubResource("Resource_mcd60")
+equipped_attack = ExtResource("6_u3rwx")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=596016094]
 

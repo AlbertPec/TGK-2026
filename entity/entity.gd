@@ -4,22 +4,91 @@ class_name Entity
 const ENTITY_GROUP := "entities"
 
 signal turn_finished(entity: Entity)
+signal died(entity: Entity)
 
 @export var visual_node_path: NodePath
 @export var facing_right_by_default: bool = true
 @export var log_name: String = "unknown name"
+@export_range(1, 999, 1) var max_health: int = 10
 
 var grid_movement := GridMovementController.new()
 var previous_position: Vector2;
 var is_turn_active: bool = false
+var current_health: int = 0
 
 var _visual_node: Node2D
+var _life_initialized: bool = false
+var _is_dead: bool = false
 
 func setup_entity() -> void:
 	if not is_in_group(ENTITY_GROUP):
 		add_to_group(ENTITY_GROUP)
 	_resolve_visual_node()
+	_initialize_life_if_needed()
 	setup_navigation()
+
+func _initialize_life_if_needed() -> void:
+	if _life_initialized:
+		return
+	set_max_health(max_health, true)
+
+func set_max_health(value: int, restore_health: bool = false) -> void:
+	max_health = maxi(value, 1)
+
+	if restore_health or not _life_initialized:
+		current_health = max_health
+	else:
+		current_health = clampi(current_health, 0, max_health)
+
+	_life_initialized = true
+	_is_dead = current_health <= 0
+
+func restore_full_health() -> void:
+	current_health = max_health
+	var was_dead := _is_dead
+	_is_dead = false
+	if was_dead:
+		_on_revived()
+
+func take_damage(amount: int) -> int:
+	if amount <= 0 or is_dead():
+		return 0
+
+	var previous_health := current_health
+	current_health = maxi(current_health - amount, 0)
+	if current_health == 0:
+		_die()
+	return previous_health - current_health
+
+func heal(amount: int) -> int:
+	if amount <= 0 or is_dead():
+		return 0
+
+	var previous_health := current_health
+	current_health = mini(current_health + amount, max_health)
+	return current_health - previous_health
+
+func is_dead() -> bool:
+	return _is_dead
+
+func is_alive() -> bool:
+	return not is_dead()
+
+func _die() -> void:
+	if _is_dead:
+		return
+
+	_is_dead = true
+	stop_movement()
+	is_turn_active = false
+	_on_death()
+	died.emit(self)
+
+func _on_death() -> void:
+	pass
+
+func _on_revived() -> void:
+	pass
 	
 func spawn(spawn_grid_cell: Vector2i) -> void:
 	var spawn_global_position = grid_movement.tile_to_global(spawn_grid_cell)

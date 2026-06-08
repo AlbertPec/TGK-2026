@@ -17,9 +17,20 @@ func _ready() -> void:
 	refresh_entities()
 
 func refresh_entities() -> void:
+	var previous_current_entity := _current_entity
+	var current_entity_missing := false
+
 	_disconnect_entities()
 	_entities = _collect_entities()
-	_current_turn_index = _clamp_turn_index(_current_turn_index)
+	if _entities.is_empty():
+		_current_turn_index = -1
+		_current_entity = null
+	else:
+		if previous_current_entity != null:
+			_current_turn_index = _entities.find(previous_current_entity)
+			current_entity_missing = _current_turn_index == -1
+		_current_turn_index = _clamp_turn_index(_current_turn_index)
+		_current_entity = _entities[_current_turn_index]
 	_refresh_overlay_provider()
 
 	for entity in _entities:
@@ -31,8 +42,13 @@ func refresh_entities() -> void:
 		if not entity.turn_finished.is_connected(finished_callable):
 			entity.turn_finished.connect(finished_callable)
 
-	if combat_active and _turn_active and _current_entity != null:
-		_refresh_active_turn_overlay()
+	if combat_active and _turn_active:
+		if _current_entity == null and not _entities.is_empty():
+			_start_current_turn()
+		elif current_entity_missing:
+			_start_current_turn()
+		else:
+			_refresh_active_turn_overlay()
 	else:
 		_clear_movement_overlay()
 
@@ -116,6 +132,8 @@ func _collect_entities() -> Array[Entity]:
 	for node in tree.get_nodes_in_group(Entity.ENTITY_GROUP):
 		var entity := node as Entity
 		if entity == null:
+			continue
+		if entity.is_dead():
 			continue
 		collected.append(entity)
 

@@ -16,6 +16,8 @@ func _apply_enemy_type_config() -> void:
 	if enemy_type == null:
 		return
 
+	set_max_health(enemy_type.max_health, true)
+
 	if enemy_type.sprite_frames != null:
 		animated_sprite.sprite_frames = enemy_type.sprite_frames
 
@@ -37,9 +39,10 @@ func _play_animation(animation_name: StringName) -> void:
 func _ready() -> void:
 	detection_area.monitoring = false
 	setup_entity()
-	spawn(spawn_grid_cell)
 	_apply_enemy_type_config()
+	spawn(spawn_grid_cell)
 	_resolve_player_entity()
+	_on_revived()
 	detection_area.monitoring = true
 
 func _on_turn_started(active_entity: Entity) -> void:
@@ -64,6 +67,9 @@ func _resolve_player_entity() -> void:
 	player_entity = player_nodes[0] as Entity
 	
 func _physics_process(_delta: float) -> void:
+	if is_dead():
+		return
+
 	if not is_turn_active:
 		_play_animation(enemy_type.idle_animation if enemy_type != null else &"idle")
 		return
@@ -84,9 +90,38 @@ func _physics_process(_delta: float) -> void:
 
 func on_board_changed() -> void:
 	super.on_board_changed()
+	reset_to_spawn()
+
+func reset_to_spawn() -> void:
+	restore_full_health()
 	spawn(spawn_grid_cell)
 
+func _set_active_state(active: bool) -> void:
+	visible = active
+	process_mode = Node.PROCESS_MODE_INHERIT if active else Node.PROCESS_MODE_DISABLED
+	set_physics_process(active)
+	set_process_input(active)
+	detection_area.monitoring = active
+	detection_area.monitorable = active
+
+	var body_collision := get_node_or_null("CollisionShape2D") as CollisionShape2D
+	if body_collision != null:
+		body_collision.disabled = not active
+
+	if detection_shape != null:
+		detection_shape.disabled = not active
+
+func _on_death() -> void:
+	_set_active_state(false)
+
+func _on_revived() -> void:
+	_set_active_state(true)
+	_play_animation(enemy_type.idle_animation if enemy_type != null else &"idle")
+
 func _on_detection_area_body_entered(body: Node2D) -> void:
+	if is_dead():
+		return
+
 	if body == null or not body.is_in_group("players"):
 		return
 

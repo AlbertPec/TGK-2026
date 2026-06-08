@@ -1,5 +1,7 @@
 extends Node2D
 
+const NOWY_KLEPARZ_BOARD_PATH := "res://board/tile_map_nowy_kleparz.tscn"
+
 @onready var board = $Board
 @onready var player = $Player
 @onready var turn_mechanism: TurnMechanism = $TurnMechanism
@@ -81,13 +83,23 @@ func _refresh_fight_connections() -> void:
 	_connect_fight_signals()
 
 	for node in get_tree().get_nodes_in_group(Entity.ENTITY_GROUP):
-		var enemy := node as Enemy
-		if enemy == null:
-			continue
+		_connect_entity_signals(node as Entity)
 
-		var combat_requested_callable := Callable(self, "_on_enemy_combat_requested")
-		if not enemy.combat_requested.is_connected(combat_requested_callable):
-			enemy.combat_requested.connect(combat_requested_callable)
+func _connect_entity_signals(entity: Entity) -> void:
+	if entity == null:
+		return
+
+	var died_callable := Callable(self, "_on_entity_died")
+	if not entity.died.is_connected(died_callable):
+		entity.died.connect(died_callable)
+
+	var enemy := entity as Enemy
+	if enemy == null:
+		return
+
+	var combat_requested_callable := Callable(self, "_on_enemy_combat_requested")
+	if not enemy.combat_requested.is_connected(combat_requested_callable):
+		enemy.combat_requested.connect(combat_requested_callable)
 
 func _connect_fight_signals() -> void:
 	if turn_mechanism == null:
@@ -105,6 +117,67 @@ func _on_enemy_combat_requested(_enemy: Enemy, _player: Entity) -> void:
 	if turn_mechanism == null:
 		return
 	turn_mechanism.start_combat()
+
+func _on_entity_died(entity: Entity) -> void:
+	if entity == null:
+		return
+
+	if entity == player:
+		_handle_player_defeat()
+		return
+
+	if entity is Enemy:
+		_handle_enemy_defeat()
+
+func _handle_player_defeat() -> void:
+	_end_combat_if_active()
+	_reset_all_enemies()
+	player.restore_full_health()
+	entered_train = false
+
+	if current_board_scene_path != NOWY_KLEPARZ_BOARD_PATH:
+		change_board(NOWY_KLEPARZ_BOARD_PATH)
+		return
+
+	set_player_at_spawn_point()
+	player.z_index = 100
+	_refresh_fight_connections()
+
+func _handle_enemy_defeat() -> void:
+	if turn_mechanism == null:
+		return
+
+	if not _has_living_enemy():
+		turn_mechanism.end_combat()
+		return
+
+	turn_mechanism.refresh_entities()
+
+func _has_living_enemy() -> bool:
+	for enemy in _collect_enemies_in_node(board):
+		if enemy.is_alive():
+			return true
+	return false
+
+func _reset_all_enemies() -> void:
+	for cached_board in board_cache.values():
+		_reset_enemies_in_node(cached_board)
+
+func _reset_enemies_in_node(root: Node) -> void:
+	for enemy in _collect_enemies_in_node(root):
+		enemy.reset_to_spawn()
+
+func _collect_enemies_in_node(root: Node) -> Array[Enemy]:
+	var enemies: Array[Enemy] = []
+	if root == null:
+		return enemies
+
+	for child in root.get_children():
+		if child is Enemy:
+			enemies.append(child as Enemy)
+		enemies.append_array(_collect_enemies_in_node(child))
+
+	return enemies
 
 func _on_combat_started() -> void:
 	player.finish_current_step_only()

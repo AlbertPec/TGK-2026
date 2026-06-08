@@ -22,7 +22,7 @@ script = ExtResource("6_turn1")
 script = ExtResource("3_kqt35")
 max_move_distance = 5
 equipped_attack = ExtResource("6_u3rwx")
-max_health = 1
+max_health = 14
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=596016094]
 

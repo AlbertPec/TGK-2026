@@ -4,6 +4,7 @@ class_name Entity
 const ENTITY_GROUP := "entities"
 
 signal turn_finished(entity: Entity)
+signal health_changed(current_health: int, max_health: int)
 
 @export var visual_node_path: NodePath
 @export var facing_right_by_default: bool = true
@@ -46,11 +47,13 @@ func set_max_health(value: int, restore_health: bool = false) -> void:
 
 	_life_initialized = true
 	_is_dead = current_health <= 0
+	_emit_health_changed()
 
 func restore_full_health() -> void:
 	current_health = max_health
 	var was_dead := _is_dead
 	_is_dead = false
+	_emit_health_changed()
 	if was_dead:
 		_on_revived()
 
@@ -60,6 +63,7 @@ func take_damage(amount: int) -> int:
 
 	var previous_health := current_health
 	current_health = maxi(current_health - amount, 0)
+	_emit_health_changed()
 	if current_health == 0:
 		_die()
 	return previous_health - current_health
@@ -70,6 +74,7 @@ func heal(amount: int) -> int:
 
 	var previous_health := current_health
 	current_health = mini(current_health + amount, max_health)
+	_emit_health_changed()
 	return current_health - previous_health
 
 func is_dead() -> bool:
@@ -91,6 +96,9 @@ func _on_death() -> void:
 
 func _on_revived() -> void:
 	pass
+
+func _emit_health_changed() -> void:
+	health_changed.emit(current_health, max_health)
 	
 func spawn(spawn_grid_cell: Vector2i) -> void:
 	var spawn_global_position = grid_movement.tile_to_global(spawn_grid_cell)

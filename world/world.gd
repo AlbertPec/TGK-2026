@@ -3,7 +3,7 @@ extends Node2D
 const NOWY_KLEPARZ_BOARD_PATH := "res://board/tile_map_nowy_kleparz.tscn"
 
 @onready var board = $Board
-@onready var player = $Player
+@onready var player: Player = $Player
 @onready var turn_mechanism: TurnMechanism = $TurnMechanism
 
 var entered_train = false
@@ -62,6 +62,7 @@ func _ready() -> void:
 	if current_board_scene_path != "":
 		board_cache[current_board_scene_path] = board
 	_connect_board_signal(board)
+	_connect_player_signal()
 	set_player_at_spawn_point()
 	_refresh_fight_connections()
 
@@ -84,6 +85,14 @@ func _refresh_fight_connections() -> void:
 
 	for node in get_tree().get_nodes_in_group(Entity.ENTITY_GROUP):
 		_connect_entity_signals(node as Entity)
+
+func _connect_player_signal() -> void:
+	if player == null:
+		return
+
+	var player_defeated_callable := Callable(self, "_on_player_defeat")
+	if not player.player_defeated.is_connected(player_defeated_callable):
+		player.player_defeated.connect(player_defeated_callable)
 
 func _connect_entity_signals(entity: Entity) -> void:
 	var enemy := entity as Enemy
@@ -111,16 +120,8 @@ func _on_enemy_combat_requested(_enemy: Enemy, _player: Entity) -> void:
 		return
 	turn_mechanism.start_combat()
 
-func _on_entity_died(entity: Entity) -> void:
-	if entity == null:
-		return
-
-	if entity == player:
-		_handle_player_defeat()
-		return
-
-	if entity is Enemy:
-		_handle_enemy_defeat()
+func _on_player_defeat() -> void:
+	_handle_player_defeat()
 
 func _handle_player_defeat() -> void:
 	_end_combat_if_active()
@@ -135,22 +136,6 @@ func _handle_player_defeat() -> void:
 	set_player_at_spawn_point()
 	player.z_index = 100
 	_refresh_fight_connections()
-
-func _handle_enemy_defeat() -> void:
-	if turn_mechanism == null:
-		return
-
-	if not _has_living_enemy():
-		turn_mechanism.end_combat()
-		return
-
-	turn_mechanism.refresh_entities()
-
-func _has_living_enemy() -> bool:
-	for enemy in _collect_enemies_in_node(board):
-		if enemy.is_alive():
-			return true
-	return false
 
 func _reset_all_enemies() -> void:
 	for cached_board in board_cache.values():

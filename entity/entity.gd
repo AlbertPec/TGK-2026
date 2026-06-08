@@ -87,7 +87,6 @@ func _die() -> void:
 	_on_death()
 
 func _on_death() -> void:
-	print("O nie, nie żyję " + log_name)
 	pass
 
 func _on_revived() -> void:
@@ -127,7 +126,7 @@ func face_towards_position(target_global_position: Vector2) -> void:
 
 	_apply_horizontal_facing(delta_x > 0.0)
 
-## Attacks
+## Attacks ##
 
 func request_attack(target: Entity) -> bool:
 	if equipped_attack != null and equipped_attack.can_target(self, target):
@@ -150,13 +149,19 @@ func _finish_attack() -> void:
 		equipped_attack.perform(self, _pending_attack_target)
 
 	# wait for attack animation to play
-	await get_tree().create_timer(0.5).timeout
+	var scene_tree := get_tree()
+	if scene_tree == null:
+		_is_performing_attack = false
+		_pending_attack_target = null
+		return
+
+	await scene_tree.create_timer(0.5).timeout
 	
 	_is_performing_attack = false
 	_pending_attack_target = null
 	end_turn()
 
-##
+## end attacks ##
 
 func _on_turn_started(active_entity: Entity) -> void:
 	is_turn_active = active_entity == self

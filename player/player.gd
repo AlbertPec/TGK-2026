@@ -1,6 +1,8 @@
 extends Entity
 class_name Player
 
+signal player_defeated
+
 @export var movement_animation_speed: float = 2.0
 @export var max_move_distance: int = 4
 @export var can_move: bool = true
@@ -21,8 +23,9 @@ func _ready() -> void:
 	grid_movement.set_max_move_distance(-1)
 
 func _on_death() -> void:
-	## todo: fix player death bug
-	pass
+	GlobalSignals.emit_signal("change_textbox_text", 
+			"Player was defeated!")
+	player_defeated.emit()
 
 ### Input handling ###
 

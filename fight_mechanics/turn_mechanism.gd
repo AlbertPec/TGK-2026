@@ -11,6 +11,7 @@ var _current_turn_index: int = -1
 var _current_entity: Entity = null
 var _turn_active: bool = false
 var combat_active: bool = false
+var _movement_overlay: MovementRangeOverlay = null
 
 func _ready() -> void:
 	refresh_entities()
@@ -19,6 +20,7 @@ func refresh_entities() -> void:
 	_disconnect_entities()
 	_entities = _collect_entities()
 	_current_turn_index = _clamp_turn_index(_current_turn_index)
+	_refresh_overlay_provider()
 
 	for entity in _entities:
 		var started_callable := Callable(entity, "_on_turn_started")
@@ -28,6 +30,11 @@ func refresh_entities() -> void:
 		var finished_callable := Callable(self, "_on_entity_turn_finished")
 		if not entity.turn_finished.is_connected(finished_callable):
 			entity.turn_finished.connect(finished_callable)
+
+	if combat_active and _turn_active and _current_entity != null:
+		_refresh_active_turn_overlay()
+	else:
+		_clear_movement_overlay()
 
 func start_turn_cycle() -> void:
 	if not combat_active:
@@ -64,6 +71,7 @@ func reset_turn_cycle() -> void:
 	_turn_active = false
 	_current_turn_index = -1
 	_current_entity = null
+	_clear_movement_overlay()
 	for entity in _entities:
 		entity._on_turn_started(null)
 
@@ -77,6 +85,7 @@ func _start_current_turn() -> void:
 	_current_entity = _entities[_current_turn_index]
 	turn_started.emit(_current_entity)
 	log_turn(_current_entity)
+	_refresh_active_turn_overlay()
 
 func log_turn(entity) -> void:
 	GlobalSignals.emit_signal("change_textbox_text", entity.log_name + " turn started")
@@ -140,3 +149,64 @@ func _clamp_turn_index(value: int) -> int:
 	if value >= _entities.size():
 		return value % _entities.size()
 	return value
+
+func _refresh_active_turn_overlay() -> void:
+	if not combat_active or _current_entity == null or not _current_entity.is_in_group("players"):
+		_clear_movement_overlay()
+		return
+
+	_refresh_overlay_provider()
+	if _movement_overlay == null:
+		return
+
+	var reachable_cells := _current_entity.grid_movement.get_reachable_cells(_current_entity.global_position)
+	_movement_overlay.set_player_cells(reachable_cells)
+
+func _clear_movement_overlay() -> void:
+	if _movement_overlay == null:
+		return
+	_movement_overlay.clear()
+
+func _refresh_overlay_provider() -> void:
+	var provider := _get_navigation_provider()
+	if provider == null:
+		_clear_movement_overlay()
+		return
+
+	_ensure_movement_overlay()
+	if _movement_overlay == null:
+		return
+
+	if _movement_overlay.get_parent() != provider:
+		var current_parent := _movement_overlay.get_parent()
+		if current_parent != null:
+			current_parent.remove_child(_movement_overlay)
+		provider.add_child(_movement_overlay)
+
+	_movement_overlay.position = Vector2.ZERO
+	_movement_overlay.set_navigation_provider(provider)
+
+	var floor_layer := provider.get_floor_layer()
+	if floor_layer == null:
+		return
+
+	var overlay_index := mini(floor_layer.get_index() + 1, provider.get_child_count() - 1)
+	provider.move_child(_movement_overlay, overlay_index)
+
+func _ensure_movement_overlay() -> void:
+	if _movement_overlay != null and is_instance_valid(_movement_overlay):
+		return
+
+	_movement_overlay = MovementRangeOverlay.new()
+	_movement_overlay.name = "MovementRangeOverlay"
+
+func _get_navigation_provider() -> GridNavigationProvider:
+	var tree := get_tree()
+	if tree == null:
+		return null
+
+	var providers := tree.get_nodes_in_group(GridNavigationProvider.PROVIDER_GROUP)
+	if providers.is_empty():
+		return null
+
+	return providers[0] as GridNavigationProvider

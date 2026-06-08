@@ -9,6 +9,7 @@ extends Entity
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 var animation_variant = "front"
 var in_combat: bool = false
+var _preserve_turn_after_forced_move: bool = false
 
 func _ready() -> void:
 	setup_entity()
@@ -66,15 +67,21 @@ func _physics_process(_delta: float) -> void:
 	var moved = move_and_update_facing()
 	manage_animations()
 	
+	if _preserve_turn_after_forced_move and not grid_movement.has_path_to_travel():
+		_preserve_turn_after_forced_move = false
+		return
+
 	if not available_actions_left() and moved: # to-do: change when implementing other actions
 		end_turn()
 
-func enter_combat() -> void:
+func enter_combat(preserve_turn_after_forced_move: bool = false) -> void:
 	in_combat = true
+	_preserve_turn_after_forced_move = preserve_turn_after_forced_move
 	grid_movement.set_max_move_distance(max_move_distance)
 
 func exit_combat() -> void:
 	in_combat = false
+	_preserve_turn_after_forced_move = false
 	grid_movement.set_max_move_distance(-1)
 	is_turn_active = false
 

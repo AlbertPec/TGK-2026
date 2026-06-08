@@ -73,7 +73,7 @@ func _calculate_animation_variant() -> void:
 		animation_variant = "back"
 		return
 	animation_variant = "front"
-	
+
 func _calculate_combat_animation_variant(target: Entity) -> void:
 	if target.position.x > global_position.x or target.position.x < global_position.x:
 		animation_variant = "side"
@@ -87,8 +87,10 @@ func manage_animations() -> void:
 	_calculate_animation_variant()
 	if _is_performing_attack:
 		_calculate_combat_animation_variant(_pending_attack_target)
-		
-	if grid_movement.has_path_to_travel():
+
+	if is_dead():
+		animated_sprite.play("death_" + animation_variant)
+	elif grid_movement.has_path_to_travel():
 		animated_sprite.play("walk_" + animation_variant)
 	elif _is_performing_attack:
 		animated_sprite.play("stab_" + animation_variant)
@@ -108,7 +110,7 @@ func _physics_process(_delta: float) -> void:
 	if _preserve_turn_after_forced_move and not grid_movement.has_path_to_travel():
 		_preserve_turn_after_forced_move = false
 		return
-		
+
 	if _move_used_this_turn and not grid_movement.has_path_to_travel() and get_possible_attack_targets().is_empty():
 		end_turn()
 
@@ -139,6 +141,7 @@ func _on_turn_started(active_entity: Entity) -> void:
 
 	_move_used_this_turn = false
 	_attack_used_this_turn = false	
+	_attack_used_this_turn = false
 
 ### Attacking ###
 

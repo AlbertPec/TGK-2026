@@ -9,6 +9,9 @@ const NOWY_KLEPARZ_BOARD_PATH := "res://board/tile_map_nowy_kleparz.tscn"
 var entered_train = false
 var current_board_scene_path := ""
 var board_cache := {}
+var _player_defeat_transition_running := false
+
+const PLAYER_DEFEAT_DELAY := 0.8 # death animation lenght
 
 var station_id_to_path = { # maps id from ui signal to name of map scene
 	"TeatrBagatela":"tile_map_teatr_bagatela",
@@ -124,18 +127,29 @@ func _on_player_defeat() -> void:
 	_handle_player_defeat()
 
 func _handle_player_defeat() -> void:
+	if _player_defeat_transition_running:
+		return
+	_player_defeat_transition_running = true
+
 	_end_combat_if_active()
+
+	var scene_tree := get_tree()
+	if scene_tree != null:
+		await scene_tree.create_timer(PLAYER_DEFEAT_DELAY).timeout
+
 	_reset_all_enemies()
 	player.restore_full_health()
 	entered_train = false
 
 	if current_board_scene_path != NOWY_KLEPARZ_BOARD_PATH:
 		change_board(NOWY_KLEPARZ_BOARD_PATH)
+		_player_defeat_transition_running = false
 		return
 
 	set_player_at_spawn_point()
 	player.z_index = 100
 	_refresh_fight_connections()
+	_player_defeat_transition_running = false
 
 func _reset_all_enemies() -> void:
 	for cached_board in board_cache.values():

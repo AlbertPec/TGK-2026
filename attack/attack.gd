@@ -15,7 +15,10 @@ func can_target(attacker: Entity, target: Entity) -> bool:
 	if attacker.is_dead() or target.is_dead():
 		return false
 
-	return attacker.grid_movement.distance_between(attacker.position, target.position) <= attack_range
+	var grid_calculator := attacker.grid_movement
+	return grid_calculator.attack_distance_between(
+		grid_calculator.local_position(attacker.position), 
+		grid_calculator.local_position(target.position)) <= attack_range
 
 func perform(attacker: Entity, target: Entity) -> bool:
 	if not can_target(attacker, target):

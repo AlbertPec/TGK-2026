@@ -128,14 +128,20 @@ func get_cells_in_range(start_global_position: Vector2, min_move_distance: int, 
 			if astar_grid.is_point_solid(cell) or cell==start:
 				continue
 
-			var distance = distance_between(start, cell)
+			var distance = movement_distance_between(start, cell)
 			if min_move_distance <= distance and distance <= max_move_distance:
 				reachable_cells.append(cell)
 
 	return reachable_cells
 	
-func distance_between(tile1: Vector2i, tile2: Vector2i) -> int:
+func local_position(global_position: Vector2):
+	return global_to_tile(global_position)
+
+func movement_distance_between(tile1: Vector2i, tile2: Vector2i) -> int:
 	return len(astar_grid.get_id_path(tile1, tile2))
+	
+func attack_distance_between(tile1: Vector2i, tile2: Vector2i) -> int:
+	return max(abs(tile1.x - tile2.x), abs(tile1.y - tile2.y))
 
 func move_body(body: Node2D) -> bool:
 	if floor_layer == null:

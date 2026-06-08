@@ -20,14 +20,6 @@ func _ready() -> void:
 	log_name = PLAYER_LOG_NAME
 	grid_movement.set_max_move_distance(-1)
 
-func _on_turn_started(active_entity: Entity) -> void:
-	super._on_turn_started(active_entity)
-	if active_entity != self:
-		return
-
-	_move_used_this_turn = false
-	_attack_used_this_turn = false
-
 func _input(event: InputEvent) -> void:
 	if not _can_accept_input():
 		return
@@ -78,15 +70,22 @@ func manage_animations() -> void:
 		animated_sprite.play("stab_" + animation_variant)
 	else:
 		animated_sprite.play("idle_" + animation_variant)
-		
-func available_actions_left() -> bool:
-	if not _is_in_combat():
-		return grid_movement.has_path_to_travel()
 
-	if grid_movement.has_path_to_travel():
-		return true
+func _request_movement_to_mouse() -> void:
+	if _is_in_combat() and _move_used_this_turn:
+		return
 
-	return not _attack_used_this_turn
+	var did_request_path := grid_movement.request_path(global_position, get_global_mouse_position())
+	if did_request_path and _is_in_combat():
+		_move_used_this_turn = true
+	
+func _on_turn_started(active_entity: Entity) -> void:
+	super._on_turn_started(active_entity)
+	if active_entity != self:
+		return
+
+	_move_used_this_turn = false
+	_attack_used_this_turn = false	
 
 func _physics_process(_delta: float) -> void:
 	if not _is_in_combat():
@@ -101,6 +100,9 @@ func _physics_process(_delta: float) -> void:
 	if _preserve_turn_after_forced_move and not grid_movement.has_path_to_travel():
 		_preserve_turn_after_forced_move = false
 		return
+		
+	if _move_used_this_turn and not grid_movement.has_path_to_travel() and get_possible_attack_targets().is_empty():
+		end_turn()
 
 func enter_combat(preserve_turn_after_forced_move: bool = false) -> void:
 	in_combat = true
@@ -140,14 +142,6 @@ func _can_accept_input() -> bool:
 		return true
 	return is_turn_active
 
-func _request_movement_to_mouse() -> void:
-	if _is_in_combat() and _move_used_this_turn:
-		return
-
-	var did_request_path := grid_movement.request_path(global_position, get_global_mouse_position())
-	if did_request_path and _is_in_combat():
-		_move_used_this_turn = true
-
 func _try_attack_from_click() -> bool:
 	if not _is_in_combat():
 		return false
@@ -174,3 +168,4 @@ func _get_enemy_under_mouse() -> Enemy:
 		if grid_movement.global_to_tile(enemy.global_position) == clicked_cell:
 			return enemy
 	return null
+	

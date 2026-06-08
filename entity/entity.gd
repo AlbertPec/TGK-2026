@@ -146,7 +146,7 @@ func _finish_attack() -> void:
 			self.log_name + " attacked " + _pending_attack_target.log_name + " for " + str(equipped_attack.damage) + " damage")
 		equipped_attack.perform(self, _pending_attack_target)
 
-	# wait for animation to play
+	# wait for attack animation to play
 	await get_tree().create_timer(0.5).timeout
 	
 	_is_performing_attack = false

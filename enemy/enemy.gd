@@ -39,6 +39,7 @@ func _play_animation(animation_name: StringName) -> void:
 func _ready() -> void:
 	detection_area.monitoring = false
 	setup_entity()
+	z_index = 5
 	_apply_enemy_type_config()
 	spawn(spawn_grid_cell)
 	_resolve_player_entity()

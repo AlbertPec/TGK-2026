@@ -35,7 +35,9 @@ func change_board(path_to_scene: String):
 	set_player_at_spawn_point()
 	_refresh_fight_connections()
 	player.z_index = 100 # put player above the board - without it, player is invisible
-
+	player.can_move = true #movment enabled after leaving the train
+	GlobalSignals.emit_signal("change_textbox_text", "player exited the train")
+	
 func _connect_board_signal(target_board: Node) -> void:
 	var train_entered_callback := Callable(self, "_on_train_entered")
 	if not target_board.is_connected("train_entered", train_entered_callback):
@@ -50,10 +52,13 @@ func set_player_at_spawn_point():
 	player.spawn_with_marker_and_change_navigation(spawnpoint)
 
 func _on_train_entered():
-	if not entered_train: 
+	if not entered_train:
+		GlobalSignals.emit_signal("change_textbox_text","player entered the train")
+		player.can_move = false # disable movement becaouse player is in train 
 		entered_train = true
 		set_player_at_spawn_point()
 		player.z_index = -100 # hide player under the board
+		player.position = Vector2(-666,-666) # move player over the map
 
 func _ready() -> void:
 	current_board_scene_path = board.scene_file_path

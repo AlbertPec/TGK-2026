@@ -175,8 +175,16 @@ func _clamp_turn_index(value: int) -> int:
 		return value % _entities.size()
 	return value
 
+func _process(delta: float) -> void:
+	_refresh_active_turn_overlay()
+
 func _refresh_active_turn_overlay() -> void:
 	if not combat_active or _current_entity == null or not _current_entity.is_in_group("players"):
+		_clear_movement_overlay()
+		return
+	
+	var player = _current_entity as Player;
+	if player._move_used_this_turn:
 		_clear_movement_overlay()
 		return
 

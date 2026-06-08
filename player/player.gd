@@ -1,4 +1,5 @@
 extends Entity
+class_name Player
 
 @export var movement_animation_speed: float = 2.0
 @export var max_move_distance: int = 4

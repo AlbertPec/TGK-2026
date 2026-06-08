@@ -98,9 +98,10 @@ func remove_dead_entities():
 
 func _start_current_turn() -> void:
 	remove_dead_entities()
-	if _entities.is_empty() or not combat_active:
+	if _entities.is_empty() or len(_entities) == 1 or not combat_active:
 		_current_entity = null
 		_turn_active = false
+		end_combat()
 		return
 
 	_current_turn_index = _clamp_turn_index(_current_turn_index)

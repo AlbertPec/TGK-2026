@@ -6,6 +6,8 @@ extends Entity
 
 @onready var PLAYER_LOG_NAME = "player"
 
+@onready var step_audio_player = $StepSoundPlayer
+
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 var animation_variant = "front"
 var in_combat: bool = false
@@ -15,6 +17,8 @@ func _ready() -> void:
 	setup_entity()
 	log_name = PLAYER_LOG_NAME
 	grid_movement.set_max_move_distance(-1)
+	
+	animated_sprite.frame_changed.connect(_on_frame_changed)
 
 func _on_turn_started(active_entity: Entity) -> void:
 	super._on_turn_started(active_entity)
@@ -92,3 +96,11 @@ func _can_accept_input() -> bool:
 	if not _is_in_combat():
 		return true
 	return is_turn_active
+	
+func _on_frame_changed() -> void:
+	if not animated_sprite.animation.begins_with("walk_"):
+		return
+
+	if animated_sprite.frame == 1 or animated_sprite.frame == 3:
+		step_audio_player.pitch_scale = randf_range(0.95, 1.05)
+		step_audio_player.play()

@@ -2,11 +2,12 @@
 
 [ext_resource type="PackedScene" uid="uid://cno7w3aagkwaq" path="res://UI/station_map/station_map.tscn" id="1_io4rn"]
 [ext_resource type="Script" uid="uid://i24anx0dpq3v" path="res://UI/heads_up_display.gd" id="1_mrfv7"]
+[ext_resource type="Texture2D" uid="uid://clogwydsav4c6" path="res://map_assets/gbstudio_train_station_tileset.png" id="2_7thdw"]
 [ext_resource type="PackedScene" uid="uid://fym0ttqfhurp" path="res://UI/textbox/textbox.tscn" id="2_hai4h"]
 [ext_resource type="PackedScene" uid="uid://k1y7mt2r25jy" path="res://UI/current_station/current_station.tscn" id="4_qbcpd"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mrfv7"]
-bg_color = Color(0.3649535, 0.4754759, 0.44582558, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7thdw"]
+bg_color = Color(0.12255115, 0.19815719, 0.15279847, 1)
 
 [node name="HUD" type="Control" unique_id=1781630117]
 layout_mode = 3
@@ -31,7 +32,47 @@ grow_vertical = 0
 
 [node name="Panel" type="Panel" parent="UIContainer" unique_id=1751211739]
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_mrfv7")
+theme_override_styles/panel = SubResource("StyleBoxFlat_7thdw")
+
+[node name="Sprite2D" type="Sprite2D" parent="UIContainer/Panel" unique_id=1575082357]
+modulate = Color(1, 1, 1, 0.16078432)
+position = Vector2(73, 40)
+scale = Vector2(3, 3)
+texture = ExtResource("2_7thdw")
+region_enabled = true
+region_rect = Rect2(224, 249, 64, 23)
+
+[node name="Sprite2D3" type="Sprite2D" parent="UIContainer/Panel" unique_id=969001635]
+modulate = Color(1, 1, 1, 0.28235295)
+position = Vector2(994.00006, 112.999985)
+scale = Vector2(5, 5)
+texture = ExtResource("2_7thdw")
+region_enabled = true
+region_rect = Rect2(225, 201, 22, 23)
+
+[node name="Sprite2D4" type="Sprite2D" parent="UIContainer/Panel" unique_id=2845880]
+modulate = Color(1, 1, 1, 0.18039216)
+position = Vector2(162, 137)
+scale = Vector2(3, 3)
+texture = ExtResource("2_7thdw")
+region_enabled = true
+region_rect = Rect2(240, 225, 48, 23)
+
+[node name="Sprite2D2" type="Sprite2D" parent="UIContainer/Panel" unique_id=433616214]
+modulate = Color(1, 1, 1, 0.16862746)
+position = Vector2(488, 47)
+scale = Vector2(3, 3)
+texture = ExtResource("2_7thdw")
+region_enabled = true
+region_rect = Rect2(224, 273, 48, 23)
+
+[node name="Sprite2D5" type="Sprite2D" parent="UIContainer/Panel" unique_id=1301808467]
+modulate = Color(1, 1, 1, 0.17254902)
+position = Vector2(337.00003, 102.999985)
+scale = Vector2(3, 3)
+texture = ExtResource("2_7thdw")
+region_enabled = true
+region_rect = Rect2(256, 108, 16, 20)
 
 [node name="MarginContainer" type="MarginContainer" parent="UIContainer" unique_id=1126359383]
 layout_mode = 2

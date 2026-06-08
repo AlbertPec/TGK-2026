@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://baww3l4iox4mx" path="res://world_elements/puzzle_objects/switch_electrics/switch_puzzle.tscn" id="4_qnn0w"]
 [ext_resource type="PackedScene" uid="uid://dekd087gf5nig" path="res://world_elements/puzzle_objects/switch_electrics/doors.tscn" id="5_b1p3g"]
 [ext_resource type="PackedScene" uid="uid://n4prpqryrxbh" path="res://world_elements/light_panel/light_panel.tscn" id="6_boh4a"]
+[ext_resource type="PackedScene" uid="uid://sc7iskq1r6gt" path="res://world_elements/crossbow/crossbow.tscn" id="7_7uvvp"]
 
 [node name="Map" unique_id=1015381578 instance=ExtResource("1_g0w4b")]
 
@@ -67,3 +68,6 @@ position = Vector2(-384, -80)
 
 [node name="LightPanel6" parent="SwitchPuzzle" index="9" unique_id=1813295180 instance=ExtResource("6_boh4a")]
 position = Vector2(-288, -80)
+
+[node name="Crossbow" parent="." index="11" unique_id=1155190565 instance=ExtResource("7_7uvvp")]
+position = Vector2(848, 208)

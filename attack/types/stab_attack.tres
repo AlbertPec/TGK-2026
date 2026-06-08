@@ -4,6 +4,6 @@
 
 [resource]
 script = ExtResource("1_attack")
-display_name = "Stab"
+display_name = "Nóż"
 damage = 2
 attack_animation_name = "stab"

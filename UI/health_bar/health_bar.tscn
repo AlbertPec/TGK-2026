@@ -15,6 +15,7 @@ bg_color = Color(0.12941177, 0.12941177, 0.12941177, 1)
 bg_color = Color(0.85800105, 0.8545566, 0, 1)
 
 [node name="HealthBar" type="Control" unique_id=1007667761]
+custom_minimum_size = Vector2(150, 30)
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -24,10 +25,12 @@ grow_vertical = 2
 script = ExtResource("2_4na03")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=1178274271]
-custom_minimum_size = Vector2(150, 30)
-layout_mode = 0
-offset_right = 150.0
-offset_bottom = 30.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_constants/margin_left = 4
 theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4

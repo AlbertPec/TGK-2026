@@ -2,8 +2,9 @@ extends Control
 
 @onready var station_map = $UIContainer/MarginContainer/HBoxContainer/StationMap
 @onready var textbox = $UIContainer/MarginContainer/HBoxContainer/Textbox
-@onready var health_bar = $HealthBar
-@onready var current_station = $CurrentStation
+@onready var health_bar = $StatusContainer/HealthBar
+@onready var weapon_selector = $StatusContainer/WeaponSelector
+@onready var current_station = $StatusContainer/CurrentStation
 
 signal ui_station_chosen(station_id)
 
@@ -20,3 +21,5 @@ func _ready() -> void:
 	var player := get_tree().get_first_node_in_group("players") as Player
 	if player != null:
 		health_bar.bind_to_player.call_deferred(player)
+		if player.weapon_manager != null:
+			weapon_selector.bind_to_weapon_manager.call_deferred(player.weapon_manager)

@@ -10,6 +10,7 @@ signal player_defeated
 @onready var PLAYER_LOG_NAME = "player"
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var weapon_manager: WeaponManager = $WeaponManager
 var animation_variant = "front"
 var in_combat: bool = false
 var _preserve_turn_after_forced_move: bool = false
@@ -26,6 +27,16 @@ func _on_death() -> void:
 	GlobalSignals.emit_signal("change_textbox_text", 
 			"Player was defeated!")
 	player_defeated.emit()
+
+func unlock_attack(attack: Attack, equip_when_unlocked: bool = false) -> void:
+	if weapon_manager == null:
+		return
+	weapon_manager.unlock_attack(attack, equip_when_unlocked)
+
+func equip_attack_from_manager(attack: Attack) -> bool:
+	if weapon_manager == null:
+		return false
+	return weapon_manager.equip_attack(attack)
 
 ### Input handling ###
 

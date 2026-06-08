@@ -91,7 +91,13 @@ func reset_turn_cycle() -> void:
 	for entity in _entities:
 		entity._on_turn_started(null)
 
+func remove_dead_entities():
+	for i in range(_entities.size() - 1, -1, -1):
+		if _entities[i].is_dead():
+			_entities.remove_at(i)
+
 func _start_current_turn() -> void:
+	remove_dead_entities()
 	if _entities.is_empty() or not combat_active:
 		_current_entity = null
 		_turn_active = false

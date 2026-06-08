@@ -86,13 +86,6 @@ func _refresh_fight_connections() -> void:
 		_connect_entity_signals(node as Entity)
 
 func _connect_entity_signals(entity: Entity) -> void:
-	if entity == null:
-		return
-
-	var died_callable := Callable(self, "_on_entity_died")
-	if not entity.died.is_connected(died_callable):
-		entity.died.connect(died_callable)
-
 	var enemy := entity as Enemy
 	if enemy == null:
 		return

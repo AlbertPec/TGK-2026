@@ -4,11 +4,11 @@ class_name Entity
 const ENTITY_GROUP := "entities"
 
 signal turn_finished(entity: Entity)
-signal died(entity: Entity)
 
 @export var visual_node_path: NodePath
 @export var facing_right_by_default: bool = true
 @export var log_name: String = "unknown name"
+@export var equipped_attack: Attack
 @export_range(1, 999, 1) var max_health: int = 10
 
 var grid_movement := GridMovementController.new()
@@ -19,6 +19,9 @@ var current_health: int = 0
 var _visual_node: Node2D
 var _life_initialized: bool = false
 var _is_dead: bool = false
+
+var _is_performing_attack: bool = false
+var _pending_attack_target: Entity
 
 func setup_entity() -> void:
 	if not is_in_group(ENTITY_GROUP):
@@ -80,9 +83,7 @@ func _die() -> void:
 
 	_is_dead = true
 	stop_movement()
-	is_turn_active = false
 	_on_death()
-	died.emit(self)
 
 func _on_death() -> void:
 	pass
@@ -114,8 +115,44 @@ func move_and_update_facing() -> bool:
 	_update_facing()
 	return did_move
 
+func face_towards_position(target_global_position: Vector2) -> void:
+	if _visual_node == null:
+		return
+
+	var delta_x := target_global_position.x - global_position.x
+	if abs(delta_x) < 0.001:
+		return
+
+	_apply_horizontal_facing(delta_x > 0.0)
+
+func request_attack(target: Entity) -> bool:
+	if equipped_attack != null and equipped_attack.can_target(self, target):
+		_start_attack(target)
+		return true
+	return false
+
+func _start_attack(target: Entity) -> void:
+	stop_movement()
+	_pending_attack_target = target
+	_is_performing_attack = true
+	face_towards_position(target.position)
+	_finish_attack()
+
+func _finish_attack() -> void:
+	if equipped_attack != null and is_instance_valid(_pending_attack_target):
+		equipped_attack.perform(self, _pending_attack_target)
+
+	# wait for animation to play
+	await get_tree().create_timer(0.5).timeout
+	
+	_is_performing_attack = false
+	_pending_attack_target = null
+	end_turn()
+
 func _on_turn_started(active_entity: Entity) -> void:
 	is_turn_active = active_entity == self
+	_is_performing_attack = false
+	_pending_attack_target = null
 
 func end_turn() -> void:
 	if not is_turn_active:
@@ -161,7 +198,9 @@ func _update_facing() -> void:
 	if abs(delta_x) < 0.001:
 		return
 
-	var moving_right := delta_x > 0.0
+	_apply_horizontal_facing(delta_x > 0.0)
+
+func _apply_horizontal_facing(moving_right: bool) -> void:
 	var should_flip := not moving_right if facing_right_by_default else moving_right
 
 	if _visual_node is AnimatedSprite2D:

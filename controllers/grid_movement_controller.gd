@@ -202,6 +202,10 @@ func _register_blocking_node(node: Node, start_cell: Vector2i) -> void:
 	if body == null:
 		return
 
+	var entity := node as Entity
+	if entity != null and entity.is_dead():
+		return
+
 	var cell := global_to_tile(body.global_position)
 
 	if cell == start_cell:
@@ -232,6 +236,8 @@ func _is_tile_occupied_by_other_entity(tile: Vector2i, current_body: Node2D) -> 
 	for node in tree.get_nodes_in_group(Entity.ENTITY_GROUP):
 		var entity := node as Node2D
 		if entity == null or entity == current_body:
+			continue
+		if entity is Entity and (entity as Entity).is_dead():
 			continue
 		if global_to_tile(entity.global_position) == tile:
 			return true

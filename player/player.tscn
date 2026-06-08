@@ -348,7 +348,7 @@ animations = [{
 "speed": 5.0
 }, {
 "frames": [{
-"duration": 1.0,
+"duration": 0.9,
 "texture": SubResource("AtlasTexture_j55il")
 }, {
 "duration": 1.0,
@@ -366,7 +366,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_w7j2h")
 }],
-"loop": true,
+"loop": false,
 "name": &"crossbow_side",
 "speed": 5.0
 }, {
@@ -620,4 +620,6 @@ shape = SubResource("RectangleShape2D_rkbax")
 position = Vector2(0, -12)
 scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_yw30f")
-animation = &"death_back"
+animation = &"crossbow_side"
+frame = 5
+frame_progress = 1.0

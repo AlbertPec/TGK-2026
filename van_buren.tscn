@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dibka6g8ih7ef" path="res://board/tile_map_nowy_kleparz.tscn" id="4_kqt35"]
 [ext_resource type="PackedScene" uid="uid://bh1f7g65dyi6s" path="res://UI/heads_up_display.tscn" id="5_tbmg4"]
 [ext_resource type="Script" uid="uid://3stlu1xxh1dm" path="res://fight_mechanics/turn_mechanism.gd" id="6_turn1"]
-[ext_resource type="Resource" uid="uid://bjx0amunglkus" path="res://attack/types/stab_attack.tres" id="6_u3rwx"]
+[ext_resource type="Resource" uid="uid://bmx8xa1uu8gyo" path="res://attack/types/crossbow_attack.tres" id="6_u3rwx"]
 
 [node name="Game" type="Node2D" unique_id=1240663828]
 

@@ -93,7 +93,7 @@ func manage_animations() -> void:
 	elif grid_movement.has_path_to_travel():
 		animated_sprite.play("walk_" + animation_variant)
 	elif _is_performing_attack:
-		animated_sprite.play("stab_" + animation_variant)
+		animated_sprite.play(equipped_attack.attack_animation_name + "_" + animation_variant)
 	else:
 		animated_sprite.play("idle_" + animation_variant)
 

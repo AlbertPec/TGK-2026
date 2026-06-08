@@ -6,3 +6,4 @@
 script = ExtResource("1_attack")
 display_name = "Stab"
 damage = 2
+attack_animation_name = "stab"

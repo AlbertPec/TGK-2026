@@ -1,12 +1,17 @@
 extends Node2D
 
+const NOWY_KLEPARZ_BOARD_PATH := "res://board/tile_map_nowy_kleparz.tscn"
+
 @onready var board = $Board
-@onready var player = $Player
+@onready var player: Player = $Player
 @onready var turn_mechanism: TurnMechanism = $TurnMechanism
 
 var entered_train = false
 var current_board_scene_path := ""
 var board_cache := {}
+var _player_defeat_transition_running := false
+
+const PLAYER_DEFEAT_DELAY := 0.8 # death animation lenght
 
 var station_id_to_path = { # maps id from ui signal to name of map scene
 	"TeatrBagatela":"tile_map_teatr_bagatela",
@@ -65,6 +70,7 @@ func _ready() -> void:
 	if current_board_scene_path != "":
 		board_cache[current_board_scene_path] = board
 	_connect_board_signal(board)
+	_connect_player_signal()
 	set_player_at_spawn_point()
 	_refresh_fight_connections()
 
@@ -86,13 +92,24 @@ func _refresh_fight_connections() -> void:
 	_connect_fight_signals()
 
 	for node in get_tree().get_nodes_in_group(Entity.ENTITY_GROUP):
-		var enemy := node as Enemy
-		if enemy == null:
-			continue
+		_connect_entity_signals(node as Entity)
 
-		var combat_requested_callable := Callable(self, "_on_enemy_combat_requested")
-		if not enemy.combat_requested.is_connected(combat_requested_callable):
-			enemy.combat_requested.connect(combat_requested_callable)
+func _connect_player_signal() -> void:
+	if player == null:
+		return
+
+	var player_defeated_callable := Callable(self, "_on_player_defeat")
+	if not player.player_defeated.is_connected(player_defeated_callable):
+		player.player_defeated.connect(player_defeated_callable)
+
+func _connect_entity_signals(entity: Entity) -> void:
+	var enemy := entity as Enemy
+	if enemy == null:
+		return
+
+	var combat_requested_callable := Callable(self, "_on_enemy_combat_requested")
+	if not enemy.combat_requested.is_connected(combat_requested_callable):
+		enemy.combat_requested.connect(combat_requested_callable)
 
 func _connect_fight_signals() -> void:
 	if turn_mechanism == null:
@@ -110,6 +127,54 @@ func _on_enemy_combat_requested(_enemy: Enemy, _player: Entity) -> void:
 	if turn_mechanism == null:
 		return
 	turn_mechanism.start_combat()
+
+func _on_player_defeat() -> void:
+	_handle_player_defeat()
+
+func _handle_player_defeat() -> void:
+	if _player_defeat_transition_running:
+		return
+	_player_defeat_transition_running = true
+
+	_end_combat_if_active()
+
+	var scene_tree := get_tree()
+	if scene_tree != null:
+		await scene_tree.create_timer(PLAYER_DEFEAT_DELAY).timeout
+
+	_reset_all_enemies()
+	player.restore_full_health()
+	entered_train = false
+
+	if current_board_scene_path != NOWY_KLEPARZ_BOARD_PATH:
+		change_board(NOWY_KLEPARZ_BOARD_PATH)
+		_player_defeat_transition_running = false
+		return
+
+	set_player_at_spawn_point()
+	player.z_index = 100
+	_refresh_fight_connections()
+	_player_defeat_transition_running = false
+
+func _reset_all_enemies() -> void:
+	for cached_board in board_cache.values():
+		_reset_enemies_in_node(cached_board)
+
+func _reset_enemies_in_node(root: Node) -> void:
+	for enemy in _collect_enemies_in_node(root):
+		enemy.reset_to_spawn()
+
+func _collect_enemies_in_node(root: Node) -> Array[Enemy]:
+	var enemies: Array[Enemy] = []
+	if root == null:
+		return enemies
+
+	for child in root.get_children():
+		if child is Enemy:
+			enemies.append(child as Enemy)
+		enemies.append_array(_collect_enemies_in_node(child))
+
+	return enemies
 
 func _on_combat_started() -> void:
 	player.finish_current_step_only()

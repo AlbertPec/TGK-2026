@@ -3,6 +3,8 @@
 [ext_resource type="PackedScene" uid="uid://cno7w3aagkwaq" path="res://UI/station_map/station_map.tscn" id="1_io4rn"]
 [ext_resource type="Script" uid="uid://i24anx0dpq3v" path="res://UI/heads_up_display.gd" id="1_mrfv7"]
 [ext_resource type="PackedScene" uid="uid://fym0ttqfhurp" path="res://UI/textbox/textbox.tscn" id="2_hai4h"]
+[ext_resource type="PackedScene" uid="uid://dux82owalcufn" path="res://UI/health_bar/health_bar.tscn" id="3_q4nju"]
+[ext_resource type="PackedScene" uid="uid://d0uxvrb7s3dwf" path="res://UI/weapon_selector/weapon_selector.tscn" id="4_1lyrj"]
 [ext_resource type="PackedScene" uid="uid://k1y7mt2r25jy" path="res://UI/current_station/current_station.tscn" id="4_qbcpd"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mrfv7"]
@@ -53,14 +55,25 @@ size_flags_horizontal = 3
 layout_mode = 2
 size_flags_vertical = 1
 
-[node name="CurrentStation" parent="." unique_id=845620964 instance=ExtResource("4_qbcpd")]
+[node name="StatusContainer" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(150, 150)
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_bottom = 0.0
-offset_left = -144.0
-offset_top = 50.0
-offset_right = -144.0
-offset_bottom = 50.0
+offset_left = -158.0
+offset_top = 12.0
+offset_right = -8.0
+offset_bottom = 162.0
 grow_horizontal = 0
 grow_vertical = 1
+theme_override_constants/separation = 8
+
+[node name="HealthBar" parent="StatusContainer" instance=ExtResource("3_q4nju")]
+layout_mode = 2
+
+[node name="WeaponSelector" parent="StatusContainer" instance=ExtResource("4_1lyrj")]
+layout_mode = 2
+
+[node name="CurrentStation" parent="StatusContainer" unique_id=845620964 instance=ExtResource("4_qbcpd")]
+layout_mode = 2

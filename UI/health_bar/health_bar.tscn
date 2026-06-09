@@ -1,0 +1,81 @@
+[gd_scene format=3 uid="uid://dux82owalcufn"]
+
+[ext_resource type="FontFile" uid="uid://bexxfhx3m71j1" path="res://fonts/m5x7.ttf" id="1_1u0wt"]
+[ext_resource type="Script" uid="uid://m7jm7s0e6m6v" path="res://UI/health_bar/health_bar.gd" id="2_4na03"]
+
+[sub_resource type="Theme" id="Theme_4na03"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
+bg_color = Color(0.05457376, 0.05457379, 0.054573722, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_background"]
+bg_color = Color(0.12941177, 0.12941177, 0.12941177, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fill"]
+bg_color = Color(0.85800105, 0.8545566, 0, 1)
+
+[node name="HealthBar" type="Control" unique_id=1007667761]
+custom_minimum_size = Vector2(150, 30)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_4na03")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1178274271]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="Panel" type="Panel" parent="MarginContainer" unique_id=1686609968]
+layout_mode = 2
+theme = SubResource("Theme_4na03")
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Panel" unique_id=1253493856]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -4.0
+offset_top = -6.0
+offset_right = 4.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Panel/MarginContainer" unique_id=1459377117]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_constants/separation = 4
+
+[node name="HealthLabel" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer" unique_id=935480723]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.85800105, 0.8545566, 0, 1)
+theme_override_fonts/font = ExtResource("1_1u0wt")
+theme_override_font_sizes/font_size = 15
+text = "HP - 0/0"
+
+[node name="HealthProgressBar" type="ProgressBar" parent="MarginContainer/Panel/MarginContainer/VBoxContainer" unique_id=378563405]
+custom_minimum_size = Vector2(138, 6)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_styles/background = SubResource("StyleBoxFlat_background")
+theme_override_styles/fill = SubResource("StyleBoxFlat_fill")
+max_value = 1.0
+value = 1.0
+show_percentage = false

@@ -118,7 +118,9 @@ enemy_type = ExtResource("2_p200p")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=990520719]
 sprite_frames = SubResource("SpriteFrames_wjonb")
-animation = &"move"
+animation = &"idle"
+frame = 3
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=120048007]
 scale = Vector2(1.5, 1.5)

@@ -9,6 +9,7 @@
 bg_color = Color(0.05457376, 0.05457379, 0.054573722, 1)
 
 [node name="CurrentStation" type="Control" unique_id=845620964]
+custom_minimum_size = Vector2(150, 26)
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -18,10 +19,12 @@ grow_vertical = 2
 script = ExtResource("1_xukqr")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=2118799432]
-custom_minimum_size = Vector2(150, 14)
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_constants/margin_left = 4
 theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4

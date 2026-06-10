@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://cy16l54cf26dx"]
+
+[ext_resource type="Script" uid="uid://2y2jgp4g5anp" path="res://world_elements/lagun/lagun_object.gd" id="1_rxw68"]
+[ext_resource type="Texture2D" uid="uid://cq63ywd0w0thg" path="res://map_assets/pastry_croissant.png" id="1_u2dsc"]
+[ext_resource type="PackedScene" uid="uid://bruybkvx51r74" path="res://world_elements/interactable/interactable.tscn" id="2_rxw68"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_14sug"]
+
+[node name="LagunObject" type="Node2D" unique_id=1726236686]
+script = ExtResource("1_rxw68")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1168269094]
+texture = ExtResource("1_u2dsc")
+
+[node name="Interactable" parent="." unique_id=169991343 instance=ExtResource("2_rxw68")]
+interaction_name = "Dotknij legendarnego Laguna"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable" unique_id=1916672941]
+shape = SubResource("RectangleShape2D_14sug")

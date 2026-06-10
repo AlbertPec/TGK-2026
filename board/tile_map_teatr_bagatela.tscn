@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://cy16l54cf26dx" path="res://world_elements/lagun/Lagun_Object.tscn" id="5_d31ws"]
 [ext_resource type="Resource" uid="uid://crbybln07y2hr" path="res://enemy/types/young_boar.tres" id="7_7bxk3"]
 [ext_resource type="Resource" uid="uid://i2m1u6co1fmb" path="res://attack/types/peck_attack.tres" id="8_eg4p3"]
+[ext_resource type="Resource" uid="uid://dhj6l28xexoqu" path="res://enemy/types/boss_boar.tres" id="9_eg4p3"]
 
 [node name="Map2" unique_id=1015381578 instance=ExtResource("1_p8w1u")]
 
@@ -129,3 +130,9 @@ spawn_grid_cell = Vector2i(2, 8)
 enemy_type = ExtResource("7_7bxk3")
 equipped_attack = ExtResource("8_eg4p3")
 max_health = 4
+
+[node name="boss_boar" parent="." index="12" unique_id=1790962329 instance=ExtResource("3_td2lp")]
+scale = Vector2(2.5, 2.5)
+spawn_grid_cell = Vector2i(5, 7)
+enemy_type = ExtResource("9_eg4p3")
+equipped_attack = ExtResource("8_eg4p3")

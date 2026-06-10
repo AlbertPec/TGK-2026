@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="EnemyTypeConfig" format=3 uid="uid://dhj6l28xexoqu"]
+
+[ext_resource type="Resource" uid="uid://dxpkwp6ovobaa" path="res://attack/types/slashing_boss_attack.tres" id="1_8pk2f"]
+[ext_resource type="Script" uid="uid://dksyu4dag6c1i" path="res://enemy/enemy_type_config.gd" id="2_nrvb5"]
+[ext_resource type="SpriteFrames" uid="uid://dr3fdx3v62s8q" path="res://enemy/configs/boar_frames.tres" id="3_uspgk"]
+
+[resource]
+script = ExtResource("2_nrvb5")
+display_name = "Dire boar"
+behaviour = "boar"
+sprite_frames = ExtResource("3_uspgk")
+death_animation = &"death"
+movement_speed = 2.0
+max_move_distance = 5.0
+equipped_attack = ExtResource("1_8pk2f")
+max_health = 10

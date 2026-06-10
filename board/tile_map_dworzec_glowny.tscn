@@ -42,7 +42,7 @@ visual_node_path = NodePath(".")
 
 [node name="pigeon6" parent="." index="9" unique_id=908512927 instance=ExtResource("2_nsi13")]
 position = Vector2(-117, -126)
-spawn_grid_cell = Vector2i(19, 7)
+spawn_grid_cell = Vector2i(19, 5)
 enemy_type = ExtResource("3_mtsnm")
 visual_node_path = NodePath(".")
 
@@ -70,33 +70,35 @@ position = Vector2(-384, -80)
 [node name="LightPanel6" parent="SwitchPuzzle" index="9" unique_id=1813295180 instance=ExtResource("6_boh4a")]
 position = Vector2(-288, -80)
 
-[node name="map_objects" type="Node2D" parent="." index="11" unique_id=1543989751]
+[node name="Crossbow" parent="." index="11" unique_id=1155190565 instance=ExtResource("7_7uvvp")]
+position = Vector2(848, 208)
+
+[node name="Food" parent="." index="12" unique_id=189780491 instance=ExtResource("8_xikjr")]
+position = Vector2(976, 240)
+
+[node name="map_objects" type="Node2D" parent="." index="13" unique_id=1543989751]
 
 [node name="Sprite2D12" type="Sprite2D" parent="map_objects" index="0" unique_id=735773437]
 position = Vector2(369, 289)
 scale = Vector2(2.0000005, 1.4000003)
-texture = ExtResource("7_7uvvp")
 region_enabled = true
 region_rect = Rect2(272, 18, 16, 45)
 
 [node name="Sprite2D3" type="Sprite2D" parent="map_objects" index="1" unique_id=414259068]
 position = Vector2(79, 192.5)
 scale = Vector2(2.0000005, 1.4000003)
-texture = ExtResource("7_7uvvp")
 region_enabled = true
 region_rect = Rect2(272, 18, 16, 45)
 
 [node name="Sprite2D8" type="Sprite2D" parent="map_objects" index="2" unique_id=733723525]
 position = Vector2(559, 289)
 scale = Vector2(2.0000005, 1.4000003)
-texture = ExtResource("7_7uvvp")
 region_enabled = true
 region_rect = Rect2(272, 18, 16, 45)
 
 [node name="Sprite2D9" type="Sprite2D" parent="map_objects" index="3" unique_id=168810593]
 position = Vector2(591, 289)
 scale = Vector2(2.0000005, 1.4000003)
-texture = ExtResource("7_7uvvp")
 flip_h = true
 region_enabled = true
 region_rect = Rect2(272, 18, 16, 45)
@@ -104,12 +106,5 @@ region_rect = Rect2(272, 18, 16, 45)
 [node name="Sprite2D" type="Sprite2D" parent="map_objects" index="4" unique_id=461363403]
 position = Vector2(808, 306.00003)
 scale = Vector2(1.333333, 1.625)
-texture = ExtResource("7_7uvvp")
 region_enabled = true
 region_rect = Rect2(273, 66, 30, 8)
-
-[node name="Crossbow" parent="." index="11" unique_id=1155190565 instance=ExtResource("7_7uvvp")]
-position = Vector2(848, 208)
-
-[node name="Food" parent="." index="12" unique_id=189780491 instance=ExtResource("8_xikjr")]
-position = Vector2(976, 240)

@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Attack" format=3 uid="uid://bjx0amunglkus"]
+
+[ext_resource type="Script" uid="uid://bocl5qjsts0nk" path="res://attack/attack.gd" id="1_attack"]
+
+[resource]
+script = ExtResource("1_attack")
+display_name = "Nóż"
+damage = 2
+attack_animation_name = "stab"

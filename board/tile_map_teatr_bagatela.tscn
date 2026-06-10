@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://clogwydsav4c6" path="res://map_assets/gbstudio_train_station_tileset.png" id="3_1i4kv"]
 [ext_resource type="PackedScene" uid="uid://n4prpqryrxbh" path="res://world_elements/light_panel/light_panel.tscn" id="4_d31ws"]
 [ext_resource type="PackedScene" uid="uid://cy16l54cf26dx" path="res://world_elements/lagun/Lagun_Object.tscn" id="5_d31ws"]
+[ext_resource type="PackedScene" uid="uid://br6jmwaabd1oh" path="res://enemy/enemy.tscn" id="3_td2lp"]
 
 [node name="Map" unique_id=1015381578 instance=ExtResource("1_p8w1u")]
 
@@ -101,3 +102,11 @@ region_rect = Rect2(208, 20, 8, 13)
 
 [node name="LagunObject" parent="." index="6" unique_id=1726236686 instance=ExtResource("5_d31ws")]
 position = Vector2(48, 240)
+
+[node name="pigeon" parent="." index="5" unique_id=1486208510 instance=ExtResource("3_td2lp")]
+spawn_grid_cell = Vector2i(7, 8)
+visual_node_path = NodePath(".")
+
+[node name="pigeon2" parent="." index="6" unique_id=898955032 instance=ExtResource("3_td2lp")]
+spawn_grid_cell = Vector2i(15, 10)
+visual_node_path = NodePath(".")

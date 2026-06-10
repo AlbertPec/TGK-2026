@@ -6,7 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://baww3l4iox4mx" path="res://world_elements/puzzle_objects/switch_electrics/switch_puzzle.tscn" id="4_qnn0w"]
 [ext_resource type="PackedScene" uid="uid://dekd087gf5nig" path="res://world_elements/puzzle_objects/switch_electrics/doors.tscn" id="5_b1p3g"]
 [ext_resource type="PackedScene" uid="uid://n4prpqryrxbh" path="res://world_elements/light_panel/light_panel.tscn" id="6_boh4a"]
-[ext_resource type="Texture2D" uid="uid://clogwydsav4c6" path="res://map_assets/gbstudio_train_station_tileset.png" id="7_7uvvp"]
+[ext_resource type="PackedScene" uid="uid://sc7iskq1r6gt" path="res://world_elements/crossbow/crossbow.tscn" id="7_7uvvp"]
+[ext_resource type="PackedScene" uid="uid://bvvkcr5inmgor" path="res://world_elements/food/food.tscn" id="8_xikjr"]
 
 [node name="Map" unique_id=1015381578 instance=ExtResource("1_g0w4b")]
 
@@ -106,3 +107,9 @@ scale = Vector2(1.333333, 1.625)
 texture = ExtResource("7_7uvvp")
 region_enabled = true
 region_rect = Rect2(273, 66, 30, 8)
+
+[node name="Crossbow" parent="." index="11" unique_id=1155190565 instance=ExtResource("7_7uvvp")]
+position = Vector2(848, 208)
+
+[node name="Food" parent="." index="12" unique_id=189780491 instance=ExtResource("8_xikjr")]
+position = Vector2(976, 240)

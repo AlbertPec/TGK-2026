@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="Attack" format=3 uid="uid://i2m1u6co1fmb"]
+
+[ext_resource type="Script" uid="uid://bocl5qjsts0nk" path="res://attack/attack.gd" id="1_7qw2s"]
+
+[resource]
+script = ExtResource("1_7qw2s")
+display_name = "Peck"

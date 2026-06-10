@@ -46,16 +46,18 @@ func _play_train_running():
 func _on_combat_started() -> void:
 	if not combat_st_audio_player.playing:
 		combat_st_audio_player.play()
+		no_combat_st_audio_player.stop()
 
+	combat_st_audio_player.volume_db = MUSIC_VOLUME
 	var tween = create_tween()
 	tween.set_parallel(true)
 
-	tween.tween_property(
-		no_combat_st_audio_player,
-		"volume_db",
-		MUTED_VOLUME,
-		FADE_TIME
-	)
+	#tween.tween_property(
+		#no_combat_st_audio_player,
+		#"volume_db",
+		#MUTED_VOLUME,
+		#FADE_TIME
+	#)
 
 	tween.tween_property(
 		combat_st_audio_player,
@@ -67,6 +69,7 @@ func _on_combat_started() -> void:
 func _on_combat_ended() -> void:
 	if not no_combat_st_audio_player.playing:
 		no_combat_st_audio_player.play()
+		combat_st_audio_player.stop()
 	var tween = create_tween()
 	tween.set_parallel(true)
 

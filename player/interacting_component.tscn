@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bbe1d3t04pbbp"]
 
 [ext_resource type="Script" uid="uid://okj6wertn7ps" path="res://player/interacting_component.gd" id="1_q44uy"]
-[ext_resource type="FontFile" uid="uid://r6us10gkmxef" path="res://fonts/m5x7.ttf" id="2_r4fgx"]
+[ext_resource type="FontFile" uid="uid://bexxfhx3m71j1" path="res://fonts/m5x7.ttf" id="2_r4fgx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q44uy"]
 size = Vector2(96, 96)

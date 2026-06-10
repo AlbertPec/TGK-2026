@@ -11,6 +11,7 @@ behaviour = "boar"
 sprite_frames = ExtResource("3_uspgk")
 death_animation = &"death"
 movement_speed = 2.0
+detection_radius = 0.0
 max_move_distance = 5.0
 equipped_attack = ExtResource("1_8pk2f")
 max_health = 10

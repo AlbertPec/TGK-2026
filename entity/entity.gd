@@ -86,7 +86,6 @@ func is_alive() -> bool:
 func _die() -> void:
 	if _is_dead:
 		return
-
 	_is_dead = true
 	stop_movement()
 	_on_death()

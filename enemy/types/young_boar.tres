@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="EnemyTypeConfig" format=3 uid="uid://crbybln07y2hr"]
+
+[ext_resource type="Resource" uid="uid://db4snds3fjrlx" path="res://attack/types/slashing_boar_attack.tres" id="1_jmwn6"]
+[ext_resource type="Script" uid="uid://dksyu4dag6c1i" path="res://enemy/enemy_type_config.gd" id="2_7tlgy"]
+[ext_resource type="SpriteFrames" uid="uid://dr3fdx3v62s8q" path="res://enemy/configs/boar_frames.tres" id="3_jmwn6"]
+
+[resource]
+script = ExtResource("2_7tlgy")
+display_name = "Young boar"
+behaviour = "boar"
+sprite_frames = ExtResource("3_jmwn6")
+death_animation = &"death"
+missed_attack = &"missed_attack"
+movement_speed = 2.0
+max_move_distance = 4.0
+equipped_attack = ExtResource("1_jmwn6")
+max_health = 4

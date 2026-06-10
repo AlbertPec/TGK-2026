@@ -145,7 +145,22 @@ Gra zostanie uruchomiona w osobnym oknie wraz z domyślnie skonfigurowanymi usta
 
 ## Zrzuty ekranu
 
-*(miejsce na zrzuty ekranu przedstawiające rozgrywkę)*
+**Pierwsza stacja**
+
+<img src="screenshots/first_station.png" alt="isolated" hight="500"/>
+
+**Rozpoczęcie pierwszej zagadki**
+
+<img src="screenshots/first_riddle.png" alt="isolated" hight="500"/>
+
+**Walka z gołębiami na drugiej stacji**
+
+<img src="screenshots/fight.png" alt="isolated" hight="500"/>
+
+**Ukończona druga zagadka - przejście do pomieszczenia otwarte**
+
+<img src="screenshots/second_riddle_finished.png" alt="isolated" hight="500"/>
+
 
 ---
 

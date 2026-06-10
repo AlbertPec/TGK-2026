@@ -11,6 +11,8 @@ radius = 96.0
 
 [node name="enemy" type="CharacterBody2D" unique_id=1486208510]
 scale = Vector2(1.5, 1.5)
+collision_layer = 0
+collision_mask = 0
 script = ExtResource("1_ofsxj")
 enemy_type = ExtResource("2_p200p")
 
@@ -21,6 +23,7 @@ animation = &"move"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=120048007]
 scale = Vector2(1.5, 1.5)
 shape = SubResource("RectangleShape2D_rovcg")
+disabled = true
 
 [node name="detection_area" type="Area2D" parent="." unique_id=1772547823]
 

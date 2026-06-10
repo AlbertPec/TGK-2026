@@ -13,15 +13,12 @@ signal combat_requested(enemy: Enemy, player: Entity)
 var moved_in_turn: bool = false
 var player_entity: Entity
 var _is_dying: bool = false
+var _boar_charge_resolved: bool = false
+var _boar_charge_target_reached: bool = false
 
 func _apply_enemy_type_config() -> void:
-	if enemy_type == null:
-		return
-
 	set_max_health(enemy_type.max_health, true)
-
-	if enemy_type.sprite_frames != null:
-		animated_sprite.sprite_frames = enemy_type.sprite_frames
+	animated_sprite.sprite_frames = enemy_type.sprite_frames
 
 	if detection_shape.shape is CircleShape2D:
 		var area_shape := detection_shape.shape as CircleShape2D
@@ -44,13 +41,12 @@ func _die() -> void:
 	_pending_attack_target = null
 	_used_attack = false
 	_disable_combat_interactions()
-	_manage_animations()
+	_play_animation(enemy_type.death_animation, true)
 
 	if is_turn_active:
 		end_turn()
 
-	if not enemy_type.behaviour == "pigeon": # hack to fix pigeon lack of animation
-		await _wait_for_animation_to_finish(enemy_type.death_animation)
+	await _wait_for_animation_to_finish(enemy_type.death_animation)
 	_on_death()
 
 func _play_animation(animation_name: StringName, restart: bool = false) -> bool:
@@ -111,10 +107,10 @@ func _manage_animations() -> void:
 		return
 
 	if grid_movement.has_path_to_travel() and is_turn_active:
-		_play_animation(enemy_type.move_animation if enemy_type != null else &"move")
+		_play_animation(enemy_type.move_animation)
 		return
 
-	_play_animation(enemy_type.idle_animation if enemy_type != null else &"idle")
+	_play_animation(enemy_type.idle_animation)
 
 func _ready() -> void:
 	detection_area.monitoring = false
@@ -134,25 +130,125 @@ func _on_turn_started(active_entity: Entity) -> void:
 		_resolve_player_entity()
 
 	moved_in_turn = false
+	_boar_charge_resolved = false
+	_boar_charge_target_reached = false
 
 func _process_turn():
 	if _is_dying or _is_performing_attack:
 		return
 
+	if not is_instance_valid(player_entity):
+		_resolve_player_entity()
+	if not is_instance_valid(player_entity):
+		end_turn()
+		return
+
+	match enemy_type.behaviour:
+		"boar":
+			_process_boar_turn()
+		_:
+			_process_default_turn()
+
+func _process_default_turn() -> void:
 	if not moved_in_turn:
 		var target_cell := grid_movement.global_to_tile(player_entity.global_position)
 		grid_movement.move_possible_closest_to(global_position, target_cell)
 		moved_in_turn = true
-	
-	if enemy_type.behaviour == "pigeon" or enemy_type.behaviour == "boar":
-		# Pigeons have to move on turn
-		if moved_in_turn and not grid_movement.has_path_to_travel() and equipped_attack.can_target(self, player_entity):
+
+	if moved_in_turn and not grid_movement.has_path_to_travel() and equipped_attack.can_target(self, player_entity):
+		request_attack(player_entity)
+		return
+
+	if moved_in_turn and not grid_movement.has_path_to_travel() and not equipped_attack.can_target(self, player_entity):
+		end_turn()
+
+func _process_boar_turn() -> void:
+	if not moved_in_turn:
+		if equipped_attack != null and equipped_attack.can_target(self, player_entity):
 			request_attack(player_entity)
 			return
-		
-		if moved_in_turn and not grid_movement.has_path_to_travel() and not equipped_attack.can_target(self, player_entity):
-			end_turn()
-			
+
+		_start_boar_charge()
+		_boar_charge_resolved = false
+		moved_in_turn = true
+
+		if not grid_movement.has_path_to_travel():
+			_resolve_boar_charge()
+		return
+
+	if grid_movement.has_path_to_travel():
+		return
+
+	_resolve_boar_charge()
+
+func _start_boar_charge() -> void:
+	var start_cell := grid_movement.global_to_tile(global_position)
+	var player_cell := grid_movement.global_to_tile(player_entity.global_position)
+	var charge_direction := _get_boar_charge_direction(start_cell, player_cell)
+	_boar_charge_target_reached = false
+
+	if charge_direction == Vector2i.ZERO:
+		grid_movement.clear_path()
+		return
+
+	if grid_movement.astar_grid == null:
+		grid_movement.clear_path()
+		return
+
+	grid_movement._refresh_dynamic_blocking(start_cell)
+
+	var max_steps := maxi(int(enemy_type.max_move_distance), 0)
+	var current_cell := start_cell
+	var charge_path: Array[Vector2i] = []
+
+	for _step in range(max_steps):
+		var next_cell := current_cell + charge_direction
+		if not grid_movement.astar_grid.is_in_boundsv(next_cell):
+			break
+		if next_cell == player_cell:
+			_boar_charge_target_reached = true
+			break
+		if grid_movement.astar_grid.is_point_solid(next_cell):
+			break
+
+		charge_path.append(next_cell)
+		current_cell = next_cell
+
+	grid_movement.path_to_travel = charge_path
+
+func _get_boar_charge_direction(start_cell: Vector2i, player_cell: Vector2i) -> Vector2i:
+	var delta := player_cell - start_cell
+	if delta == Vector2i.ZERO:
+		return Vector2i.ZERO
+
+	if delta.x == 0:
+		return Vector2i(0, 1 if delta.y > 0 else -1)
+	if delta.y == 0:
+		return Vector2i(1 if delta.x > 0 else -1, 0)
+
+	if abs(delta.x) >= abs(delta.y):
+		return Vector2i(1 if delta.x > 0 else -1, 0)
+	return Vector2i(0, 1 if delta.y > 0 else -1)
+
+func _resolve_boar_charge() -> void:
+	if _boar_charge_resolved:
+		return
+
+	_boar_charge_resolved = true
+
+	if _boar_charge_target_reached:
+		var attacker_cell := grid_movement.global_to_tile(global_position)
+		var player_cell := grid_movement.global_to_tile(player_entity.global_position)
+		var attack_distance := grid_movement.attack_distance_between(attacker_cell, player_cell)
+		if attack_distance <= equipped_attack.attack_range and attack_distance >= equipped_attack.minimum_attack_range:
+			request_attack(player_entity)
+			return
+
+	if equipped_attack.can_target(self, player_entity):
+		request_attack(player_entity)
+		return
+
+	end_turn()
 
 func _resolve_player_entity() -> void:
 	var player_nodes := get_tree().get_nodes_in_group("players")
@@ -170,7 +266,8 @@ func _physics_process(_delta: float) -> void:
 	if is_turn_active:
 		_process_turn()
 
-	move_and_update_facing()
+	if grid_movement.has_path_to_travel() and not _is_performing_attack:
+		move_and_update_facing()
 	_manage_animations()
  
 
@@ -180,6 +277,8 @@ func on_board_changed() -> void:
 
 func reset_to_spawn() -> void:
 	_is_dying = false
+	_boar_charge_resolved = false
+	_boar_charge_target_reached = false
 	restore_full_health()
 	spawn(spawn_grid_cell)
 
@@ -204,6 +303,8 @@ func _on_death() -> void:
 
 func _on_revived() -> void:
 	_is_dying = false
+	_boar_charge_resolved = false
+	_boar_charge_target_reached = false
 	_set_active_state(true)
 	_manage_animations()
 
@@ -213,17 +314,7 @@ func _finish_attack() -> void:
 			log_name + " attacked " + _pending_attack_target.log_name + " for " + str(equipped_attack.damage) + " damage")
 		equipped_attack.perform(self, _pending_attack_target)
 
-	var scene_tree := get_tree()
-	if scene_tree == null:
-		_is_performing_attack = false
-		_pending_attack_target = null
-		return
-
-	var attack_duration := _get_animation_duration(enemy_type.attack_animation)
-	if attack_duration <= 0.0:
-		attack_duration = 0.5
-
-	await scene_tree.create_timer(attack_duration).timeout
+	await _wait_for_animation_to_finish(enemy_type.attack_animation)
 
 	_is_performing_attack = false
 	_pending_attack_target = null

@@ -56,11 +56,19 @@ region = Rect2(96, 16, 32, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fsqqc"]
 atlas = ExtResource("1_q43sl")
-region = Rect2(0, 144, 32, 16)
+region = Rect2(64, 48, 32, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wg5fs"]
 atlas = ExtResource("1_q43sl")
-region = Rect2(32, 144, 32, 16)
+region = Rect2(96, 48, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8he0c"]
+atlas = ExtResource("1_q43sl")
+region = Rect2(64, 16, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_snju5"]
+atlas = ExtResource("1_q43sl")
+region = Rect2(64, 80, 32, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qx06a"]
 atlas = ExtResource("1_q43sl")
@@ -140,6 +148,12 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_wg5fs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8he0c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_snju5")
 }],
 "loop": false,
 "name": &"missed_attack",

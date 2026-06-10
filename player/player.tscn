@@ -1,12 +1,5 @@
 [gd_scene format=3 uid="uid://bgu6l7clj2kut"]
 
-[ext_resource type="Texture2D" uid="uid://ywwqsf5a5d2g" path="res://player_assets/Idle.png" id="1_rkbax"]
-[ext_resource type="Texture2D" uid="uid://bpvkrpcw3wjbr" path="res://player_assets/Walk.png" id="2_g1dw6"]
-[ext_resource type="Texture2D" uid="uid://boyh7w7a0jrwh" path="res://player_assets/Crossbow.png" id="2_g6k8r"]
-[ext_resource type="PackedScene" uid="uid://bbe1d3t04pbbp" path="res://player/interacting_component.tscn" id="2_rkbax"]
-[ext_resource type="Texture2D" uid="uid://clv40ijjpg8io" path="res://player_assets/Shoot.png" id="3_boad6"]
-[ext_resource type="Texture2D" uid="uid://cwtomnqwju0kl" path="res://player_assets/Stab.png" id="3_yw30f"]
-[ext_resource type="AudioStream" uid="uid://b5h4e40ulxbrd" path="res://audio_assets/soundeffects/steps.mp3" id="7_boad6"]
 [ext_resource type="Texture2D" uid="uid://d3x1frsbhjq8j" path="res://player_assets/Idle.png" id="1_rkbax"]
 [ext_resource type="Script" uid="uid://qwptw4tuxyjv" path="res://player/weapon_manager.gd" id="1_xn0hk"]
 [ext_resource type="Texture2D" uid="uid://dv5rdo1usiies" path="res://player_assets/Walk.png" id="2_g1dw6"]

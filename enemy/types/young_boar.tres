@@ -10,7 +10,6 @@ display_name = "Young boar"
 behaviour = "boar"
 sprite_frames = ExtResource("3_jmwn6")
 death_animation = &"death"
-missed_attack = &"missed_attack"
 movement_speed = 2.0
 max_move_distance = 4.0
 equipped_attack = ExtResource("1_jmwn6")

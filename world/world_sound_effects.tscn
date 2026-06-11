@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://dw824138dcqg3"]
+
+[ext_resource type="Script" uid="uid://cccmv6t2jjeef" path="res://world/world_sound_effects.gd" id="1_aqsto"]
+[ext_resource type="AudioStream" uid="uid://cyqa8gy814603" path="res://audio_assets/soundeffects/moscow-metro-station.mp3" id="2_fytr7"]
+[ext_resource type="AudioStream" uid="uid://c5xo7n7puo4qd" path="res://audio_assets/music/Project Ex - Research Station (soundtrac-ambient).mp3" id="3_xcxxl"]
+[ext_resource type="AudioStream" uid="uid://1ypwckbgnmtm" path="res://audio_assets/music/Pufino - Metal Is Trash (soundtrack-combat).mp3" id="4_xcxxl"]
+
+[node name="WorldSoundEffects" type="Node2D" unique_id=29835454]
+script = ExtResource("1_aqsto")
+
+[node name="TrainSound" type="AudioStreamPlayer2D" parent="." unique_id=1224209561]
+stream = ExtResource("2_fytr7")
+
+[node name="NoCombatSoundtrack" type="AudioStreamPlayer2D" parent="." unique_id=1393697690]
+stream = ExtResource("3_xcxxl")
+parameters/looping = true
+
+[node name="CombatSoundtrack" type="AudioStreamPlayer2D" parent="." unique_id=2008348803]
+stream = ExtResource("4_xcxxl")
+parameters/looping = true

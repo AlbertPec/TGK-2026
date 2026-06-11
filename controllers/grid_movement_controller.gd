@@ -210,6 +210,8 @@ func _register_blocking_node(node: Node, start_cell: Vector2i) -> void:
 		return
 
 	var cell := global_to_tile(body.global_position)
+	if node.has_method("get_blocking_cell"):
+		cell = node.call("get_blocking_cell", self)
 
 	if cell == start_cell:
 		return

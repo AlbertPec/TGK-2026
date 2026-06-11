@@ -86,7 +86,6 @@ func is_alive() -> bool:
 func _die() -> void:
 	if _is_dead:
 		return
-
 	_is_dead = true
 	stop_movement()
 	_on_death()
@@ -163,7 +162,7 @@ func _finish_attack() -> void:
 		_pending_attack_target = null
 		return
 
-	await scene_tree.create_timer(0.5).timeout
+	await scene_tree.create_timer(0.3).timeout
 	
 	_is_performing_attack = false
 	_pending_attack_target = null

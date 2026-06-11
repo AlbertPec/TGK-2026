@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://cwqamcw884bnc"]
+
+[ext_resource type="Script" uid="uid://daafgutcj1ybr" path="res://UI/fadeout/fadeout_effect.gd" id="1_v74ae"]
+
+[node name="FadeoutEffect" type="Node2D" unique_id=1289816247]
+script = ExtResource("1_v74ae")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=109263934]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=114288389]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0, 0, 0, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="MessageLabel" type="Label" parent="CanvasLayer" unique_id=508347278]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -340.0
+offset_top = -24.0
+offset_right = 340.0
+offset_bottom = 24.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.964706, 0.945098, 0.862745, 1)
+theme_override_font_sizes/font_size = 26
+text = "Lagun to całkiem zwyczajny rogal..."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3

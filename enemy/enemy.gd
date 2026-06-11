@@ -16,11 +16,15 @@ var _is_dying: bool = false
 var _boar_charge_resolved: bool = false
 var _boar_charge_target_reached: bool = false
 
+func _has_detection_area() -> bool:
+	return enemy_type.detection_radius > 0.0
+
 func _apply_enemy_type_config() -> void:
 	set_max_health(enemy_type.max_health, true)
 	animated_sprite.sprite_frames = enemy_type.sprite_frames
 
 	if detection_shape.shape is CircleShape2D:
+		detection_shape.shape = detection_shape.shape.duplicate()
 		var area_shape := detection_shape.shape as CircleShape2D
 		area_shape.radius = enemy_type.detection_radius
 
@@ -114,13 +118,16 @@ func _manage_animations() -> void:
 
 func _ready() -> void:
 	detection_area.monitoring = false
+	detection_area.monitorable = false
 	setup_entity()
 	z_index = 5
 	_apply_enemy_type_config()
 	spawn(spawn_grid_cell)
 	_resolve_player_entity()
 	_on_revived()
-	detection_area.monitoring = true
+	if _has_detection_area():
+		detection_area.monitoring = true
+		detection_area.monitorable = true
 
 func _on_turn_started(active_entity: Entity) -> void:
 	super._on_turn_started(active_entity)
@@ -210,6 +217,11 @@ func _start_boar_charge() -> void:
 			break
 		if grid_movement.astar_grid.is_point_solid(next_cell):
 			break
+		# smarter charge ending
+		if charge_direction.y == 0 and player_cell.x == current_cell.x:
+			break
+		if charge_direction.x == 0 and player_cell.y == current_cell.y:
+			break
 
 		charge_path.append(next_cell)
 		current_cell = next_cell
@@ -287,15 +299,15 @@ func _set_active_state(active: bool) -> void:
 	process_mode = Node.PROCESS_MODE_INHERIT if active else Node.PROCESS_MODE_DISABLED
 	set_physics_process(active)
 	set_process_input(active)
-	detection_area.monitoring = active
-	detection_area.monitorable = active
+	detection_area.monitoring = active and _has_detection_area()
+	detection_area.monitorable = active and _has_detection_area()
 
 	var body_collision := get_node_or_null("CollisionShape2D") as CollisionShape2D
 	if body_collision != null:
 		body_collision.disabled = not active
 
 	if detection_shape != null:
-		detection_shape.disabled = not active
+		detection_shape.disabled = not active or not _has_detection_area()
 
 func _on_death() -> void:
 	_is_dying = false

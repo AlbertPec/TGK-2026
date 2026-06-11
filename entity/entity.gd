@@ -162,7 +162,7 @@ func _finish_attack() -> void:
 		_pending_attack_target = null
 		return
 
-	await scene_tree.create_timer(0.5).timeout
+	await scene_tree.create_timer(0.3).timeout
 	
 	_is_performing_attack = false
 	_pending_attack_target = null

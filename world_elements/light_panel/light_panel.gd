@@ -3,10 +3,12 @@ extends Node2D
 @export var cell: Vector2i
 @export var is_lit: bool = false
 
+const BLOCKING_GROUP := "blocking_objects"
 
 @onready var sprite = $Sprite2D
 
 func _ready() -> void:
+	add_to_group(BLOCKING_GROUP)
 	if is_lit:
 		on()
 	else:

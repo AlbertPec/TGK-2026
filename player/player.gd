@@ -9,6 +9,8 @@ signal player_defeated
 
 @onready var PLAYER_LOG_NAME = "player"
 
+@onready var step_audio_player = $StepSoundPlayer
+
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var weapon_manager: WeaponManager = $WeaponManager
 var animation_variant = "front"
@@ -22,7 +24,7 @@ func _ready() -> void:
 	setup_entity()
 	log_name = PLAYER_LOG_NAME
 	grid_movement.set_max_move_distance(-1)
-
+	
 func _on_death() -> void:
 	GlobalSignals.emit_signal("change_textbox_text", 
 			"Player was defeated!")

@@ -2,21 +2,180 @@
 
 [ext_resource type="PackedScene" uid="uid://3vgdiivoy4rq" path="res://board/tile_map_deafult.tscn" id="1_p8w1u"]
 [ext_resource type="PackedScene" uid="uid://clbbma5bo4yse" path="res://world_elements/note/note.tscn" id="2_py5wg"]
+[ext_resource type="Texture2D" uid="uid://l8q4djfx32ks" path="res://map_assets/gbstudio_train_station_tileset.png" id="3_1i4kv"]
 [ext_resource type="PackedScene" uid="uid://br6jmwaabd1oh" path="res://enemy/enemy.tscn" id="3_td2lp"]
+[ext_resource type="PackedScene" uid="uid://n4prpqryrxbh" path="res://world_elements/light_panel/light_panel.tscn" id="4_d31ws"]
+[ext_resource type="PackedScene" uid="uid://cy16l54cf26dx" path="res://world_elements/lagun/Lagun_Object.tscn" id="5_d31ws"]
+[ext_resource type="Resource" uid="uid://crbybln07y2hr" path="res://enemy/types/young_boar.tres" id="7_7bxk3"]
+[ext_resource type="Resource" uid="uid://i2m1u6co1fmb" path="res://attack/types/peck_attack.tres" id="8_eg4p3"]
+[ext_resource type="Resource" uid="uid://dhj6l28xexoqu" path="res://enemy/types/boss_boar.tres" id="9_eg4p3"]
+[ext_resource type="PackedScene" uid="uid://b0nu6y7l2wtb6" path="res://world_elements/npc/npc.tscn" id="10_2841b"]
+[ext_resource type="Texture2D" uid="uid://dgw5g2r0mf67x" path="res://map_assets/MiniVillagerMan.png" id="11_5c8ol"]
 
-[node name="Map" unique_id=1015381578 instance=ExtResource("1_p8w1u")]
+[sub_resource type="AtlasTexture" id="AtlasTexture_3ptvg"]
+atlas = ExtResource("11_5c8ol")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o5gbr"]
+atlas = ExtResource("11_5c8ol")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0s23p"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3ptvg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o5gbr")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Map2" unique_id=1015381578 instance=ExtResource("1_p8w1u")]
 
 [node name="Walls" parent="." index="1" unique_id=1905888799]
-tile_map_data = PackedByteArray("AAAAAAAAAAAGAAAAAAABAAAAAAAGAAAAAAACAAAAAAAGAAAAAAADAAAAAAAGAAAAAAAEAAAAAAAGAAAAAAAFAAAAAAAGAAAAAAAGAAAAAAAGAAAAAAAHAAAAAAAGAAAAAAAIAAAAAAAGAAAAAAAJAAAAAAAGAAAAAAAKAAAAAAAGAAAAAAALAAAAAAAGAAAAAAAMAAAAAAAGAAAAAAANAAAAAAAGAAAAAAAOAAAAAAAGAAAAAAAPAAAAAAAGAAAAAAAQAAAAAAAGAAAAAAARAAAAAAAGAAAAAAASAAAAAAAGAAAAAAATAAAAAAAGAAAAAAAUAAAAAAAGAAAAAAAVAAAAAAAGAAAAAAAWAAAAAAAGAAAAAAAXAAAAAAAGAAAAAAAYAAAAAAAGAAAAAAAZAAAAAAAGAAAAAAAaAAAAAAAGAAAAAAAbAAAAAAAGAAAAAAAcAAAAAAAGAAAAAAAdAAAAAAAGAAAAAAAgAAAAAAAGAAAAAAAfAAAAAAAGAAAAAAAeAAAAAAAGAAAAAAAAAAwAAAACAAUAAAABAAwAAAACAAUAAAACAAwAAAACAAUAAAADAAwAAAACAAUAAAAEAAwAAAACAAUAAAAFAAwAAAACAAUAAAAGAAwAAAACAAUAAAAHAAwAAAACAAUAAAAIAAwAAAACAAUAAAAJAAwAAAACAAUAAAAKAAwAAAACAAUAAAALAAwAAAACAAUAAAAMAAwAAAACAAUAAAANAAwAAAACAAUAAAAOAAwAAAACAAUAAAAPAAwAAAACAAUAAAAQAAwAAAACAAUAAAARAAwAAAACAAUAAAASAAwAAAACAAUAAAATAAwAAAACAAUAAAAUAAwAAAACAAUAAAAVAAwAAAACAAUAAAAWAAwAAAACAAUAAAAXAAwAAAACAAUAAAAYAAwAAAACAAUAAAAZAAwAAAACAAUAAAAaAAwAAAACAAUAAAAbAAwAAAACAAUAAAAcAAwAAAACAAUAAAAdAAwAAAACAAUAAAAeAAwAAAACAAUAAAAfAAwAAAACAAUAAAAgAAwAAAACAAUAAAAAAAEAAAAAAAUAAAAAAAIAAAAAAAUAAAAAAAMAAAAAAAUAAAABAAEAAAAAAAUAAAABAAIAAAAAAAUAAAABAAMAAAAAAAUAAAACAAEAAAAAAAUAAAACAAIAAAAAAAUAAAACAAMAAAAAAAUAAAADAAEAAAAAAAUAAAADAAIAAAAAAAUAAAADAAMAAAAAAAUAAAAEAAEAAAAAAAUAAAAEAAIAAAAAAAUAAAAEAAMAAAAAAAUAAAAFAAEAAAAAAAUAAAAFAAIAAAAAAAUAAAAFAAMAAAAAAAUAAAAGAAEAAAAAAAUAAAAGAAIAAAAAAAUAAAAGAAMAAAAAAAUAAAAHAAEAAAAAAAUAAAAHAAIAAAAAAAUAAAAHAAMAAAAAAAUAAAAIAAEAAAAAAAUAAAAIAAIAAAAAAAUAAAAIAAMAAAAAAAUAAAAJAAEAAAAAAAUAAAAJAAIAAAAAAAUAAAAJAAMAAAAAAAUAAAAKAAEAAAAAAAUAAAAKAAIAAAAAAAUAAAAKAAMAAAAAAAUAAAALAAEAAAAAAAUAAAALAAIAAAAAAAUAAAALAAMAAAAAAAUAAAAMAAEAAAAAAAUAAAAMAAIAAAAAAAUAAAAMAAMAAAAAAAUAAAANAAEAAAAAAAUAAAANAAIAAAAAAAUAAAANAAMAAAAAAAUAAAAOAAEAAAAAAAUAAAAOAAIAAAAAAAUAAAAOAAMAAAAAAAUAAAAPAAEAAAAAAAUAAAAPAAIAAAAAAAUAAAAPAAMAAAAAAAUAAAAQAAEAAAAAAAUAAAAQAAIAAAAAAAUAAAAQAAMAAAAAAAUAAAARAAEAAAAAAAUAAAARAAIAAAAAAAUAAAARAAMAAAAAAAUAAAASAAEAAAAAAAUAAAASAAIAAAAAAAUAAAASAAMAAAAAAAUAAAATAAEAAAAAAAUAAAATAAIAAAAAAAUAAAATAAMAAAAAAAUAAAAUAAEAAAAAAAUAAAAUAAIAAAAAAAUAAAAUAAMAAAAAAAUAAAAVAAEAAAAAAAUAAAAVAAIAAAAAAAUAAAAVAAMAAAAAAAUAAAAWAAEAAAAAAAUAAAAWAAIAAAAAAAUAAAAWAAMAAAAAAAUAAAAXAAEAAAAAAAUAAAAXAAIAAAAAAAUAAAAXAAMAAAAAAAUAAAAYAAEAAAAAAAUAAAAYAAIAAAAAAAUAAAAYAAMAAAAAAAUAAAAZAAEAAAAAAAUAAAAZAAIAAAAAAAUAAAAZAAMAAAAAAAUAAAAaAAEAAAAAAAUAAAAaAAIAAAAAAAUAAAAaAAMAAAAAAAUAAAAbAAEAAAAAAAUAAAAbAAIAAAAAAAUAAAAbAAMAAAAAAAUAAAAcAAEAAAAAAAUAAAAcAAIAAAAAAAUAAAAcAAMAAAAAAAUAAAAdAAEAAAAAAAUAAAAdAAIAAAAAAAUAAAAdAAMAAAAAAAUAAAAeAAEAAAAAAAUAAAAeAAIAAAAAAAUAAAAeAAMAAAAAAAUAAAAfAAEAAAAAAAUAAAAfAAIAAAAAAAUAAAAfAAMAAAAAAAUAAAAgAAEAAAAAAAUAAAAgAAIAAAAAAAUAAAAgAAMAAAAAAAUAAAA=")
+tile_map_data = PackedByteArray("AAAAAAAAAAAGAAAAAAABAAAAAAAGAAAAAAACAAAAAAAGAAAAAAADAAAAAAAGAAAAAAAEAAAAAAAGAAAAAAAFAAAAAAAGAAAAAAAGAAAAAAAGAAAAAAAHAAAAAAAGAAAAAAAIAAAAAAAGAAAAAAAJAAAAAAAGAAAAAAAKAAAAAAAGAAAAAAALAAAAAAAGAAAAAAAMAAAAAAAGAAAAAAANAAAAAAAGAAAAAAAOAAAAAAAGAAAAAAAPAAAAAAAGAAAAAAAQAAAAAAAGAAAAAAARAAAAAAAGAAAAAAASAAAAAAAGAAAAAAATAAAAAAAGAAAAAAAUAAAAAAAGAAAAAAAVAAAAAAAGAAAAAAAWAAAAAAAGAAAAAAAXAAAAAAAGAAAAAAAYAAAAAAAGAAAAAAAZAAAAAAAGAAAAAAAaAAAAAAAGAAAAAAAbAAAAAAAGAAAAAAAcAAAAAAAGAAAAAAAdAAAAAAAGAAAAAAAgAAAAAAAGAAAAAAAfAAAAAAAGAAAAAAAeAAAAAAAGAAAAAAAAAAwAAAACAAUAAAABAAwAAAACAAUAAAACAAwAAAACAAUAAAADAAwAAAACAAUAAAAEAAwAAAACAAUAAAAFAAwAAAACAAUAAAAGAAwAAAACAAUAAAAHAAwAAAACAAUAAAAIAAwAAAACAAUAAAAJAAwAAAACAAUAAAAKAAwAAAACAAUAAAALAAwAAAACAAUAAAAMAAwAAAACAAUAAAANAAwAAAACAAUAAAAOAAwAAAACAAUAAAAPAAwAAAACAAUAAAAQAAwAAAACAAUAAAARAAwAAAACAAUAAAASAAwAAAACAAUAAAATAAwAAAACAAUAAAAUAAwAAAACAAUAAAAVAAwAAAACAAUAAAAWAAwAAAACAAUAAAAXAAwAAAACAAUAAAAYAAwAAAACAAUAAAAZAAwAAAACAAUAAAAaAAwAAAACAAUAAAAbAAwAAAACAAUAAAAcAAwAAAACAAUAAAAdAAwAAAACAAUAAAAeAAwAAAACAAUAAAAfAAwAAAACAAUAAAAgAAwAAAACAAUAAAAAAAEAAAAAAAUAAAAAAAIAAAAAAA4AAAAAAAMAAAAAAA4AAAABAAEAAAAAAAUAAAABAAIAAAAAAA4AAAABAAMAAAAAAA4AAAACAAEAAAAAAAUAAAACAAIAAAAAAA4AAAACAAMAAAAAAA4AAAADAAEAAAAAAAUAAAADAAIAAAAAAA4AAAADAAMAAAAAAA4AAAAEAAEAAAAAAAUAAAAEAAIAAAAAAA4AAAAEAAMAAAAAAA4AAAAFAAEAAAAAAAUAAAAFAAIAAAAAAA4AAAAFAAMAAAAAAA4AAAAGAAEAAAAAAAUAAAAGAAIAAAAAAA4AAAAGAAMAAAAAAA4AAAAHAAEAAAAAAAUAAAAHAAIAAAAAAA4AAAAHAAMAAAAAAA4AAAAIAAEAAAAAAAUAAAAIAAIAAAAAAA4AAAAIAAMAAAAAAA4AAAAJAAEAAAAAAAUAAAAJAAIAAAAAAA4AAAAJAAMAAAAAAA4AAAAKAAEAAAAAAAUAAAAKAAIAAAAAAA4AAAAKAAMAAAAAAA4AAAALAAEAAAAAAAUAAAALAAIAAAAAAA4AAAALAAMAAAAAAA4AAAAMAAEAAAAAAAUAAAAMAAIAAAAAAA4AAAAMAAMAAAAAAA4AAAANAAEAAAAAAAUAAAANAAIAAAAAAA4AAAANAAMAAAAAAA4AAAAOAAEAAAAAAAUAAAAOAAIAAAAAAA4AAAAOAAMAAAAAAA4AAAAPAAEAAAAAAAUAAAAPAAIAAAAAAA4AAAAPAAMAAAAAAA4AAAAQAAEAAAAAAAUAAAAQAAIAAAAAAA4AAAAQAAMAAAAAAA4AAAARAAEAAAAAAAUAAAARAAIAAAAAAA4AAAARAAMAAAAAAA4AAAASAAEAAAAAAAUAAAASAAIAAAAAAA4AAAASAAMAAAAAAA4AAAATAAEAAAAAAAUAAAATAAIAAAAAAA4AAAATAAMAAAAAAA4AAAAUAAEAAAAAAAUAAAAUAAIAAAAAAA4AAAAUAAMAAAAAAA4AAAAVAAEAAAAAAAUAAAAVAAIAAAAAAA4AAAAVAAMAAAAAAA4AAAAWAAEAAAAAAAUAAAAWAAIAAAAAAA4AAAAWAAMAAAAAAA4AAAAXAAEAAAAAAAUAAAAXAAIAAAAAAA4AAAAXAAMAAAAAAA4AAAAYAAEAAAAAAAUAAAAYAAIAAAAAAA4AAAAYAAMAAAAAAA4AAAAZAAEAAAAAAAUAAAAZAAIAAAAAAA4AAAAZAAMAAAAAAA4AAAAaAAEAAAAAAAUAAAAaAAIAAAAAAA4AAAAaAAMAAAAAAA4AAAAbAAEAAAAAAAUAAAAbAAIAAAAAAA4AAAAbAAMAAAAAAA4AAAAcAAEAAAAAAAUAAAAcAAIAAAAAAA4AAAAcAAMAAAAAAA4AAAAdAAEAAAAAAAUAAAAdAAIAAAAAAA4AAAAdAAMAAAAAAA4AAAAeAAEAAAAAAAUAAAAeAAIAAAAAAA4AAAAeAAMAAAAAAA4AAAAfAAEAAAAAAAUAAAAfAAIAAAAAAA4AAAAfAAMAAAAAAA4AAAAgAAEAAAAAAAUAAAAgAAIAAAAAAA4AAAAgAAMAAAAAAA4AAAAQAAcAAAAFAAAAAAAbAAcAAAAFAAAAAAARAAcAAAAHAAAAAAAcAAcAAAAHAAAAAAABAAYAAAABAAEAAAABAAgAAAABAAMAAAAAAAYAAAAAAAEAAAAAAAcAAAAAAAIAAAAAAAgAAAAAAAMAAAAAAAUAAAACAAUAAAABAAUAAAABAAMAAAABAAkAAAABAAEAAAAAAAkAAAAAAAsAAAA=")
 
 [node name="Note" parent="." index="4" unique_id=1155190565 instance=ExtResource("2_py5wg")]
 position = Vector2(913, 304)
 note_text = "W latach 40. XXI wieku krakowskie metro — pierwotnie projekt wielokrotnie odkładany i częściowo zrealizowany dopiero w formie głęboko tunelowej sieci awaryjno-transportowej — przestało być systemem komunikacji, a stało się autonomicznym ekosystemem cywilizacyjnym po „Załamaniu Sieci 2037”.Po globalnym kryzysie energetyczno-informatycznym, który sparaliżował większość naziemnej infrastruktury Europy Środkowej, podziemia Krakowa zostały stopniowo zasiedlone przez ocalałych, frakcje technokratyczne oraz tzw. „tunelowe wspólnoty”. W ciągu kilku lat z pierwotnych korytarzy technicznych, stacji i nieukończonych odcinków metra powstała wielowarstwowa struktura społeczno-polityczna.System podziemny dzieli się na trzy główne poziomy. Najwyższy to „Perony” — względnie uporządkowane strefy dawnej infrastruktury pasażerskiej, gdzie funkcjonuje handel wymienny, małe generatory i ograniczona administracja. Środkowy poziom, zwany „Przewiązką”, to gęsta sieć korytarzy technicznych, zamieszkana przez niezależne grupy inżynieryjne, skrybów danych i tzw. „szperaczy rdzeni”, którzy odzyskują stare moduły AI oraz fragmenty systemów sterowania. Najniższy poziom, „Ciemnia”, pozostaje częściowo niezmapowany — tam według relacji żyją enklawy odcięte od reszty metra oraz nieautoryzowane struktury maszynowe, które przetrwały awarię systemów bezpieczeństwa.Władza w metrze nie jest scentralizowana. Zamiast tego funkcjonuje Rada Tunelowa, luźna federacja frakcji: Gildii Energetyków kontrolujących reaktory mikro-fuzyjne, Kolektywu Logistyki zajmującego się transportem między stacjami oraz Archiwistów Danych, którzy próbują odtworzyć utracone fragmenty internetu sprzed Załamania. Konflikty między nimi są częste, ale równoważone przez wspólną zależność od infrastruktury.Krakowskie metro lat 40. XX wieku stało się również miejscem powstania unikalnej kultury „podziemnej adaptacji”. Ludność wykształciła bioluminescencyjne oznaczenia, język skrótów technicznych oraz rytuały związane z „pamięcią światła” — cyklicznym uruchamianiem starych systemów oświetlenia w celu utrzymania psychologicznej stabilności populacji.Największą tajemnicą pozostaje tzw. „Linia Zero” — hipotetyczny, nieukończony rdzeń metra biegnący pod centrum miasta Krakow, który według legend może łączyć się z dawnymi systemami satelitarnymi lub alternatywną warstwą sieci energetycznej. Nikt nie potwierdził jej istnienia, ale ekspedycje w głąb Ciemni regularnie kończą się odnalezieniem nowych, nienaniesionych na mapy odcinków tuneli.W efekcie krakowskie metro w tym okresie nie jest już tylko infrastrukturą — to zamknięta cywilizacja podziemna, w której technologia, ruina i pamięć dawnego świata tworzą stabilny, choć kruchy ekosystem przetrwania."
 
-[node name="pigeon" parent="." index="5" unique_id=1486208510 instance=ExtResource("3_td2lp")]
+[node name="map_objects" type="Node2D" parent="." index="5" unique_id=991128498]
+
+[node name="Sprite2D11" type="Sprite2D" parent="map_objects" index="0" unique_id=306719533]
+position = Vector2(913, 193)
+scale = Vector2(2.0000005, 1.4000003)
+texture = ExtResource("3_1i4kv")
+flip_h = true
+region_enabled = true
+region_rect = Rect2(272, 18, 16, 45)
+
+[node name="Sprite2D13" type="Sprite2D" parent="map_objects" index="1" unique_id=1529973797]
+position = Vector2(913, 289)
+scale = Vector2(2.0000005, 1.4000003)
+texture = ExtResource("3_1i4kv")
+flip_h = true
+region_enabled = true
+region_rect = Rect2(272, 18, 16, 45)
+
+[node name="Sprite2D12" type="Sprite2D" parent="map_objects" index="2" unique_id=1193390200]
+position = Vector2(881, 289)
+scale = Vector2(2.0000005, 1.4000003)
+texture = ExtResource("3_1i4kv")
+region_enabled = true
+region_rect = Rect2(272, 18, 16, 45)
+
+[node name="Sprite2D10" type="Sprite2D" parent="map_objects" index="3" unique_id=815956710]
+position = Vector2(881, 192.50002)
+scale = Vector2(2.0000005, 1.4000003)
+texture = ExtResource("3_1i4kv")
+region_enabled = true
+region_rect = Rect2(272, 18, 16, 45)
+
+[node name="Sprite2D3" type="Sprite2D" parent="map_objects" index="4" unique_id=1379284435]
+position = Vector2(527, 192.50002)
+scale = Vector2(2.0000005, 1.4000003)
+texture = ExtResource("3_1i4kv")
+region_enabled = true
+region_rect = Rect2(272, 18, 16, 45)
+
+[node name="Sprite2D7" type="Sprite2D" parent="map_objects" index="5" unique_id=157218801]
+position = Vector2(559, 193)
+scale = Vector2(2.0000005, 1.4000003)
+texture = ExtResource("3_1i4kv")
+flip_h = true
+region_enabled = true
+region_rect = Rect2(272, 18, 16, 45)
+
+[node name="Sprite2D8" type="Sprite2D" parent="map_objects" index="6" unique_id=1332016702]
+position = Vector2(527, 289)
+scale = Vector2(2.0000005, 1.4000003)
+texture = ExtResource("3_1i4kv")
+region_enabled = true
+region_rect = Rect2(272, 18, 16, 45)
+
+[node name="Sprite2D9" type="Sprite2D" parent="map_objects" index="7" unique_id=1634911252]
+position = Vector2(559, 289)
+scale = Vector2(2.0000005, 1.4000003)
+texture = ExtResource("3_1i4kv")
+flip_h = true
+region_enabled = true
+region_rect = Rect2(272, 18, 16, 45)
+
+[node name="LightPanel" parent="map_objects" index="8" unique_id=606638072 instance=ExtResource("4_d31ws")]
+position = Vector2(848, 239)
+is_lit = true
+
+[node name="LightPanel2" parent="map_objects" index="9" unique_id=743656850 instance=ExtResource("4_d31ws")]
+position = Vector2(592, 239)
+is_lit = true
+
+[node name="Sprite2D" type="Sprite2D" parent="map_objects" index="10" unique_id=2032538678]
+position = Vector2(1008, 335)
+scale = Vector2(2.04412, 1.9558818)
+texture = ExtResource("3_1i4kv")
+region_enabled = true
+region_rect = Rect2(184, 16, 17, 17)
+
+[node name="Sprite2D2" type="Sprite2D" parent="map_objects" index="11" unique_id=666695147]
+position = Vector2(495, 242.00002)
+scale = Vector2(2.281252, 2.0288448)
+texture = ExtResource("3_1i4kv")
+region_enabled = true
+region_rect = Rect2(208, 20, 8, 13)
+
+[node name="Node" type="Node" parent="." index="6" unique_id=346529078]
+
+[node name="LagunObject" parent="." index="7" unique_id=1726236686 instance=ExtResource("5_d31ws")]
+position = Vector2(48, 240)
+
+[node name="young_boar1" parent="." index="8" unique_id=1531050704 instance=ExtResource("3_td2lp")]
+rotation = 0.0009958639
+scale = Vector2(1.7, 1.7)
+spawn_grid_cell = Vector2i(2, 6)
+enemy_type = ExtResource("7_7bxk3")
+equipped_attack = ExtResource("8_eg4p3")
+max_health = 6
+
+[node name="young_boar2" parent="." index="9" unique_id=1949400900 instance=ExtResource("3_td2lp")]
+scale = Vector2(1.7, 1.7)
+spawn_grid_cell = Vector2i(2, 8)
+enemy_type = ExtResource("7_7bxk3")
+equipped_attack = ExtResource("8_eg4p3")
+max_health = 4
+
+[node name="boss_boar" parent="." index="10" unique_id=1790962329 instance=ExtResource("3_td2lp")]
+position = Vector2(-10, 0)
+scale = Vector2(2.5, 2.5)
+spawn_grid_cell = Vector2i(4, 7)
+enemy_type = ExtResource("9_eg4p3")
+equipped_attack = ExtResource("8_eg4p3")
+
+
+[node name="pigeon" parent="." index="11" unique_id=1486208510 instance=ExtResource("3_td2lp")]
 spawn_grid_cell = Vector2i(7, 8)
 visual_node_path = NodePath(".")
 
-[node name="pigeon2" parent="." index="6" unique_id=898955032 instance=ExtResource("3_td2lp")]
-spawn_grid_cell = Vector2i(15, 10)
+[node name="pigeon2" parent="." index="12" unique_id=898955032 instance=ExtResource("3_td2lp")]
+spawn_grid_cell = Vector2i(18, 10)
 visual_node_path = NodePath(".")
+
+[node name="pigeon3" parent="." index="13" unique_id=798706993 instance=ExtResource("3_td2lp")]
+spawn_grid_cell = Vector2i(11, 10)
+visual_node_path = NodePath(".")
+
+[node name="pigeon4" parent="." index="14" unique_id=496426536 instance=ExtResource("3_td2lp")]
+spawn_grid_cell = Vector2i(4, 10)
+visual_node_path = NodePath(".")
+
+[node name="npc" parent="." index="15" unique_id=1237982559 instance=ExtResource("10_2841b")]
+position = Vector2(498, 188)
+scale = Vector2(2, 2)
+note_text = "Robert: Widzę Laguna za tą zgrają niebezpiecznych dzików... Ale lepiej się do nich nie zbliżać bez broni dystansowej!"
+frames = SubResource("SpriteFrames_0s23p")
+flip_h = true
+cell = Vector2i(15, 5)
+

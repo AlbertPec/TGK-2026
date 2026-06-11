@@ -3,7 +3,7 @@ class_name AttackTargetOverlay
 
 const FILL_COLOR := Color(0.92, 0.18, 0.18, 0.42)
 const OUTLINE_COLOR := Color(1.0, 0.42, 0.42, 0.8)
-const RADIUS_SCALE := 0.34
+const RADIUS_SCALE := 0.5
 const VERTICAL_OFFSET_SCALE := 0.22
 const PULSE_SPEED := 3.2
 const PULSE_STRENGTH := 0.08

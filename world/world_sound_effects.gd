@@ -52,13 +52,6 @@ func _on_combat_started() -> void:
 	var tween = create_tween()
 	tween.set_parallel(true)
 
-	#tween.tween_property(
-		#no_combat_st_audio_player,
-		#"volume_db",
-		#MUTED_VOLUME,
-		#FADE_TIME
-	#)
-
 	tween.tween_property(
 		combat_st_audio_player,
 		"volume_db",

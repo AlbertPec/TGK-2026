@@ -3,9 +3,9 @@
 [ext_resource type="PackedScene" uid="uid://3vgdiivoy4rq" path="res://board/tile_map_deafult.tscn" id="1_p8w1u"]
 [ext_resource type="PackedScene" uid="uid://clbbma5bo4yse" path="res://world_elements/note/note.tscn" id="2_py5wg"]
 [ext_resource type="Texture2D" uid="uid://clogwydsav4c6" path="res://map_assets/gbstudio_train_station_tileset.png" id="3_1i4kv"]
+[ext_resource type="PackedScene" uid="uid://br6jmwaabd1oh" path="res://enemy/enemy.tscn" id="3_td2lp"]
 [ext_resource type="PackedScene" uid="uid://n4prpqryrxbh" path="res://world_elements/light_panel/light_panel.tscn" id="4_d31ws"]
 [ext_resource type="PackedScene" uid="uid://cy16l54cf26dx" path="res://world_elements/lagun/Lagun_Object.tscn" id="5_d31ws"]
-[ext_resource type="PackedScene" uid="uid://br6jmwaabd1oh" path="res://enemy/enemy.tscn" id="3_td2lp"]
 
 [node name="Map" unique_id=1015381578 instance=ExtResource("1_p8w1u")]
 
@@ -16,7 +16,15 @@ tile_map_data = PackedByteArray("AAAAAAAAAAAGAAAAAAABAAAAAAAGAAAAAAACAAAAAAAGAAA
 position = Vector2(913, 304)
 note_text = "W latach 40. XXI wieku krakowskie metro — pierwotnie projekt wielokrotnie odkładany i częściowo zrealizowany dopiero w formie głęboko tunelowej sieci awaryjno-transportowej — przestało być systemem komunikacji, a stało się autonomicznym ekosystemem cywilizacyjnym po „Załamaniu Sieci 2037”.Po globalnym kryzysie energetyczno-informatycznym, który sparaliżował większość naziemnej infrastruktury Europy Środkowej, podziemia Krakowa zostały stopniowo zasiedlone przez ocalałych, frakcje technokratyczne oraz tzw. „tunelowe wspólnoty”. W ciągu kilku lat z pierwotnych korytarzy technicznych, stacji i nieukończonych odcinków metra powstała wielowarstwowa struktura społeczno-polityczna.System podziemny dzieli się na trzy główne poziomy. Najwyższy to „Perony” — względnie uporządkowane strefy dawnej infrastruktury pasażerskiej, gdzie funkcjonuje handel wymienny, małe generatory i ograniczona administracja. Środkowy poziom, zwany „Przewiązką”, to gęsta sieć korytarzy technicznych, zamieszkana przez niezależne grupy inżynieryjne, skrybów danych i tzw. „szperaczy rdzeni”, którzy odzyskują stare moduły AI oraz fragmenty systemów sterowania. Najniższy poziom, „Ciemnia”, pozostaje częściowo niezmapowany — tam według relacji żyją enklawy odcięte od reszty metra oraz nieautoryzowane struktury maszynowe, które przetrwały awarię systemów bezpieczeństwa.Władza w metrze nie jest scentralizowana. Zamiast tego funkcjonuje Rada Tunelowa, luźna federacja frakcji: Gildii Energetyków kontrolujących reaktory mikro-fuzyjne, Kolektywu Logistyki zajmującego się transportem między stacjami oraz Archiwistów Danych, którzy próbują odtworzyć utracone fragmenty internetu sprzed Załamania. Konflikty między nimi są częste, ale równoważone przez wspólną zależność od infrastruktury.Krakowskie metro lat 40. XX wieku stało się również miejscem powstania unikalnej kultury „podziemnej adaptacji”. Ludność wykształciła bioluminescencyjne oznaczenia, język skrótów technicznych oraz rytuały związane z „pamięcią światła” — cyklicznym uruchamianiem starych systemów oświetlenia w celu utrzymania psychologicznej stabilności populacji.Największą tajemnicą pozostaje tzw. „Linia Zero” — hipotetyczny, nieukończony rdzeń metra biegnący pod centrum miasta Krakow, który według legend może łączyć się z dawnymi systemami satelitarnymi lub alternatywną warstwą sieci energetycznej. Nikt nie potwierdził jej istnienia, ale ekspedycje w głąb Ciemni regularnie kończą się odnalezieniem nowych, nienaniesionych na mapy odcinków tuneli.W efekcie krakowskie metro w tym okresie nie jest już tylko infrastrukturą — to zamknięta cywilizacja podziemna, w której technologia, ruina i pamięć dawnego świata tworzą stabilny, choć kruchy ekosystem przetrwania."
 
-[node name="map_objects" type="Node2D" parent="." index="5" unique_id=991128498]
+[node name="pigeon" parent="." index="5" unique_id=1486208510 instance=ExtResource("3_td2lp")]
+spawn_grid_cell = Vector2i(7, 8)
+visual_node_path = NodePath(".")
+
+[node name="pigeon2" parent="." index="6" unique_id=898955032 instance=ExtResource("3_td2lp")]
+spawn_grid_cell = Vector2i(15, 10)
+visual_node_path = NodePath(".")
+
+[node name="map_objects" type="Node2D" parent="." index="7" unique_id=991128498]
 
 [node name="Sprite2D11" type="Sprite2D" parent="map_objects" index="0" unique_id=306719533]
 position = Vector2(913, 193)
@@ -100,13 +108,5 @@ texture = ExtResource("3_1i4kv")
 region_enabled = true
 region_rect = Rect2(208, 20, 8, 13)
 
-[node name="LagunObject" parent="." index="6" unique_id=1726236686 instance=ExtResource("5_d31ws")]
+[node name="LagunObject" parent="." index="8" unique_id=1726236686 instance=ExtResource("5_d31ws")]
 position = Vector2(48, 240)
-
-[node name="pigeon" parent="." index="5" unique_id=1486208510 instance=ExtResource("3_td2lp")]
-spawn_grid_cell = Vector2i(7, 8)
-visual_node_path = NodePath(".")
-
-[node name="pigeon2" parent="." index="6" unique_id=898955032 instance=ExtResource("3_td2lp")]
-spawn_grid_cell = Vector2i(15, 10)
-visual_node_path = NodePath(".")

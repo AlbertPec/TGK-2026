@@ -2,12 +2,14 @@
 
 [ext_resource type="PackedScene" uid="uid://3vgdiivoy4rq" path="res://board/tile_map_deafult.tscn" id="1_g0w4b"]
 [ext_resource type="PackedScene" uid="uid://br6jmwaabd1oh" path="res://enemy/enemy.tscn" id="2_nsi13"]
+[ext_resource type="AudioStream" uid="uid://h1xoh12dnnu0" path="res://audio_assets/soundeffects/pigeon_move.mp3" id="3_hcl0p"]
 [ext_resource type="Resource" uid="uid://cg7w85ny24u4l" path="res://enemy/types/pigeon.tres" id="3_mtsnm"]
 [ext_resource type="PackedScene" uid="uid://baww3l4iox4mx" path="res://world_elements/puzzle_objects/switch_electrics/switch_puzzle.tscn" id="4_qnn0w"]
 [ext_resource type="PackedScene" uid="uid://dekd087gf5nig" path="res://world_elements/puzzle_objects/switch_electrics/doors.tscn" id="5_b1p3g"]
 [ext_resource type="PackedScene" uid="uid://n4prpqryrxbh" path="res://world_elements/light_panel/light_panel.tscn" id="6_boh4a"]
 [ext_resource type="PackedScene" uid="uid://sc7iskq1r6gt" path="res://world_elements/crossbow/crossbow.tscn" id="7_7uvvp"]
 [ext_resource type="PackedScene" uid="uid://bvvkcr5inmgor" path="res://world_elements/food/food.tscn" id="8_xikjr"]
+[ext_resource type="Texture2D" uid="uid://clogwydsav4c6" path="res://map_assets/gbstudio_train_station_tileset.png" id="9_i5xtk"]
 
 [node name="Map" unique_id=1015381578 instance=ExtResource("1_g0w4b")]
 
@@ -18,15 +20,27 @@ tile_map_data = PackedByteArray("AAAAAAAAAAAGAAAAAAABAAAAAAAGAAAAAAACAAAAAAAGAAA
 position = Vector2(-39, -42)
 spawn_grid_cell = Vector2i(25, 10)
 
+[node name="MoveSoundPlayer" type="AudioStreamPlayer2D" parent="pigeon" index="3" unique_id=958271107]
+stream = ExtResource("3_hcl0p")
+parameters/looping = true
+
 [node name="pigeon2" parent="." index="5" unique_id=1364435775 instance=ExtResource("2_nsi13")]
 position = Vector2(-39, -42)
 spawn_grid_cell = Vector2i(23, 5)
 visual_node_path = NodePath(".")
 
+[node name="MoveSoundPlayer" type="AudioStreamPlayer2D" parent="pigeon2" index="3" unique_id=2060403963]
+stream = ExtResource("3_hcl0p")
+parameters/looping = true
+
 [node name="pigeon3" parent="." index="6" unique_id=585546751 instance=ExtResource("2_nsi13")]
 position = Vector2(-39, -42)
 spawn_grid_cell = Vector2i(7, 9)
 visual_node_path = NodePath(".")
+
+[node name="MoveSoundPlayer" type="AudioStreamPlayer2D" parent="pigeon3" index="3" unique_id=630774668]
+stream = ExtResource("3_hcl0p")
+parameters/looping = true
 
 [node name="pigeon4" parent="." index="7" unique_id=262046461 instance=ExtResource("2_nsi13")]
 position = Vector2(-39, -42)
@@ -34,17 +48,29 @@ spawn_grid_cell = Vector2i(18, 9)
 enemy_type = ExtResource("3_mtsnm")
 visual_node_path = NodePath(".")
 
+[node name="MoveSoundPlayer" type="AudioStreamPlayer2D" parent="pigeon4" index="3" unique_id=1926053432]
+stream = ExtResource("3_hcl0p")
+parameters/looping = true
+
 [node name="pigeon5" parent="." index="8" unique_id=1336406645 instance=ExtResource("2_nsi13")]
 position = Vector2(-78, -84)
 spawn_grid_cell = Vector2i(9, 11)
 enemy_type = ExtResource("3_mtsnm")
 visual_node_path = NodePath(".")
 
+[node name="MoveSoundPlayer" type="AudioStreamPlayer2D" parent="pigeon5" index="3" unique_id=1291277558]
+stream = ExtResource("3_hcl0p")
+parameters/looping = true
+
 [node name="pigeon6" parent="." index="9" unique_id=908512927 instance=ExtResource("2_nsi13")]
 position = Vector2(-117, -126)
 spawn_grid_cell = Vector2i(19, 7)
 enemy_type = ExtResource("3_mtsnm")
 visual_node_path = NodePath(".")
+
+[node name="MoveSoundPlayer" type="AudioStreamPlayer2D" parent="pigeon6" index="3" unique_id=508079918]
+stream = ExtResource("3_hcl0p")
+parameters/looping = true
 
 [node name="SwitchPuzzle" parent="." index="10" unique_id=1669277432 instance=ExtResource("4_qnn0w")]
 position = Vector2(911, 320)
@@ -70,33 +96,39 @@ position = Vector2(-384, -80)
 [node name="LightPanel6" parent="SwitchPuzzle" index="9" unique_id=1813295180 instance=ExtResource("6_boh4a")]
 position = Vector2(-288, -80)
 
-[node name="map_objects" type="Node2D" parent="." index="11" unique_id=1543989751]
+[node name="Crossbow" parent="." index="11" unique_id=1155190565 instance=ExtResource("7_7uvvp")]
+position = Vector2(848, 208)
+
+[node name="Food" parent="." index="12" unique_id=189780491 instance=ExtResource("8_xikjr")]
+position = Vector2(976, 240)
+
+[node name="map_objects" type="Node2D" parent="." index="13" unique_id=1543989751]
 
 [node name="Sprite2D12" type="Sprite2D" parent="map_objects" index="0" unique_id=735773437]
 position = Vector2(369, 289)
 scale = Vector2(2.0000005, 1.4000003)
-texture = ExtResource("7_7uvvp")
+texture = ExtResource("9_i5xtk")
 region_enabled = true
 region_rect = Rect2(272, 18, 16, 45)
 
 [node name="Sprite2D3" type="Sprite2D" parent="map_objects" index="1" unique_id=414259068]
 position = Vector2(79, 192.5)
 scale = Vector2(2.0000005, 1.4000003)
-texture = ExtResource("7_7uvvp")
+texture = ExtResource("9_i5xtk")
 region_enabled = true
 region_rect = Rect2(272, 18, 16, 45)
 
 [node name="Sprite2D8" type="Sprite2D" parent="map_objects" index="2" unique_id=733723525]
 position = Vector2(559, 289)
 scale = Vector2(2.0000005, 1.4000003)
-texture = ExtResource("7_7uvvp")
+texture = ExtResource("9_i5xtk")
 region_enabled = true
 region_rect = Rect2(272, 18, 16, 45)
 
 [node name="Sprite2D9" type="Sprite2D" parent="map_objects" index="3" unique_id=168810593]
 position = Vector2(591, 289)
 scale = Vector2(2.0000005, 1.4000003)
-texture = ExtResource("7_7uvvp")
+texture = ExtResource("9_i5xtk")
 flip_h = true
 region_enabled = true
 region_rect = Rect2(272, 18, 16, 45)
@@ -104,12 +136,6 @@ region_rect = Rect2(272, 18, 16, 45)
 [node name="Sprite2D" type="Sprite2D" parent="map_objects" index="4" unique_id=461363403]
 position = Vector2(808, 306.00003)
 scale = Vector2(1.333333, 1.625)
-texture = ExtResource("7_7uvvp")
+texture = ExtResource("9_i5xtk")
 region_enabled = true
 region_rect = Rect2(273, 66, 30, 8)
-
-[node name="Crossbow" parent="." index="11" unique_id=1155190565 instance=ExtResource("7_7uvvp")]
-position = Vector2(848, 208)
-
-[node name="Food" parent="." index="12" unique_id=189780491 instance=ExtResource("8_xikjr")]
-position = Vector2(976, 240)

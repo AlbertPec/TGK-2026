@@ -38,6 +38,7 @@ func _play_animation(animation_name: StringName) -> void:
 	if not animated_sprite.sprite_frames.has_animation(animation_name):
 		return
 	animated_sprite.play(animation_name)
+	
 
 func _ready() -> void:
 	detection_area.monitoring = false
@@ -60,19 +61,33 @@ func _on_turn_started(active_entity: Entity) -> void:
 
 func _process_turn():
 	if not moved_in_turn:
+		_start_playing($MoveSoundPlayer)
 		var target_cell := grid_movement.global_to_tile(player_entity.global_position)
 		grid_movement.move_possible_closest_to(global_position, target_cell)
 		moved_in_turn = true
 	
 	# Pigeons have to move on turn
 	if moved_in_turn and not grid_movement.has_path_to_travel() and equipped_attack.can_target(self, player_entity):
+		_start_playing($AttackSoundPlayer)
+		_stop_playing($MoveSoundPlayer)
 		request_attack(player_entity)
 	
 	if moved_in_turn and not grid_movement.has_path_to_travel() and not equipped_attack.can_target(self, player_entity):
 		end_turn()
+		_stop_playing($MoveSoundPlayer)
 		
 	if moved_in_turn and _used_attack:
 		end_turn()
+		_stop_playing($MoveSoundPlayer)
+			
+			
+func _start_playing(sound_player):
+	if sound_player:
+		sound_player.play()
+
+func _stop_playing(sound_player):
+	if sound_player:
+		sound_player.stop()
 
 func _resolve_player_entity() -> void:
 	var player_nodes := get_tree().get_nodes_in_group("players")

@@ -6,7 +6,7 @@ extends Node2D
 @onready var no_combat_st_audio_player  = $NoCombatSoundtrack
 @onready var combat_st_audio_player  = $CombatSoundtrack
 
-const MUSIC_VOLUME := 0.0
+const MUSIC_VOLUME := -15.0
 const MUTED_VOLUME := -35.0
 const FADE_TIME := 0.5
 

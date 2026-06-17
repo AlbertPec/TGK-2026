@@ -1,7 +1,7 @@
 [gd_scene format=4 uid="uid://dibka6g8ih7ef"]
 
 [ext_resource type="PackedScene" uid="uid://3vgdiivoy4rq" path="res://board/tile_map_deafult.tscn" id="1_mvjl8"]
-[ext_resource type="Texture2D" uid="uid://clogwydsav4c6" path="res://map_assets/gbstudio_train_station_tileset.png" id="2_e3uwk"]
+[ext_resource type="Texture2D" uid="uid://l8q4djfx32ks" path="res://map_assets/gbstudio_train_station_tileset.png" id="2_e3uwk"]
 [ext_resource type="PackedScene" uid="uid://n4prpqryrxbh" path="res://world_elements/light_panel/light_panel.tscn" id="4_kujnm"]
 [ext_resource type="PackedScene" uid="uid://bnwers7rr3u4q" path="res://world_elements/npc/npc.tscn" id="5_1qjbq"]
 [ext_resource type="PackedScene" uid="uid://clbbma5bo4yse" path="res://world_elements/note/note.tscn" id="5_62ym3"]

@@ -4,6 +4,7 @@ extends Node2D
 
 @onready var interactable = $Interactable
 @onready var col_box = $Interactable/CollisionShape2D
+@onready var switch_sound_player = $SwitchSoundPlayer
 
 const BLOCKING_GROUP := "blocking_objects"
 
@@ -11,6 +12,7 @@ signal toggeled_switch(switch_id)
 
 func _on_interacted(interactor = null):
 	emit_signal("toggeled_switch", switch_id)
+	switch_sound_player.play()
 
 func disable_switching():
 	col_box.set_deferred("disabled", true)

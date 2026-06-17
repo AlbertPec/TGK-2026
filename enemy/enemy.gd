@@ -271,10 +271,12 @@ func _resolve_boar_charge() -> void:
 		var attack_distance := grid_movement.attack_distance_between(attacker_cell, player_cell)
 		if attack_distance <= equipped_attack.attack_range and attack_distance >= equipped_attack.minimum_attack_range:
 			request_attack(player_entity)
+			_start_playing($AttackSoundPlayer)
 			return
 
 	if equipped_attack.can_target(self, player_entity):
 		request_attack(player_entity)
+		_start_playing($AttackSoundPlayer)
 		return
 
 	end_turn()

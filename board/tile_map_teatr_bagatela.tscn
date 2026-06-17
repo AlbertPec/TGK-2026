@@ -4,10 +4,12 @@
 [ext_resource type="PackedScene" uid="uid://clbbma5bo4yse" path="res://world_elements/note/note.tscn" id="2_py5wg"]
 [ext_resource type="Texture2D" uid="uid://clogwydsav4c6" path="res://map_assets/gbstudio_train_station_tileset.png" id="3_1i4kv"]
 [ext_resource type="PackedScene" uid="uid://br6jmwaabd1oh" path="res://enemy/enemy.tscn" id="3_td2lp"]
+[ext_resource type="AudioStream" uid="uid://cdxetlbu0j5we" path="res://audio_assets/soundeffects/pigeon_move.mp3" id="4_3ptvg"]
 [ext_resource type="PackedScene" uid="uid://n4prpqryrxbh" path="res://world_elements/light_panel/light_panel.tscn" id="4_d31ws"]
 [ext_resource type="PackedScene" uid="uid://cy16l54cf26dx" path="res://world_elements/lagun/Lagun_Object.tscn" id="5_d31ws"]
 [ext_resource type="Resource" uid="uid://crbybln07y2hr" path="res://enemy/types/young_boar.tres" id="7_7bxk3"]
 [ext_resource type="Resource" uid="uid://i2m1u6co1fmb" path="res://attack/types/peck_attack.tres" id="8_eg4p3"]
+[ext_resource type="AudioStream" uid="uid://bp4tc81q4fneg" path="res://audio_assets/soundeffects/boar_attack.mp3" id="8_o5gbr"]
 [ext_resource type="Resource" uid="uid://dhj6l28xexoqu" path="res://enemy/types/boss_boar.tres" id="9_eg4p3"]
 [ext_resource type="PackedScene" uid="uid://bnwers7rr3u4q" path="res://world_elements/npc/npc.tscn" id="10_2841b"]
 [ext_resource type="Texture2D" uid="uid://dgw5g2r0mf67x" path="res://map_assets/MiniVillagerMan.png" id="11_5c8ol"]
@@ -47,6 +49,10 @@ note_text = "W latach 40. XXI wieku krakowskie metro — pierwotnie projekt wiel
 spawn_grid_cell = Vector2i(7, 8)
 visual_node_path = NodePath(".")
 
+[node name="MoveSoundPlayer" type="AudioStreamPlayer2D" parent="pigeon" index="3" unique_id=395365100]
+stream = ExtResource("4_3ptvg")
+parameters/looping = true
+
 [node name="Node" type="Node" parent="." index="6" unique_id=1982049097]
 
 [node name="LagunObject" parent="." index="7" unique_id=2012228880 instance=ExtResource("5_d31ws")]
@@ -60,12 +66,18 @@ enemy_type = ExtResource("7_7bxk3")
 equipped_attack = ExtResource("8_eg4p3")
 max_health = 6
 
+[node name="AttackSoundPlayer" type="AudioStreamPlayer2D" parent="young_boar1" index="3" unique_id=207879011]
+stream = ExtResource("8_o5gbr")
+
 [node name="young_boar2" parent="." index="9" unique_id=649591014 instance=ExtResource("3_td2lp")]
 scale = Vector2(1.7, 1.7)
 spawn_grid_cell = Vector2i(2, 8)
 enemy_type = ExtResource("7_7bxk3")
 equipped_attack = ExtResource("8_eg4p3")
 max_health = 4
+
+[node name="AttackSoundPlayer" type="AudioStreamPlayer2D" parent="young_boar2" index="3" unique_id=1387728209]
+stream = ExtResource("8_o5gbr")
 
 [node name="boss_boar" parent="." index="10" unique_id=1467049750 instance=ExtResource("3_td2lp")]
 position = Vector2(-10, 0)
@@ -74,17 +86,32 @@ spawn_grid_cell = Vector2i(4, 7)
 enemy_type = ExtResource("9_eg4p3")
 equipped_attack = ExtResource("8_eg4p3")
 
+[node name="AttackSoundPlayer" type="AudioStreamPlayer2D" parent="boss_boar" index="3" unique_id=39887717]
+stream = ExtResource("8_o5gbr")
+
 [node name="pigeon4" parent="." index="11" unique_id=172551071 instance=ExtResource("3_td2lp")]
 spawn_grid_cell = Vector2i(18, 10)
 visual_node_path = NodePath(".")
+
+[node name="MoveSoundPlayer" type="AudioStreamPlayer2D" parent="pigeon4" index="3" unique_id=505962324]
+stream = ExtResource("4_3ptvg")
+parameters/looping = true
 
 [node name="pigeon5" parent="." index="12" unique_id=2090025835 instance=ExtResource("3_td2lp")]
 spawn_grid_cell = Vector2i(11, 10)
 visual_node_path = NodePath(".")
 
+[node name="MoveSoundPlayer" type="AudioStreamPlayer2D" parent="pigeon5" index="3" unique_id=268381263]
+stream = ExtResource("4_3ptvg")
+parameters/looping = true
+
 [node name="pigeon6" parent="." index="13" unique_id=2050335092 instance=ExtResource("3_td2lp")]
 spawn_grid_cell = Vector2i(4, 10)
 visual_node_path = NodePath(".")
+
+[node name="MoveSoundPlayer" type="AudioStreamPlayer2D" parent="pigeon6" index="3" unique_id=1973669834]
+stream = ExtResource("4_3ptvg")
+parameters/looping = true
 
 [node name="npc" parent="." index="14" unique_id=350633501 instance=ExtResource("10_2841b")]
 position = Vector2(498, 188)
@@ -97,6 +124,10 @@ cell = Vector2i(15, 5)
 [node name="pigeon2" parent="." index="15" unique_id=75559150 instance=ExtResource("3_td2lp")]
 spawn_grid_cell = Vector2i(15, 10)
 visual_node_path = NodePath(".")
+
+[node name="MoveSoundPlayer" type="AudioStreamPlayer2D" parent="pigeon2" index="3" unique_id=1914115206]
+stream = ExtResource("4_3ptvg")
+parameters/looping = true
 
 [node name="map_objects" type="Node2D" parent="." index="16" unique_id=991128498]
 

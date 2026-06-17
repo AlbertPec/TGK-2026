@@ -2,15 +2,14 @@
 
 [ext_resource type="Script" uid="uid://68m8ntghtvqm" path="res://world_elements/puzzle_objects/fix_train/fix_element.gd" id="1_82wdo"]
 [ext_resource type="PackedScene" uid="uid://bruybkvx51r74" path="res://world_elements/interactable/interactable.tscn" id="1_a1hcp"]
-[ext_resource type="Texture2D" uid="uid://bh5tjlhrc6dm4" path="res://UI_assets/warning.png" id="2_q3lj1"]
+[ext_resource type="Texture2D" uid="uid://bfu0f80gtry8t" path="res://UI_assets/warning.png" id="2_q3lj1"]
+[ext_resource type="AudioStream" uid="uid://28oy6nihyvfi" path="res://audio_assets/soundeffects/fuse_box_click.mp3" id="4_ut2xy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_82wdo"]
 size = Vector2(32, 32)
 
 [node name="FixElement" type="Node2D" unique_id=2019309028]
 script = ExtResource("1_82wdo")
-element_id = null
-action_name = null
 
 [node name="Interactable" parent="." unique_id=169991343 instance=ExtResource("1_a1hcp")]
 
@@ -21,3 +20,6 @@ shape = SubResource("RectangleShape2D_82wdo")
 position = Vector2(1.1920929e-06, 7.1525574e-07)
 scale = Vector2(0.06666667, 0.06666666)
 texture = ExtResource("2_q3lj1")
+
+[node name="FixSoundPlayer" type="AudioStreamPlayer2D" parent="." unique_id=1478419045]
+stream = ExtResource("4_ut2xy")

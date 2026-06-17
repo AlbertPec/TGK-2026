@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://8tp0gp6nn32l" path="res://map_assets/Interiors_free_32x32.png" id="1_rjxcp"]
 [ext_resource type="Script" uid="uid://dy662qsviuo25" path="res://world_elements/puzzle_objects/switch_electrics/switch.gd" id="1_yk50h"]
 [ext_resource type="PackedScene" uid="uid://bruybkvx51r74" path="res://world_elements/interactable/interactable.tscn" id="2_hp1tj"]
+[ext_resource type="AudioStream" uid="uid://cr3qgbjn8oq1u" path="res://audio_assets/soundeffects/switch.mp3" id="4_c1ig2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hp1tj"]
 size = Vector2(30, 62)
@@ -20,3 +21,6 @@ interaction_name = "Przełącz dzwignię"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable" unique_id=1561852229]
 shape = SubResource("RectangleShape2D_hp1tj")
+
+[node name="SwitchSoundPlayer" type="AudioStreamPlayer2D" parent="." unique_id=344190148]
+stream = ExtResource("4_c1ig2")

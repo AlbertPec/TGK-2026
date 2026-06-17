@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://3vgdiivoy4rq" path="res://board/tile_map_deafult.tscn" id="1_g0w4b"]
 [ext_resource type="PackedScene" uid="uid://br6jmwaabd1oh" path="res://enemy/enemy.tscn" id="2_nsi13"]
-[ext_resource type="AudioStream" uid="uid://h1xoh12dnnu0" path="res://audio_assets/soundeffects/pigeon_move.mp3" id="3_hcl0p"]
+[ext_resource type="AudioStream" uid="uid://cdxetlbu0j5we" path="res://audio_assets/soundeffects/pigeon_move.mp3" id="3_hcl0p"]
 [ext_resource type="Resource" uid="uid://cg7w85ny24u4l" path="res://enemy/types/pigeon.tres" id="3_mtsnm"]
 [ext_resource type="PackedScene" uid="uid://baww3l4iox4mx" path="res://world_elements/puzzle_objects/switch_electrics/switch_puzzle.tscn" id="4_qnn0w"]
 [ext_resource type="PackedScene" uid="uid://dekd087gf5nig" path="res://world_elements/puzzle_objects/switch_electrics/doors.tscn" id="5_b1p3g"]
@@ -44,7 +44,7 @@ parameters/looping = true
 
 [node name="pigeon4" parent="." index="7" unique_id=262046461 instance=ExtResource("2_nsi13")]
 position = Vector2(-39, -42)
-spawn_grid_cell = Vector2i(18, 9)
+spawn_grid_cell = Vector2i(19, 9)
 enemy_type = ExtResource("3_mtsnm")
 visual_node_path = NodePath(".")
 

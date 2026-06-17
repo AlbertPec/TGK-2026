@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://n4prpqryrxbh" path="res://world_elements/light_panel/light_panel.tscn" id="4_kujnm"]
 [ext_resource type="PackedScene" uid="uid://bnwers7rr3u4q" path="res://world_elements/npc/npc.tscn" id="5_1qjbq"]
 [ext_resource type="PackedScene" uid="uid://clbbma5bo4yse" path="res://world_elements/note/note.tscn" id="5_62ym3"]
-[ext_resource type="Texture2D" uid="uid://cidwwbgplhjq6" path="res://map_assets/MiniNobleWoman.png" id="6_1qjbq"]
+[ext_resource type="Texture2D" uid="uid://b8rkvnhpfwa1j" path="res://map_assets/MiniNobleWoman.png" id="6_1qjbq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kqkuk"]
 atlas = ExtResource("6_1qjbq")
@@ -51,7 +51,7 @@ Technik prowadzący: Jack Longfield
 ...Silnik trakcyjny zaczął odpowiadać dopiero po sprawdzeniu systemu drzwi. ...\""
 
 [node name="TechnicalNote3" parent="." index="6" unique_id=1096525025 instance=ExtResource("5_62ym3")]
-position = Vector2(976, 144)
+position = Vector2(976, 176)
 note_text = "Notatka:
 \"WEWNĘTRZNE MEMO // DZIAŁ TECHNICZNY
 Adresat: inż. Birch

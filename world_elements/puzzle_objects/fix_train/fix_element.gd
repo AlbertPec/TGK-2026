@@ -2,6 +2,7 @@ extends Node2D
 
 @onready var interactable = $Interactable
 @onready var col_box = $Interactable/CollisionShape2D
+@onready var fix_sound_player = $FixSoundPlayer
 
 @export var element_id: int
 @export var action_name: String
@@ -13,6 +14,7 @@ func toggle_collision(state: bool):
 	
 func _on_interacted(interactor = null):
 	fixed_element.emit(element_id)
+	fix_sound_player.play()
 
 func _ready() -> void:
 	interactable.connect("interacted",_on_interacted)

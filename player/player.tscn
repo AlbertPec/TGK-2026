@@ -8,6 +8,9 @@
 [ext_resource type="Texture2D" uid="uid://byhwtgoxa7a74" path="res://player_assets/Shoot.png" id="3_boad6"]
 [ext_resource type="Texture2D" uid="uid://dl1og0ltgwkt8" path="res://player_assets/Death.png" id="3_rgyib"]
 [ext_resource type="Texture2D" uid="uid://cxg5utpuxcg0p" path="res://player_assets/Stab.png" id="3_yw30f"]
+[ext_resource type="AudioStream" uid="uid://b5h4e40ulxbrd" path="res://audio_assets/soundeffects/steps.mp3" id="7_boad6"]
+[ext_resource type="AudioStream" uid="uid://be8kn1ek8u3wa" path="res://audio_assets/soundeffects/knife_attack.mp3" id="10_2ieo8"]
+[ext_resource type="AudioStream" uid="uid://b7pxkuhvhg5n6" path="res://audio_assets/soundeffects/crossbow_attack.mp3" id="11_ebec5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rkbax"]
 size = Vector2(32, 32)
@@ -625,3 +628,14 @@ position = Vector2(0, -12)
 scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_yw30f")
 animation = &"death_side"
+
+
+[node name="StepSoundPlayer" type="AudioStreamPlayer2D" parent="." unique_id=1129786590]
+stream = ExtResource("7_boad6")
+parameters/looping = true
+
+[node name="KnifeAttackSoundPlayer" type="AudioStreamPlayer2D" parent="." unique_id=1118421313]
+stream = ExtResource("10_2ieo8")
+
+[node name="CrossbowAttackSoundPlayer" type="AudioStreamPlayer2D" parent="." unique_id=1834958680]
+stream = ExtResource("11_ebec5")

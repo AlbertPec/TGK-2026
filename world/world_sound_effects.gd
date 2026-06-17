@@ -83,6 +83,9 @@ func _on_combat_ended() -> void:
 
 
 func _ready() -> void:
+	no_combat_st_audio_player.volume_db = MUSIC_VOLUME
+	combat_st_audio_player.volume_db = MUTED_VOLUME
+	
 	world.train_entered.connect(_play_train_entered)
 	world.train_running.connect(_play_train_running)
 	

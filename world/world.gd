@@ -5,6 +5,7 @@ const NOWY_KLEPARZ_BOARD_PATH := "res://board/tile_map_nowy_kleparz.tscn"
 @onready var board = $Board
 @onready var player: Player = $Player
 @onready var turn_mechanism: TurnMechanism = $TurnMechanism
+@onready var fadeout_effect = $FadeoutEffect
 
 var entered_train = false
 var current_board_scene_path := ""
@@ -13,6 +14,13 @@ var _player_defeat_transition_running := false
 
 const PLAYER_DEFEAT_DELAY := 0.8 # death animation lenght
 
+signal train_entered
+signal train_exited
+signal train_running
+
+signal combat_started
+signal combat_ended
+
 var station_id_to_path = { # maps id from ui signal to name of map scene
 	"TeatrBagatela":"tile_map_teatr_bagatela",
 	"DworzecGlowny":"tile_map_dworzec_glowny",
@@ -20,6 +28,7 @@ var station_id_to_path = { # maps id from ui signal to name of map scene
 }
 
 func change_board(path_to_scene: String):
+	await fadeout_effect.fade_in()
 	_end_combat_if_active()
 
 	if board:
@@ -42,6 +51,9 @@ func change_board(path_to_scene: String):
 	player.z_index = 100 # put player above the board - without it, player is invisible
 	player.can_move = true #movment enabled after leaving the train
 	GlobalSignals.emit_signal("change_textbox_text", "player exited the train")
+	emit_signal("train_running")
+	fadeout_effect.fade_out()
+	
 	
 func _connect_board_signal(target_board: Node) -> void:
 	var train_entered_callback := Callable(self, "_on_train_entered")
@@ -64,6 +76,7 @@ func _on_train_entered():
 		set_player_at_spawn_point()
 		player.z_index = -100 # hide player under the board
 		player.position = Vector2(-666,-666) # move player over the map
+		emit_signal("train_entered")
 
 func _ready() -> void:
 	current_board_scene_path = board.scene_file_path
@@ -80,6 +93,7 @@ func _on_hud_ui_station_chosen(station_id: Variant) -> void:
 		if selected_board_scene_path != current_board_scene_path:
 			change_board(selected_board_scene_path)
 		else:
+			emit_signal("train_entered")
 			set_player_at_spawn_point()
 			player.z_index = 100
 		entered_train = false
@@ -179,9 +193,11 @@ func _collect_enemies_in_node(root: Node) -> Array[Enemy]:
 func _on_combat_started() -> void:
 	player.finish_current_step_only()
 	player.enter_combat(true)
+	emit_signal("combat_started")
 
 func _on_combat_finished() -> void:
 	player.exit_combat()
+	emit_signal("combat_ended")
 
 func _end_combat_if_active() -> void:
 	if turn_mechanism == null:

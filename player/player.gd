@@ -9,6 +9,10 @@ signal player_defeated
 
 @onready var PLAYER_LOG_NAME = "player"
 
+@onready var step_audio_player = $StepSoundPlayer
+@onready var knife_attack_audio_player = $KnifeAttackSoundPlayer
+@onready var crossbow_attack_audio_player = $CrossbowAttackSoundPlayer
+
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var weapon_manager: WeaponManager = $WeaponManager
 var animation_variant = "front"
@@ -22,7 +26,7 @@ func _ready() -> void:
 	setup_entity()
 	log_name = PLAYER_LOG_NAME
 	grid_movement.set_max_move_distance(-1)
-
+	
 func _on_death() -> void:
 	GlobalSignals.emit_signal("change_textbox_text", 
 			"Player was defeated!")
@@ -108,6 +112,23 @@ func manage_animations() -> void:
 	else:
 		animated_sprite.play("idle_" + animation_variant)
 
+func _stop_all_sounds() -> void:
+	step_audio_player.stop()
+	knife_attack_audio_player.stop()
+	crossbow_attack_audio_player.stop()
+
+func manage_sound() -> void:
+	if grid_movement.has_path_to_travel():
+		if not step_audio_player.playing:
+			step_audio_player.play()
+	elif _is_performing_attack:
+		if( equipped_attack.attack_animation_name == "stab") and not knife_attack_audio_player.playing:
+			knife_attack_audio_player.play()
+		elif(equipped_attack.attack_animation_name== "crossbow") and not crossbow_attack_audio_player.playing:
+			crossbow_attack_audio_player.play()
+	else:
+		_stop_all_sounds()
+			
 func _physics_process(_delta: float) -> void:
 	if not _is_in_combat():
 		if grid_movement.has_path_to_travel():
@@ -117,6 +138,7 @@ func _physics_process(_delta: float) -> void:
 
 	move_and_update_facing()
 	manage_animations()
+	manage_sound()
 	
 	if _preserve_turn_after_forced_move and not grid_movement.has_path_to_travel():
 		_preserve_turn_after_forced_move = false

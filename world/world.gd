@@ -157,16 +157,17 @@ func _handle_player_defeat() -> void:
 		await scene_tree.create_timer(PLAYER_DEFEAT_DELAY).timeout
 
 	_reset_all_enemies()
-	player.restore_full_health()
 	entered_train = false
 
 	if current_board_scene_path != NOWY_KLEPARZ_BOARD_PATH:
-		change_board(NOWY_KLEPARZ_BOARD_PATH)
+		await change_board(NOWY_KLEPARZ_BOARD_PATH)
+		player.restore_full_health()
 		_player_defeat_transition_running = false
 		return
 
 	set_player_at_spawn_point()
 	player.z_index = 100
+	player.restore_full_health()
 	_refresh_fight_connections()
 	_player_defeat_transition_running = false
 

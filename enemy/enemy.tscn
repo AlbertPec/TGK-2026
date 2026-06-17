@@ -2,109 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bifgxllqxdmme" path="res://enemy/enemy.gd" id="1_ofsxj"]
 [ext_resource type="Resource" uid="uid://xnvaeeyhr6by" path="res://enemy/types/scavenger.tres" id="2_p200p"]
-[ext_resource type="Texture2D" uid="uid://dcnlunwgxl8w2" path="res://enemy_assets/Pidgeon Sprite Sheet.png" id="2_ppra6"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_p200p"]
-atlas = ExtResource("2_ppra6")
-region = Rect2(0, 64, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_pmsee"]
-atlas = ExtResource("2_ppra6")
-region = Rect2(32, 64, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_1wwld"]
-atlas = ExtResource("2_ppra6")
-region = Rect2(64, 64, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_y5vj3"]
-atlas = ExtResource("2_ppra6")
-region = Rect2(96, 64, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_5ffra"]
-atlas = ExtResource("2_ppra6")
-region = Rect2(0, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_e355f"]
-atlas = ExtResource("2_ppra6")
-region = Rect2(32, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_78jik"]
-atlas = ExtResource("2_ppra6")
-region = Rect2(64, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_o3pv7"]
-atlas = ExtResource("2_ppra6")
-region = Rect2(96, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_xoplw"]
-atlas = ExtResource("2_ppra6")
-region = Rect2(0, 96, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_6yflr"]
-atlas = ExtResource("2_ppra6")
-region = Rect2(32, 96, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_gf88j"]
-atlas = ExtResource("2_ppra6")
-region = Rect2(64, 96, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_tbw0t"]
-atlas = ExtResource("2_ppra6")
-region = Rect2(96, 96, 32, 32)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_wjonb"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_p200p")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_pmsee")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_1wwld")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_y5vj3")
-}],
-"loop": false,
-"name": &"eat",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_5ffra")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_e355f")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_78jik")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_o3pv7")
-}],
-"loop": false,
-"name": &"idle",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_xoplw")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_6yflr")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_gf88j")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_tbw0t")
-}],
-"loop": false,
-"name": &"move",
-"speed": 10.0
-}]
+[ext_resource type="SpriteFrames" uid="uid://dr3fdx3v62s8q" path="res://enemy/configs/boar_frames.tres" id="3_ppra6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rovcg"]
 
@@ -113,14 +11,14 @@ radius = 96.0
 
 [node name="enemy" type="CharacterBody2D" unique_id=1486208510]
 scale = Vector2(1.5, 1.5)
+collision_layer = 0
+collision_mask = 0
 script = ExtResource("1_ofsxj")
 enemy_type = ExtResource("2_p200p")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=990520719]
-sprite_frames = SubResource("SpriteFrames_wjonb")
-animation = &"idle"
-frame = 3
-frame_progress = 1.0
+sprite_frames = ExtResource("3_ppra6")
+animation = &"move"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=120048007]
 scale = Vector2(1.5, 1.5)

@@ -6,7 +6,7 @@
 
 [resource]
 script = ExtResource("1_config")
-display_name = "Pigeon"
+display_name = "Gołąb"
 sprite_frames = ExtResource("2_frames")
 attack_animation = &"move"
 movement_speed = 2.5

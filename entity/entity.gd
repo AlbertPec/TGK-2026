@@ -152,7 +152,7 @@ func _start_attack(target: Entity) -> void:
 func _finish_attack() -> void:
 	if equipped_attack != null and is_instance_valid(_pending_attack_target):
 		GlobalSignals.emit_signal("change_textbox_text", 
-			self.log_name + " attacked " + _pending_attack_target.log_name + " for " + str(equipped_attack.damage) + " damage")
+			self.log_name + " zaatakował " + _pending_attack_target.log_name + " za " + str(equipped_attack.damage) + " obrażeń")
 		equipped_attack.perform(self, _pending_attack_target)
 
 	# wait for attack animation to play

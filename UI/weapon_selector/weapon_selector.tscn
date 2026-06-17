@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://d0uxvrb7s3dwf"]
 
-[ext_resource type="FontFile" uid="uid://r6us10gkmxef" path="res://fonts/m5x7.ttf" id="1_1ewns"]
-[ext_resource type="Script" path="res://UI/weapon_selector/weapon_selector.gd" id="2_jy7w4"]
+[ext_resource type="FontFile" uid="uid://bexxfhx3m71j1" path="res://fonts/m5x7.ttf" id="1_1ewns"]
+[ext_resource type="Script" uid="uid://cctl1jr27nidi" path="res://UI/weapon_selector/weapon_selector.gd" id="2_jy7w4"]
 
 [sub_resource type="Theme" id="Theme_jy7w4"]
 default_font = ExtResource("1_1ewns")
@@ -16,7 +16,7 @@ bg_color = Color(0.85800105, 0.8545566, 0, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_item_hovered"]
 bg_color = Color(0.40392157, 0.39215687, 0.06666667, 1)
 
-[node name="WeaponSelector" type="Control"]
+[node name="WeaponSelector" type="Control" unique_id=1109248709]
 custom_minimum_size = Vector2(150, 72)
 layout_mode = 3
 anchors_preset = 15
@@ -26,7 +26,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("2_jy7w4")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=603612478]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -38,12 +38,12 @@ theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 4
 
-[node name="Panel" type="Panel" parent="MarginContainer"]
+[node name="Panel" type="Panel" parent="MarginContainer" unique_id=1446300112]
 layout_mode = 2
 theme = SubResource("Theme_jy7w4")
 theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Panel"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Panel" unique_id=1638174814]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -55,24 +55,23 @@ theme_override_constants/margin_top = 6
 theme_override_constants/margin_right = 6
 theme_override_constants/margin_bottom = 6
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Panel/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Panel/MarginContainer" unique_id=504772029]
 layout_mode = 2
 theme_override_constants/separation = 4
 
-[node name="Title" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer"]
+[node name="Title" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer" unique_id=13272432]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.85800105, 0.8545566, 0, 1)
-text = "Weapon"
+text = "Broń"
 
-[node name="WeaponList" type="ItemList" parent="MarginContainer/Panel/MarginContainer/VBoxContainer"]
+[node name="WeaponList" type="ItemList" parent="MarginContainer/Panel/MarginContainer/VBoxContainer" unique_id=180869282]
 custom_minimum_size = Vector2(138, 40)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.85800105, 0.8545566, 0, 1)
-theme_override_colors/font_selected_color = Color(0.05490196, 0.05490196, 0.05490196, 1)
 theme_override_colors/font_hovered_color = Color(0.99215686, 0.98039216, 0.68235296, 1)
-theme_override_styles/cursor = SubResource("StyleBoxFlat_item_hovered")
-theme_override_styles/cursor_unfocused = SubResource("StyleBoxFlat_item_hovered")
+theme_override_colors/font_selected_color = Color(0.05490196, 0.05490196, 0.05490196, 1)
 theme_override_styles/selected = SubResource("StyleBoxFlat_item_selected")
 theme_override_styles/selected_focus = SubResource("StyleBoxFlat_item_selected")
-select_mode = 0
+theme_override_styles/cursor_unfocused = SubResource("StyleBoxFlat_item_hovered")
+theme_override_styles/cursor = SubResource("StyleBoxFlat_item_hovered")
 allow_reselect = true

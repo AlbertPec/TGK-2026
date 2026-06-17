@@ -7,7 +7,7 @@ signal player_defeated
 @export var max_move_distance: int = 4
 @export var can_move: bool = true
 
-@onready var PLAYER_LOG_NAME = "player"
+@onready var PLAYER_LOG_NAME = "Gracz"
 
 @onready var step_audio_player = $StepSoundPlayer
 @onready var knife_attack_audio_player = $KnifeAttackSoundPlayer

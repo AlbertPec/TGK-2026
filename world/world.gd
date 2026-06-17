@@ -50,7 +50,7 @@ func change_board(path_to_scene: String):
 	_refresh_fight_connections()
 	player.z_index = 100 # put player above the board - without it, player is invisible
 	player.can_move = true #movment enabled after leaving the train
-	GlobalSignals.emit_signal("change_textbox_text", "player exited the train")
+	GlobalSignals.emit_signal("change_textbox_text", "Gracz wyszedł z pociągu")
 	emit_signal("train_running")
 	fadeout_effect.fade_out()
 	
@@ -70,7 +70,7 @@ func set_player_at_spawn_point():
 
 func _on_train_entered():
 	if not entered_train:
-		GlobalSignals.emit_signal("change_textbox_text","player entered the train")
+		GlobalSignals.emit_signal("change_textbox_text","Gracz wszedł do pociągu")
 		player.can_move = false # disable movement becaouse player is in train 
 		entered_train = true
 		set_player_at_spawn_point()

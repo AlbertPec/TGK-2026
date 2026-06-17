@@ -340,7 +340,7 @@ func _on_revived() -> void:
 func _finish_attack() -> void:
 	if equipped_attack != null and is_instance_valid(_pending_attack_target):
 		GlobalSignals.emit_signal("change_textbox_text",
-			log_name + " attacked " + _pending_attack_target.log_name + " for " + str(equipped_attack.damage) + " damage")
+			log_name + " zaatakował " + _pending_attack_target.log_name + " za " + str(equipped_attack.damage) + " obrażeń")
 		equipped_attack.perform(self, _pending_attack_target)
 
 	await _wait_for_animation_to_finish(enemy_type.attack_animation)

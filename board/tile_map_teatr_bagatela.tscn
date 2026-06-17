@@ -9,6 +9,30 @@
 [ext_resource type="Resource" uid="uid://crbybln07y2hr" path="res://enemy/types/young_boar.tres" id="7_7bxk3"]
 [ext_resource type="Resource" uid="uid://i2m1u6co1fmb" path="res://attack/types/peck_attack.tres" id="8_eg4p3"]
 [ext_resource type="Resource" uid="uid://dhj6l28xexoqu" path="res://enemy/types/boss_boar.tres" id="9_eg4p3"]
+[ext_resource type="PackedScene" uid="uid://b0nu6y7l2wtb6" path="res://world_elements/npc/npc.tscn" id="10_2841b"]
+[ext_resource type="Texture2D" uid="uid://dgw5g2r0mf67x" path="res://map_assets/MiniVillagerMan.png" id="11_5c8ol"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3ptvg"]
+atlas = ExtResource("11_5c8ol")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o5gbr"]
+atlas = ExtResource("11_5c8ol")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0s23p"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3ptvg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o5gbr")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="Map2" unique_id=1015381578 instance=ExtResource("1_p8w1u")]
 
@@ -138,6 +162,7 @@ spawn_grid_cell = Vector2i(4, 7)
 enemy_type = ExtResource("9_eg4p3")
 equipped_attack = ExtResource("8_eg4p3")
 
+
 [node name="pigeon" parent="." index="11" unique_id=1486208510 instance=ExtResource("3_td2lp")]
 spawn_grid_cell = Vector2i(7, 8)
 visual_node_path = NodePath(".")
@@ -153,3 +178,12 @@ visual_node_path = NodePath(".")
 [node name="pigeon4" parent="." index="14" unique_id=496426536 instance=ExtResource("3_td2lp")]
 spawn_grid_cell = Vector2i(4, 10)
 visual_node_path = NodePath(".")
+
+[node name="npc" parent="." index="15" unique_id=1237982559 instance=ExtResource("10_2841b")]
+position = Vector2(498, 188)
+scale = Vector2(2, 2)
+note_text = "Robert: Widzę Laguna za tą zgrają niebezpiecznych dzików... Ale lepiej się do nich nie zbliżać bez broni dystansowej!"
+frames = SubResource("SpriteFrames_0s23p")
+flip_h = true
+cell = Vector2i(15, 5)
+

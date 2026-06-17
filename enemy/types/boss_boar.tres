@@ -6,7 +6,7 @@
 
 [resource]
 script = ExtResource("2_nrvb5")
-display_name = "Dire boar"
+display_name = "Young boar"
 behaviour = "boar"
 sprite_frames = ExtResource("3_uspgk")
 death_animation = &"death"

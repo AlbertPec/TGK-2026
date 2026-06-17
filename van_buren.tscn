@@ -8,7 +8,7 @@
 [ext_resource type="Resource" uid="uid://bmx8xa1uu8gyo" path="res://attack/types/crossbow_attack.tres" id="6_rf2de"]
 [ext_resource type="Script" uid="uid://3stlu1xxh1dm" path="res://fight_mechanics/turn_mechanism.gd" id="6_turn1"]
 [ext_resource type="PackedScene" uid="uid://cwqamcw884bnc" path="res://UI/fadeout/fadeout_effect.tscn" id="8_mcd60"]
-[ext_resource type="PackedScene" path="res://world/world_sound_effects.tscn" id="8_rf2de"]
+[ext_resource type="PackedScene" uid="uid://dw824138dcqg3" path="res://world/world_sound_effects.tscn" id="8_rf2de"]
 
 [node name="Game" type="Node2D" unique_id=1240663828]
 

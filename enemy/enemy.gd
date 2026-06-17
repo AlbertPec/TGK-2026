@@ -158,16 +158,33 @@ func _process_turn():
 
 func _process_default_turn() -> void:
 	if not moved_in_turn:
+		_start_playing($MoveSoundPlayer)
 		var target_cell := grid_movement.global_to_tile(player_entity.global_position)
 		grid_movement.move_possible_closest_to(global_position, target_cell)
 		moved_in_turn = true
 
 	if moved_in_turn and not grid_movement.has_path_to_travel() and equipped_attack.can_target(self, player_entity):
+		_start_playing($AttackSoundPlayer)
+		_stop_playing($MoveSoundPlayer)
 		request_attack(player_entity)
 		return
 
 	if moved_in_turn and not grid_movement.has_path_to_travel() and not equipped_attack.can_target(self, player_entity):
 		end_turn()
+		_stop_playing($MoveSoundPlayer)
+		
+	if moved_in_turn and _used_attack:
+		end_turn()
+		_stop_playing($MoveSoundPlayer)
+			
+			
+func _start_playing(sound_player):
+	if sound_player:
+		sound_player.play()
+
+func _stop_playing(sound_player):
+	if sound_player:
+		sound_player.stop()
 
 func _process_boar_turn() -> void:
 	if not moved_in_turn:

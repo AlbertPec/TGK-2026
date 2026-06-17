@@ -6,7 +6,7 @@ extends Node2D
 @onready var no_combat_st_audio_player  = $NoCombatSoundtrack
 @onready var combat_st_audio_player  = $CombatSoundtrack
 
-const MUSIC_VOLUME := 0.0
+const MUSIC_VOLUME := -15.0
 const MUTED_VOLUME := -35.0
 const FADE_TIME := 0.5
 
@@ -52,13 +52,6 @@ func _on_combat_started() -> void:
 	var tween = create_tween()
 	tween.set_parallel(true)
 
-	#tween.tween_property(
-		#no_combat_st_audio_player,
-		#"volume_db",
-		#MUTED_VOLUME,
-		#FADE_TIME
-	#)
-
 	tween.tween_property(
 		combat_st_audio_player,
 		"volume_db",
@@ -90,6 +83,9 @@ func _on_combat_ended() -> void:
 
 
 func _ready() -> void:
+	no_combat_st_audio_player.volume_db = MUSIC_VOLUME
+	combat_st_audio_player.volume_db = MUTED_VOLUME
+	
 	world.train_entered.connect(_play_train_entered)
 	world.train_running.connect(_play_train_running)
 	

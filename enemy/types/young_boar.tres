@@ -6,7 +6,7 @@
 
 [resource]
 script = ExtResource("2_7tlgy")
-display_name = "Young boar"
+display_name = "Młody Dzik"
 behaviour = "boar"
 sprite_frames = ExtResource("3_jmwn6")
 death_animation = &"death"

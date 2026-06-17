@@ -112,7 +112,7 @@ func _start_current_turn() -> void:
 	_refresh_active_turn_overlays()
 
 func log_turn(entity) -> void:
-	GlobalSignals.emit_signal("change_textbox_text", entity.log_name + " turn started")
+	GlobalSignals.emit_signal("change_textbox_text", entity.log_name + " rozpoczął turę")
 
 func _on_entity_turn_finished(entity: Entity) -> void:
 	if not _turn_active or not combat_active:
